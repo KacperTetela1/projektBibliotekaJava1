@@ -8,8 +8,6 @@ public abstract class LiteraryArt {
         POLISH,
         ENGLISH,
         GERMAN,
-        FRENCH,
-        SPANISH,
     }
 
     public LiteraryArt(){}

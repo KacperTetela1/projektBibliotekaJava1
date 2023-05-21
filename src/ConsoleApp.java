@@ -28,9 +28,55 @@ public class ConsoleApp {
 
             switch (option) {
                 case 1:
-                    String name = scanner.nextLine();
                     Book book = new Book();
-                    book.setAuthor(name);
+
+                    System.out.println("Please enter the title\n");
+                    String title = scanner.nextLine();
+                    book.setTitle(title);
+
+                    System.out.println("Please enter the author\n");
+                    String author = scanner.nextLine();
+                    book.setAuthor(author);
+
+                    System.out.println("Please enter the year of publication\n");
+                    int yearPublished = scanner.nextInt();
+                    book.setYearPublished(yearPublished);
+
+                    System.out.println("Please enter the language of book" +
+                            "\n1. Polish" +
+                            "\n2. English" +
+                            "\n3. German");
+                    int tmpVal = scanner.nextInt();
+                    switch (tmpVal){
+                        case 1:
+                            book.setLanguage(LiteraryArt.Language.POLISH);
+                            break;
+                        case 2:
+                            book.setLanguage(LiteraryArt.Language.ENGLISH);
+                            break;
+                        case 3:
+                            book.setLanguage(LiteraryArt.Language.GERMAN);
+                            break;
+                        default:
+                            System.out.println("Language has not been set");
+                    }
+
+                    System.out.println("Does the book is in hard cover?" +
+                            "\n1. Yes" +
+                            "\n2. No");
+                    int temVal2 = scanner.nextInt();
+                    switch (temVal2){
+                        case 1:
+                            book.setCoverType(Book.CoverType.HARD);
+                            break;
+                        case 2:
+                            book.setCoverType(Book.CoverType.SOFT);
+                            break;
+                        default:
+                            System.out.println("Type of cover has not been set");
+                    }
+
+                    szkolna.addArt(book);
                     break;
                 case 2:
                     //displayBooks();

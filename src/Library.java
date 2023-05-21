@@ -7,7 +7,7 @@ public class Library {
     }
     public void addArt(LiteraryArt literaryArt){
         literaryArts.add(literaryArt);
-        System.out.println("The art '" + literaryArt +  "' has been added to the library");
+        System.out.println("The art '" + literaryArt.getTitle() +  "' has been added to the library");
     }
     public void deleteArt(LiteraryArt literaryArt){
         literaryArt = null;
@@ -15,7 +15,7 @@ public class Library {
     public void printAllArts() {
         int tmpVal = 1;
         for (LiteraryArt literaryArt : literaryArts) {
-            System.out.print("Index: " + tmpVal + " ");
+            System.out.print("Index: " + tmpVal++ + " ");
             System.out.println(literaryArt.toString());
         }
     }
