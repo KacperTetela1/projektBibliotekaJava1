@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<Book> books;
+    private ArrayList<LiteraryArt> literaryArts;
     public Library() {
-        books = new ArrayList<>();
+        literaryArts = new ArrayList<>();
     }
 }
