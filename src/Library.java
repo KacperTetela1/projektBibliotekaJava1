@@ -7,6 +7,7 @@ public class Library {
     }
     public void addArt(LiteraryArt literaryArt){
         literaryArts.add(literaryArt);
+        System.out.println("The art '" + literaryArt +  "' has been added to the library");
     }
     public void deleteArt(LiteraryArt literaryArt){
         literaryArt = null;
