@@ -10,9 +10,16 @@ public class ConsoleApp {
     }
 
     public void run() {
-        Library szkolna = new Library();
+        Library schoolLibrary = new Library();
         Book ogniemIMieczem = new Book("Ogniem i Mieczem","Henryk Sienkiewicz",1884, LiteraryArt.Language.POLISH, Book.CoverType.HARD,588);
-        szkolna.addArt(ogniemIMieczem);
+        Book stonesForTheRampart = new Book("Stones for the Rampart","\tAleksander Kamiński",1943, LiteraryArt.Language.ENGLISH, Book.CoverType.SOFT,256);
+        Book javaPodstawyhorstmann = new Book("Java Podstawy Horstmann","Cay'a Horstmanna",1995, LiteraryArt.Language.POLISH, Book.CoverType.HARD,785);
+        EBook panTadeusz = new EBook("Pan Tadeusz","Adam Mickiewicz",1834, LiteraryArt.Language.POLISH,true,48);
+        schoolLibrary.addArt(ogniemIMieczem);
+        schoolLibrary.addArt(stonesForTheRampart);
+        schoolLibrary.addArt(javaPodstawyhorstmann);
+        schoolLibrary.addArt(panTadeusz);
+
         System.out.println("Welcome to the library!");
 
 
@@ -85,7 +92,7 @@ public class ConsoleApp {
                     int numberOfPages = scanner.nextInt();
                     book.setNumberOfPages(numberOfPages);
 
-                    szkolna.addArt(book);
+                    schoolLibrary.addArt(book);
                     break;
                 case 2:
                     EBook eBook = new EBook();
@@ -125,7 +132,7 @@ public class ConsoleApp {
                     int size = scanner.nextInt();
                     eBook.setFileSize(size);
 
-                    szkolna.addArt(eBook);
+                    schoolLibrary.addArt(eBook);
                     break;
                 case 3:
                     AudioBook audioBook = new AudioBook();
@@ -166,20 +173,16 @@ public class ConsoleApp {
                     int duration = scanner.nextInt();
                     audioBook.setDuration(duration);
 
-                    szkolna.addArt(audioBook);
+                    schoolLibrary.addArt(audioBook);
                     break;
                 case 4:
-                    //szkolna.deleteArt();
-
-
+                    //delete a book();
                     break;
                 case 5:
-                    szkolna.printAllArts();
+                    schoolLibrary.printAllArts();
                     break;
                 case 6:
                     //borrow a book();
-
-
                     break;
                 case 7:
                     //returnBook();
@@ -193,6 +196,6 @@ public class ConsoleApp {
         }
 
         System.out.println("Thank you for using the library. Goodbye!");
-        szkolna.printAllArts();
+        schoolLibrary.printAllArts();
     }
 }
