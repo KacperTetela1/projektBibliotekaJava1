@@ -125,13 +125,41 @@ public class ConsoleApp {
 
 
 
+                    System.out.println("Please enter the title\n");
+                    String titleOfAudiobook = scanner.nextLine();
+                    audioBook.setTitle(titleOfAudiobook);
 
+                    System.out.println("Please enter the author\n");
+                    String authorOfAudiobook = scanner.nextLine();
+                    audioBook.setAuthor(authorOfAudiobook);
 
+                    System.out.println("Please enter the year of publication\n");
+                    int yearPublishedOfAudioBook = scanner.nextInt();
+                    audioBook.setYearPublished(yearPublishedOfAudioBook);
 
+                    System.out.println("Please enter the language of audiobook" +
+                            "\n1. Polish" +
+                            "\n2. English" +
+                            "\n3. German");
+                    int tmpValOfAudioBook = scanner.nextInt();
+                    switch (tmpValOfAudioBook){
+                        case 1:
+                            audioBook.setLanguage(LiteraryArt.Language.POLISH);
+                            break;
+                        case 2:
+                            audioBook.setLanguage(LiteraryArt.Language.ENGLISH);
+                            break;
+                        case 3:
+                            audioBook.setLanguage(LiteraryArt.Language.GERMAN);
+                            break;
+                        default:
+                            System.out.println("Language has not been set");
+                    }
+                    System.out.println("Please enter the duration of audiobook (seconds)");
+                    int duration = scanner.nextInt();
+                    audioBook.setDuration(duration);
 
-
-
-
+                    szkolna.addArt(audioBook);
                     break;
                 case 4:
                     //Delete a book();
