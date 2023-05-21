@@ -12,11 +12,11 @@ public abstract class LiteraryArt {
         SPANISH,
     }
     public LiteraryArt(){}
-    public LiteraryArt(String title, String author, int yearPublished, boolean availability, Language language) {
+    public LiteraryArt(String title, String author, int yearPublished, Language language) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
-        this.availability = availability;
+        availability = true;
         this.language = language;
     }
 
