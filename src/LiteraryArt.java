@@ -11,6 +11,7 @@ public abstract class LiteraryArt {
         FRENCH,
         SPANISH,
     }
+
     public LiteraryArt(){}
     public LiteraryArt(String title, String author, int yearPublished, Language language) {
         this.title = title;
