@@ -11,7 +11,10 @@ public class ConsoleApp {
 
     public void run() {
         Library szkolna = new Library();
+        Book ogniemIMieczem = new Book("Ogniem i Mieczem","Henryk Sienkiewicz",1884, LiteraryArt.Language.POLISH, Book.CoverType.HARD,588);
+        szkolna.addArt(ogniemIMieczem);
         System.out.println("Welcome to the library!");
+
 
         boolean running = true;
         while (running) {
@@ -77,6 +80,10 @@ public class ConsoleApp {
                         default:
                             System.out.println("Type of cover has not been set");
                     }
+
+                    System.out.println("Please enter the number of pages");
+                    int numberOfPages = scanner.nextInt();
+                    book.setNumberOfPages(numberOfPages);
 
                     szkolna.addArt(book);
                     break;
@@ -162,10 +169,11 @@ public class ConsoleApp {
                     szkolna.addArt(audioBook);
                     break;
                 case 4:
-                    //Delete a book();
+                    szkolna.printAllArts();
+                    //szkolna.deleteArt();
                     break;
                 case 5:
-                    //display book list();
+                    szkolna.printAllArts();
                     break;
                 case 6:
                     //borrow a book();
