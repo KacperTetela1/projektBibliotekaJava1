@@ -4,7 +4,7 @@ public abstract class LiteraryArt {
     private int yearPublished;
     private boolean availability;
     private Language language;
-    public enum Language {
+    protected enum Language {
         POLISH,
         ENGLISH,
         GERMAN,
