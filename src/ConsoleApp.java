@@ -169,14 +169,17 @@ public class ConsoleApp {
                     szkolna.addArt(audioBook);
                     break;
                 case 4:
-                    szkolna.printAllArts();
                     //szkolna.deleteArt();
+
+
                     break;
                 case 5:
                     szkolna.printAllArts();
                     break;
                 case 6:
                     //borrow a book();
+
+
                     break;
                 case 7:
                     //returnBook();
