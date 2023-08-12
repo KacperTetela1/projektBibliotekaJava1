@@ -1,12 +1,14 @@
+import Objects.LiteraryArt;
+
 import java.util.ArrayList;
 
 
-public class Library {
+public class LibraryManager {
     private ArrayList<LiteraryArt> literaryArts;
-    public Library() {
+    public LibraryManager() {
         literaryArts = new ArrayList<>();
     }
-    public void addArt(LiteraryArt literaryArt){
+    public void addArt(LiteraryArt literaryArt) {
         literaryArts.add(literaryArt);
         System.out.println("The art '" + literaryArt.getTitle() +  "' has been added to the library");
     }
@@ -14,20 +16,23 @@ public class Library {
         literaryArt = null;
     }
     public void printAllArts() {
+
         int tmpVal = 1;
         for (LiteraryArt literaryArt : literaryArts) {
             System.out.print("Index: " + tmpVal++ + " ");
             System.out.println(literaryArt.toString());
         }
+
     }
     public void rentAnArt(LiteraryArt literaryArt){
         if (literaryArt.isAvailability() == true){
             literaryArt.setAvailability(false);
             System.out.println("The art '" + literaryArt.getTitle() + "' has been rented");
         }
-        else{
+        else {
             System.out.println("The art '" + literaryArt.getTitle() + "' has NOT been rented due to no availability");
         }
+
     }
 
 }

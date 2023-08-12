@@ -1,3 +1,5 @@
+package Objects;
+
 public class Book extends LiteraryArt{
     private CoverType coverType;
     private int numberOfPages;
@@ -31,7 +33,7 @@ public class Book extends LiteraryArt{
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "Objects.Book{" +
                 "coverType=" + coverType +
                 ", numberOfPages=" + numberOfPages +
                 "} " + super.toString();

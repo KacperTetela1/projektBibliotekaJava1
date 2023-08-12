@@ -1,8 +1,10 @@
+package Objects;
+
 public class EBook extends LiteraryArt{
     private boolean isPDF;
     private int fileSize;
 
-    public EBook(){}
+    public EBook() {}
     public EBook(String title, String author, int yearPublished, Language language, boolean isPDF, int fileSize) {
         super(title, author, yearPublished, language);
         this.isPDF = isPDF;
@@ -27,7 +29,7 @@ public class EBook extends LiteraryArt{
 
     @Override
     public String toString() {
-        return "EBook{" +
+        return "Objects.EBook{" +
                 "isPDF=" + isPDF +
                 ", fileSize=" + fileSize +
                 "} " + super.toString();

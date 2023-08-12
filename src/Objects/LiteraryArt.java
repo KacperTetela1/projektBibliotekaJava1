@@ -1,10 +1,12 @@
+package Objects;
+
 public abstract class LiteraryArt {
     private String title;
     private String author;
     private int yearPublished;
     private boolean availability;
     private Language language;
-    protected enum Language {
+    public enum Language {
         POLISH,
         ENGLISH,
         GERMAN,
@@ -61,7 +63,7 @@ public abstract class LiteraryArt {
 
     @Override
     public String toString() {
-        return "LiteraryArt{" +
+        return "Objects.LiteraryArt{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", yearPublished=" + yearPublished +

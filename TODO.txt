@@ -1,0 +1,5 @@
+rozdzielic funkcjoinowanie aplikacji na consoleApp i LibraryManager.
+
+ConsoleApp ma byc klasa uruchamiajaca i zawiera rekurencyjna metode statyczna uruchomieniowa
+
+LibraryManager ma tworzyc Hasliste i oblugiwac backend

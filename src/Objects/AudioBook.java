@@ -1,3 +1,5 @@
+package Objects;
+
 public class AudioBook extends LiteraryArt{
     private int duration;
 
@@ -17,7 +19,7 @@ public class AudioBook extends LiteraryArt{
 
     @Override
     public String toString() {
-        return "AudioBook{" +
+        return "Objects.AudioBook{" +
                 "duration=" + duration +
                 "} " + super.toString();
     }
