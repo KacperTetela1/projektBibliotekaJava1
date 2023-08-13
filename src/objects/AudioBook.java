@@ -1,4 +1,4 @@
-package Objects;
+package objects;
 
 public class AudioBook extends LiteraryArt{
     private int duration;

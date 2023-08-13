@@ -1,5 +1,7 @@
-rozdzielic funkcjoinowanie aplikacji na consoleApp i LibraryManager.
+rozdzielic funkcjoinowanie aplikacji na consoleApp i LibraryManager (printAll rozdzielic na frontend i backend) (samo printall zaimplemenotwac w Label nie w ConsoleApp)
 
-ConsoleApp ma byc klasa uruchamiajaca i zawiera rekurencyjna metode statyczna uruchomieniowa
+DRY - Dont Repeat Yourself - nadac osobne metody w klasie Label do wypisania autora, daty publikacji...
 
-LibraryManager ma tworzyc Hasliste i oblugiwac backend
+Dodac funkcjonalnosc "Zoptymalizuj" ktora zdefragmentuje cala liste, usunie puste miejsca
+
+Przetlumaczyc WSZYSTKO na angielski

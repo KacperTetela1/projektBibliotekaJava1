@@ -1,30 +1,36 @@
-import Objects.LiteraryArt;
+import objects.LiteraryArt;
 
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class LibraryManager {
-    private ArrayList<LiteraryArt> literaryArts;
-    public LibraryManager() {
-        literaryArts = new ArrayList<>();
+    private int integerCounter = 1;
+
+    private Map<Integer,LiteraryArt> LibraryMap;
+
+    protected LibraryManager() {
+        LibraryMap = new HashMap<>();
     }
-    public void addArt(LiteraryArt literaryArt) {
-        literaryArts.add(literaryArt);
+
+    protected void addArt(LiteraryArt literaryArt) {
+        LibraryMap.put(integerCounter++,literaryArt);
         System.out.println("The art '" + literaryArt.getTitle() +  "' has been added to the library");
     }
-    public void deleteArt(LiteraryArt literaryArt){
-        literaryArt = null;
-    }
-    public void printAllArts() {
 
-        int tmpVal = 1;
-        for (LiteraryArt literaryArt : literaryArts) {
-            System.out.print("Index: " + tmpVal++ + " ");
-            System.out.println(literaryArt.toString());
+    protected void deleteArt(int keyValue){
+        LibraryMap.remove(keyValue);
+    }
+
+    protected void printAllArts() {
+        for (Integer key : LibraryMap.keySet()) {
+            LiteraryArt value = LibraryMap.get(key);
+            System.out.println("Key: " + key + ", Value: " + value);
         }
 
     }
-    public void rentAnArt(LiteraryArt literaryArt){
+
+    protected void rentAnArt(LiteraryArt literaryArt){
         if (literaryArt.isAvailability() == true){
             literaryArt.setAvailability(false);
             System.out.println("The art '" + literaryArt.getTitle() + "' has been rented");

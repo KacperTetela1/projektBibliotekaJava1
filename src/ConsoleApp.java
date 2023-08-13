@@ -1,9 +1,9 @@
-import Objects.AudioBook;
-import Objects.Book;
-import Objects.EBook;
-import Objects.LiteraryArt;
-
-import java.util.Scanner;
+import objects.AudioBook;
+import objects.Book;
+import objects.EBook;
+import objects.LiteraryArt;
+import tools.Input;
+import tools.Label;
 
 public class ConsoleApp {
 
@@ -12,61 +12,61 @@ public class ConsoleApp {
     }
 
     public static void runConsoleMenu() {
-        Scanner scanner = importScanner();
 
-        //tworzenie i wypelnianie jednej biblioteki(naszej bazy danych) w celu symulacji dzialania programu, pozniej mozna zastapic wczytaniem w przypadku serializacji
+        //Tworzenie i wypelnianie jednej biblioteki(naszej bazy danych) w celu symulacji dzialania programu, pozniej mozna zastapic wczytaniem w przypadku serializacji
         LibraryManager schoolLibrary = new LibraryManager();
-        LiteraryArt ogniemIMieczem = new Book("Ogniem i Mieczem","Henryk Sienkiewicz",1884, LiteraryArt.Language.POLISH, Book.CoverType.HARD,588);
-        LiteraryArt stonesForTheRampart = new Book("Stones for the Rampart","\tAleksander Kamiński",1943, LiteraryArt.Language.ENGLISH, Book.CoverType.SOFT,256);
-        LiteraryArt javaPodstawyhorstmann = new Book("Java Podstawy Horstmann","Cay'a Horstmanna",1995, LiteraryArt.Language.POLISH, Book.CoverType.HARD,785);
-        LiteraryArt panTadeusz = new EBook("Pan Tadeusz","Adam Mickiewicz",1834, LiteraryArt.Language.POLISH,true,48);
-        schoolLibrary.addArt(ogniemIMieczem);
-        schoolLibrary.addArt(stonesForTheRampart);
-        schoolLibrary.addArt(javaPodstawyhorstmann);
-        schoolLibrary.addArt(panTadeusz);
+        recordsFillerTMP(schoolLibrary);
 
-        ///////////////////////////////////////////////////////
-        //Aplikacja przechodzi do dzialania
-        //////////////////////////////////////////////////////
+        //Wyswietla przywitanie
+        Label.printHelloLabel();
 
-        printHelloLabel();
+        //Pyta uzytkownika co chce zrobic
+        switchAsker(schoolLibrary);
+
+        //Wyswietla pozegnalny komunikat
+        Label.printGoodByeLabel();
+
+    }
+
+    private static void switchAsker(LibraryManager nameOfLibrary) {
 
         // tworzy boolean ktory jest ustawiony na true, w momencie zmiany na false aplikacja sie zamyka poniewaz petla while nie dostanie true
         boolean running = true;
         while (running == true) {
 
-            printListOfChoices();
+            Label.printListOfChoices();
 
-            //pobiera int ktory jest potrzebny do wybrania pozycji w menu
-            int option = scanner.nextInt();
-            scanner.nextLine();
-
-            switch (option) {
+            switch (Input.intScanner()) {
                 case 1:
                     //add book
-                    addBook(schoolLibrary);
+                    addBook(nameOfLibrary);
                     break;
                 case 2:
                     //add ebook
-                    addEBook(schoolLibrary);
+                    addEBook(nameOfLibrary);
                     break;
                 case 3:
                     //add audioBook
-                    addAudioBook(schoolLibrary);
+                    addAudioBook(nameOfLibrary);
                     break;
                 case 4:
-                    //delete a book();
+                    //delete book
+                    deleteBook(nameOfLibrary);
                     break;
                 case 5:
-                    schoolLibrary.printAllArts();
+                    //print all Art from hashMap, method to rebuild by seperate frontend and backend
+                    nameOfLibrary.printAllArts();
                     break;
                 case 6:
-                    //borrow a book();
+                    //borrow a book()
+                    borrowBook();
                     break;
                 case 7:
-                    //returnBook();
+                    //returnBook()
+                    returnBook();
                     break;
                 case 0:
+                    //zamkniecie programu
                     running = false;
                     break;
                 default:
@@ -74,62 +74,49 @@ public class ConsoleApp {
             }
         }
 
-        printGoodByeLabel();
+    }
+
+    private static void deleteBook(LibraryManager nameOfLibrary) {
+        System.out.println("Select the book you want to delete by Key number");
+        nameOfLibrary.printAllArts();
+
+        int deleteKeyValue = Input.intScanner();
+        nameOfLibrary.deleteArt(deleteKeyValue);
+
+        System.out.println("The book has been deleted from library");
 
     }
 
-    private static int intScanner() {
-        Scanner scanner = importScanner();
-        return scanner.nextInt();
-    }
-    private static Scanner importScanner() {
-        //pobieranie scannera ktory jest potrzebny metodzie
-        return new Scanner(System.in);
+    private static void borrowBook() {
+        //TODO utworzyc frontend do wyporzyczania ksiazki
     }
 
-    private static void printHelloLabel() {
-        System.out.println("Welcome to the library!");
-    }
-
-    private static void printListOfChoices() {
-        System.out.println("Select an option:");
-        System.out.println("1. Add a book");
-        System.out.println("2. Add a e-book");
-        System.out.println("3. Add a audio-book");
-        System.out.println("4. Delete a book");
-        System.out.println("5. Display book list");
-        System.out.println("6. Borrow a book");
-        System.out.println("7. Return a book");
-        System.out.println("0. Exit the library");
-    }
-
-    private static void printGoodByeLabel() {
-        System.out.println("Thank you for using the library. Goodbye!");
+    private static void returnBook() {
+        //TODO utworzyc frontend do oddawania ksiazki
     }
 
     private static void addBook(LibraryManager nameOfLibrary) {
-        Scanner scanner = importScanner();
 
         Book book = new Book();
 
         System.out.println("Please enter the title\n");
-        String title = scanner.nextLine();
-        book.setTitle(title);
+
+        book.setTitle(Input.StringScanner());
 
         System.out.println("Please enter the author\n");
-        String author = scanner.nextLine();
-        book.setAuthor(author);
+
+        book.setAuthor(Input.StringScanner());
 
         System.out.println("Please enter the year of publication\n");
-        int yearPublished = scanner.nextInt();
-        book.setYearPublished(yearPublished);
+
+        book.setYearPublished(Input.intScanner());
 
         System.out.println("Please enter the language of book" +
                 "\n1. Polish" +
                 "\n2. English" +
                 "\n3. German");
-        int tmpVal = scanner.nextInt();
-        switch (tmpVal){
+
+        switch (Input.intScanner()){
             case 1:
                 book.setLanguage(LiteraryArt.Language.POLISH);
                 break;
@@ -146,8 +133,8 @@ public class ConsoleApp {
         System.out.println("Does the book is in hard cover?" +
                 "\n1. Yes" +
                 "\n2. No");
-        int temVal2 = scanner.nextInt();
-        switch (temVal2){
+
+        switch (Input.intScanner()){
             case 1:
                 book.setCoverType(Book.CoverType.HARD);
                 break;
@@ -159,36 +146,31 @@ public class ConsoleApp {
         }
 
         System.out.println("Please enter the number of pages");
-        int numberOfPages = scanner.nextInt();
-        book.setNumberOfPages(numberOfPages);
+        book.setNumberOfPages(Input.intScanner());
 
         nameOfLibrary.addArt(book);
 
     }
 
     private static void addEBook(LibraryManager nameOfLibrary) {
-        Scanner scanner = importScanner();
 
         EBook eBook = new EBook();
 
         System.out.println("Please enter the title\n");
-        String titleOfEBook = scanner.nextLine();
-        eBook.setTitle(titleOfEBook);
+        eBook.setTitle(Input.StringScanner());
 
         System.out.println("Please enter the author\n");
-        String authorOfEbook = scanner.nextLine();
-        eBook.setAuthor(authorOfEbook);
+        eBook.setAuthor(Input.StringScanner());
 
         System.out.println("Please enter the year of publication\n");
-        int yearPublishedOfTheEbook = scanner.nextInt();
-        eBook.setYearPublished(yearPublishedOfTheEbook);
+        eBook.setYearPublished(Input.intScanner());
 
         System.out.println("Please enter the language of ebook" +
                 "\n1. Polish" +
                 "\n2. English" +
                 "\n3. German");
-        int tmpValOfEbook = scanner.nextInt();
-        switch (tmpValOfEbook){
+
+        switch (Input.intScanner()){
             case 1:
                 eBook.setLanguage(LiteraryArt.Language.POLISH);
                 break;
@@ -203,36 +185,31 @@ public class ConsoleApp {
         }
 
         System.out.println("Please enter the size of eBook file (MB)");
-        int size = scanner.nextInt();
-        eBook.setFileSize(size);
+        eBook.setFileSize(Input.intScanner());
 
         nameOfLibrary.addArt(eBook);
 
     }
 
     private static void addAudioBook(LibraryManager nameOfLibrary) {
-        Scanner scanner = importScanner();
 
         AudioBook audioBook = new AudioBook();
 
         System.out.println("Please enter the title\n");
-        String titleOfAudiobook = scanner.nextLine();
-        audioBook.setTitle(titleOfAudiobook);
+        audioBook.setTitle(Input.StringScanner());
 
         System.out.println("Please enter the author\n");
-        String authorOfAudiobook = scanner.nextLine();
-        audioBook.setAuthor(authorOfAudiobook);
+        audioBook.setAuthor(Input.StringScanner());
 
         System.out.println("Please enter the year of publication\n");
-        int yearPublishedOfAudioBook = scanner.nextInt();
-        audioBook.setYearPublished(yearPublishedOfAudioBook);
+        audioBook.setYearPublished(Input.intScanner());
 
         System.out.println("Please enter the language of audiobook" +
                 "\n1. Polish" +
                 "\n2. English" +
                 "\n3. German");
-        int tmpValOfAudioBook = scanner.nextInt();
-        switch (tmpValOfAudioBook){
+
+        switch (Input.intScanner()){
             case 1:
                 audioBook.setLanguage(LiteraryArt.Language.POLISH);
                 break;
@@ -245,11 +222,23 @@ public class ConsoleApp {
             default:
                 System.out.println("Language has not been set");
         }
+
         System.out.println("Please enter the duration of audiobook (seconds)");
-        int duration = scanner.nextInt();
-        audioBook.setDuration(duration);
+        audioBook.setDuration(Input.intScanner());
 
         nameOfLibrary.addArt(audioBook);
 
     }
+
+    public static void recordsFillerTMP(LibraryManager nameOfLibrary) {
+        LiteraryArt ogniemIMieczem = new Book("Ogniem i Mieczem","Henryk Sienkiewicz",1884, LiteraryArt.Language.POLISH, Book.CoverType.HARD,588);
+        LiteraryArt stonesForTheRampart = new Book("Stones for the Rampart","\tAleksander Kamiński",1943, LiteraryArt.Language.ENGLISH, Book.CoverType.SOFT,256);
+        LiteraryArt javaPodstawyhorstmann = new Book("Java Podstawy Horstmann","Cay'a Horstmanna",1995, LiteraryArt.Language.POLISH, Book.CoverType.HARD,785);
+        LiteraryArt panTadeusz = new EBook("Pan Tadeusz","Adam Mickiewicz",1834, LiteraryArt.Language.POLISH,true,48);
+        nameOfLibrary.addArt(ogniemIMieczem);
+        nameOfLibrary.addArt(stonesForTheRampart);
+        nameOfLibrary.addArt(javaPodstawyhorstmann);
+        nameOfLibrary.addArt(panTadeusz);
+    }
+
 }
