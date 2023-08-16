@@ -30,13 +30,23 @@ public class LibraryManager {
 
     }
 
-    protected void rentAnArt(LiteraryArt literaryArt){
-        if (literaryArt.isAvailability() == true){
-            literaryArt.setAvailability(false);
-            System.out.println("The art '" + literaryArt.getTitle() + "' has been rented");
+    protected void rentAnArt(int keyValue) {
+        if (LibraryMap.get(keyValue).isAvailability() == true){
+            LibraryMap.get(keyValue).setAvailability(false);
+            System.out.println("The art '" + LibraryMap.get(keyValue).getTitle() + "' has been rented");
+        }
+        else
+            System.out.println("The art '" + LibraryMap.get(keyValue).getTitle() + "' has not been rented due to no availability");
+
+    }
+
+    protected void returnAnArt(int keyValue) {
+                if (LibraryMap.get(keyValue).isAvailability() == false){
+            LibraryMap.get(keyValue).setAvailability(true);
+            System.out.println("The art '" + LibraryMap.get(keyValue).getTitle() + "' has been returned");
         }
         else {
-            System.out.println("The art '" + literaryArt.getTitle() + "' has NOT been rented due to no availability");
+            System.out.println("The art '" + LibraryMap.get(keyValue).getTitle() + "' has never been rented");
         }
 
     }

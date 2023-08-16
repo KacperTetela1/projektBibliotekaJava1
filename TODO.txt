@@ -5,3 +5,7 @@ DRY - Dont Repeat Yourself - nadac osobne metody w klasie Label do wypisania aut
 Dodac funkcjonalnosc "Zoptymalizuj" ktora zdefragmentuje cala liste, usunie puste miejsca
 
 Przetlumaczyc WSZYSTKO na angielski
+
+//Obsluzyc wyjatki, podczas oddawania prac, wyporzyczania, w momencie wskazania klucza ktory jest nie wyporzyczony, a chcemy oddac np.
+
+Dodac serializacje tak aby aplikacja pamietala gdzie sie zamknela

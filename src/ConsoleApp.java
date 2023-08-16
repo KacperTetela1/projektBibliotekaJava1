@@ -59,11 +59,11 @@ public class ConsoleApp {
                     break;
                 case 6:
                     //borrow a book()
-                    borrowBook();
+                    borrowBook(nameOfLibrary);
                     break;
                 case 7:
                     //returnBook()
-                    returnBook();
+                    returnBook(nameOfLibrary);
                     break;
                 case 0:
                     //zamkniecie programu
@@ -87,12 +87,23 @@ public class ConsoleApp {
 
     }
 
-    private static void borrowBook() {
-        //TODO utworzyc frontend do wyporzyczania ksiazki
+    private static void borrowBook(LibraryManager nameOfLibrary) {
+            System.out.println("Select the book you want to borrow by Key number");
+            nameOfLibrary.printAllArts();
+
+            int borrowKeyValue = Input.intScanner();
+            nameOfLibrary.rentAnArt(borrowKeyValue);
+
     }
 
-    private static void returnBook() {
-        //TODO utworzyc frontend do oddawania ksiazki
+    private static void returnBook(LibraryManager nameOfLibrary) {
+        System.out.println("Select the book you want to return by Key number");
+        nameOfLibrary.printAllArts();
+
+        int returnKeyValue = Input.intScanner();
+        nameOfLibrary.returnAnArt(returnKeyValue);
+
+        //System.out.println("The book has been returned from library");
     }
 
     private static void addBook(LibraryManager nameOfLibrary) {
