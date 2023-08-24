@@ -88,7 +88,7 @@ public class ConsoleApp {
     }
 
     private static void borrowBook(LibraryManager nameOfLibrary) {
-            System.out.println("Select the book you want to borrow by Key number");
+            System.out.println("Select the art you want to borrow by Key number");
             nameOfLibrary.printAllArts();
 
             int borrowKeyValue = Input.intScanner();
@@ -97,7 +97,7 @@ public class ConsoleApp {
     }
 
     private static void returnBook(LibraryManager nameOfLibrary) {
-        System.out.println("Select the book you want to return by Key number");
+        System.out.println("Select the art you want to return by Key number");
         nameOfLibrary.printAllArts();
 
         int returnKeyValue = Input.intScanner();
@@ -110,23 +110,16 @@ public class ConsoleApp {
 
         Book book = new Book();
 
-        System.out.println("Please enter the title\n");
-
+        Label.printEntryTitle();
         book.setTitle(Input.StringScanner());
 
-        System.out.println("Please enter the author\n");
-
+        Label.printEntryAuthor();
         book.setAuthor(Input.StringScanner());
 
-        System.out.println("Please enter the year of publication\n");
-
+        Label.printEntryPublicationYear();
         book.setYearPublished(Input.intScanner());
 
-        System.out.println("Please enter the language of book" +
-                "\n1. Polish" +
-                "\n2. English" +
-                "\n3. German");
-
+        Label.printEntryLanguage();
         switch (Input.intScanner()){
             case 1:
                 book.setLanguage(LiteraryArt.Language.POLISH);
@@ -159,6 +152,9 @@ public class ConsoleApp {
         System.out.println("Please enter the number of pages");
         book.setNumberOfPages(Input.intScanner());
 
+        //Setting availability to true because every first time added book is not rented yet
+        book.setAvailability(true);
+
         nameOfLibrary.addArt(book);
 
     }
@@ -167,20 +163,16 @@ public class ConsoleApp {
 
         EBook eBook = new EBook();
 
-        System.out.println("Please enter the title\n");
+        Label.printEntryTitle();
         eBook.setTitle(Input.StringScanner());
 
-        System.out.println("Please enter the author\n");
+        Label.printEntryAuthor();
         eBook.setAuthor(Input.StringScanner());
 
-        System.out.println("Please enter the year of publication\n");
+        Label.printEntryPublicationYear();
         eBook.setYearPublished(Input.intScanner());
 
-        System.out.println("Please enter the language of ebook" +
-                "\n1. Polish" +
-                "\n2. English" +
-                "\n3. German");
-
+        Label.printEntryLanguage();
         switch (Input.intScanner()){
             case 1:
                 eBook.setLanguage(LiteraryArt.Language.POLISH);
@@ -198,6 +190,9 @@ public class ConsoleApp {
         System.out.println("Please enter the size of eBook file (MB)");
         eBook.setFileSize(Input.intScanner());
 
+        //Setting availability to true because every first time added book is not rented yet
+        eBook.setAvailability(true);
+
         nameOfLibrary.addArt(eBook);
 
     }
@@ -206,20 +201,16 @@ public class ConsoleApp {
 
         AudioBook audioBook = new AudioBook();
 
-        System.out.println("Please enter the title\n");
+        Label.printEntryTitle();
         audioBook.setTitle(Input.StringScanner());
 
-        System.out.println("Please enter the author\n");
+        Label.printEntryAuthor();
         audioBook.setAuthor(Input.StringScanner());
 
-        System.out.println("Please enter the year of publication\n");
+        Label.printEntryPublicationYear();
         audioBook.setYearPublished(Input.intScanner());
 
-        System.out.println("Please enter the language of audiobook" +
-                "\n1. Polish" +
-                "\n2. English" +
-                "\n3. German");
-
+        Label.printEntryLanguage();
         switch (Input.intScanner()){
             case 1:
                 audioBook.setLanguage(LiteraryArt.Language.POLISH);
@@ -236,6 +227,9 @@ public class ConsoleApp {
 
         System.out.println("Please enter the duration of audiobook (seconds)");
         audioBook.setDuration(Input.intScanner());
+
+        //Setting availability to true because every first time added book is not rented yet
+        audioBook.setAvailability(true);
 
         nameOfLibrary.addArt(audioBook);
 

@@ -24,11 +24,28 @@ public class Label {
     }
 
     public static void printGoodByeLabel() {
-
         System.out.println();
         System.out.println("Thank you for using the library. Goodbye!");
         System.out.println();
+    }
 
+    public static void printEntryTitle() {
+        System.out.println("\nPlease enter the title\n");
+    }
+
+    public static void printEntryAuthor() {
+        System.out.println("\nPlease enter the author\n");
+    }
+
+    public static void printEntryPublicationYear() {
+        System.out.println("\nPlease enter the year of publication\n");
+    }
+
+    public static void printEntryLanguage() {
+        System.out.println("\nPlease enter the language of book" +
+                "\n1. Polish" +
+                "\n2. English" +
+                "\n3. German\n");
     }
 
 }

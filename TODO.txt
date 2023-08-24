@@ -1,8 +1,8 @@
 rozdzielic funkcjoinowanie aplikacji na consoleApp i LibraryManager (printAll rozdzielic na frontend i backend) (samo printall zaimplemenotwac w Label nie w ConsoleApp)
 
-DRY - Dont Repeat Yourself - nadac osobne metody w klasie Label do wypisania autora, daty publikacji...
+DRY - Dont Repeat Yourself - nadac osobne metody w klasie Label do wypisania autora, daty publikacji... (Completed)
 
-Dodac funkcjonalnosc "Zoptymalizuj" ktora zdefragmentuje cala liste, usunie puste miejsca
+Dodac funkcjonalnosc "Zoptymalizuj" ktora zdefragmentuje cala liste, usunie puste miejsca (w trakcie)
 
 Przetlumaczyc WSZYSTKO na angielski
 
