@@ -2,6 +2,7 @@ import objects.LiteraryArt;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 
 public class LibraryManager {
@@ -49,6 +50,20 @@ public class LibraryManager {
             System.out.println("The art '" + LibraryMap.get(keyValue).getTitle() + "' has never been rented");
         }
 
+    }
+
+    protected void defragOfMap() {
+
+    }
+
+    protected void listSorter(Map<Integer, String> map) {
+        Map<Integer, String> tmpMap = new TreeMap<>();
+        int incrementValue = 1;
+        for (String value : map.values())
+            tmpMap.put(incrementValue++, value);
+
+        map.clear();
+        map.putAll(tmpMap);
     }
 
 }

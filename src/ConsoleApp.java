@@ -246,4 +246,8 @@ public class ConsoleApp {
         nameOfLibrary.addArt(panTadeusz);
     }
 
+    public static void opimalizeRecords(LibraryManager nameOfLibrary) {
+
+    }
+
 }
