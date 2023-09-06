@@ -1,50 +1,35 @@
 import objects.AudioBook;
 import objects.Book;
-import objects.EBook;
 import objects.LiteraryArt;
 import tools.Input;
 import tools.Label;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+public class ConsoleController {
+    private LibraryManager libraryManager;
 
-public class ConsoleApp {
-
-    public static void main(String[] args) {
-        runConsoleMenu();
+    public ConsoleController(LibraryManager libraryManager) {
+        this.libraryManager = libraryManager;
     }
 
-    public static void runConsoleMenu() {
-
+    public void runConsoleMenu() {
         //Tworzenie i wypelnianie jednej biblioteki(naszej bazy danych) w celu symulacji dzialania programu, pozniej mozna zastapic wczytaniem w przypadku serializacji
-        LibraryManager schoolLibrary = new LibraryManager();
-        Map<Integer,String> tmp = new HashMap<>();
-        tmp = schoolLibrary.deserial();
-
-
-        //System.exit(0);
 
         //Wyswietla przywitanie
         Label.printHelloLabel();
 
         //Pyta uzytkownika co chce zrobic
-        switchAsker(schoolLibrary);
+        switchAsker();
 
         //Wyswietla pozegnalny komunikat
         Label.printGoodByeLabel();
 
     }
 
-    private static void serialization(LibraryManager nameOfLibrary) {
-        nameOfLibrary.serial();
+    private void serialization() {
+        libraryManager.serial();
     }
 
-    private static void deserialization(LibraryManager nameOfLibrary) {
-        //nameOfLibrary.deserial();
-    }
-
-    private static void switchAsker(LibraryManager nameOfLibrary) {
+    private void switchAsker() {
 
         // tworzy boolean ktory jest ustawiony na true, w momencie zmiany na false aplikacja sie zamyka poniewaz petla while nie dostanie true
         boolean running = true;
@@ -55,35 +40,35 @@ public class ConsoleApp {
             switch (Input.intScanner()) {
                 case 1:
                     //add book
-                    addBook(nameOfLibrary);
+                    addBook();
                     break;
                 case 2:
                     //add ebook
-                    addEBook(nameOfLibrary);
+                    addEBook();
                     break;
                 case 3:
                     //add audioBook
-                    addAudioBook(nameOfLibrary);
+                    addAudioBook();
                     break;
                 case 4:
                     //delete book
-                    deleteBook(nameOfLibrary);
+                    deleteBook();
                     break;
                 case 5:
                     //print all Arts
-                    printAllArts(nameOfLibrary);
+                    printAllArts();
                     break;
                 case 6:
                     //borrow a book()
-                    borrowBook(nameOfLibrary);
+                    borrowBook();
                     break;
                 case 7:
                     //returnBook()
-                    returnBook(nameOfLibrary);
+                    returnBook();
                     break;
                 case 0:
                     //zamkniecie programu
-                    serialization(nameOfLibrary);
+                    serialization();
 
                     running = false;
                     break;
@@ -94,7 +79,7 @@ public class ConsoleApp {
 
     }
 
-    private static void addBook(LibraryManager nameOfLibrary) {
+    private void addBook() {
 
         Label.printEntryTitle();
         String title = Input.StringScanner();
@@ -142,11 +127,11 @@ public class ConsoleApp {
         }
 
         book.setAvailability(true);
-        System.out.println(nameOfLibrary.addArt(book));
+        System.out.println(libraryManager.addArt(book));
 
     }
 
-    private static void addEBook(LibraryManager nameOfLibrary) {
+    private void addEBook() {
 
         Label.printEntryTitle();
         String title = Input.StringScanner();
@@ -178,11 +163,11 @@ public class ConsoleApp {
         }
 
         eBook.setAvailability(true);
-        System.out.println(nameOfLibrary.addArt(eBook));
+        System.out.println(libraryManager.addArt(eBook));
 
     }
 
-    private static void addAudioBook(LibraryManager nameOfLibrary) {
+    private void addAudioBook() {
 
         Label.printEntryTitle();
         String title = Input.StringScanner();
@@ -214,38 +199,38 @@ public class ConsoleApp {
         }
 
         audioBook.setAvailability(true);
-        System.out.println(nameOfLibrary.addArt(audioBook));
+        System.out.println(libraryManager.addArt(audioBook));
 
     }
 
-    private static void deleteBook(LibraryManager nameOfLibrary) {
+    private void deleteBook() {
         System.out.println("Select the book you want to delete by Key number");
-        nameOfLibrary.printAllArts();
+        libraryManager.printAllArts();
 
         try {
             int deleteKeyValue = Input.intScanner();
-            System.out.println(nameOfLibrary.deleteArt(deleteKeyValue));
+            System.out.println(libraryManager.deleteArt(deleteKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
 
     }
 
-    private static void printAllArts(LibraryManager nameOfLibrary) {
-        String[] newArray = nameOfLibrary.printAllArts();
+    private void printAllArts() {
+        String[] newArray = libraryManager.printAllArts();
 
         for (int i = 0; i < newArray.length; i++)
             System.out.println(newArray[i]);
 
     }
 
-    private static void borrowBook(LibraryManager nameOfLibrary) {
+    private void borrowBook() {
         System.out.println("Select the art you want to borrow by Key number");
-        nameOfLibrary.printAllArts();
+        libraryManager.printAllArts();
 
         try {
             int borrowKeyValue = Input.intScanner();
-            System.out.println(nameOfLibrary.rentAnArt(borrowKeyValue));
+            System.out.println(libraryManager.rentAnArt(borrowKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -253,13 +238,13 @@ public class ConsoleApp {
 
     }
 
-    private static void returnBook(LibraryManager nameOfLibrary) {
+    private void returnBook() {
         System.out.println("Select the art you want to return by Key number");
-        nameOfLibrary.printAllArts();
+        libraryManager.printAllArts();
 
         try {
             int returnKeyValue = Input.intScanner();
-            System.out.println(nameOfLibrary.returnAnArt(returnKeyValue));
+            System.out.println(libraryManager.returnAnArt(returnKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
