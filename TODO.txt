@@ -6,10 +6,8 @@ Przetlumaczyc WSZYSTKO na angielski
 
 Rozdzielic frontend z logika, zeby sout nie bylo (wykonano)
 szukac mozliwosci pisania logiki(metod) w klasie obiektu, (nie za bardzo widze mozliwosc ze wzgledu na to ze w LibraryManager korzysta z Mapy i to na niej operuje)
-pisac getery i settery kiedy sa uzywane,
+pisac getery i settery kiedy sa uzywane (wykonano)
 
 
 Dodac serializacje tak aby aplikacja pamietala gdzie sie zamknela,
 statici usunac (nie wiem jak, zeby bylo produktywnie)
-
--wykrzosytac odpowiednio konstruktory

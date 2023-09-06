@@ -48,4 +48,8 @@ public class Label {
                 "\n3. German\n");
     }
 
+    public static void printEntryPagesAmount() {
+        System.out.println("\nPlease enter the number of pages\n");
+    }
+
 }

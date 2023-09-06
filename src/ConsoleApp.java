@@ -6,11 +6,12 @@ import tools.Input;
 import tools.Label;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ConsoleApp {
 
     public static void main(String[] args) {
-
         runConsoleMenu();
     }
 
@@ -18,7 +19,11 @@ public class ConsoleApp {
 
         //Tworzenie i wypelnianie jednej biblioteki(naszej bazy danych) w celu symulacji dzialania programu, pozniej mozna zastapic wczytaniem w przypadku serializacji
         LibraryManager schoolLibrary = new LibraryManager();
-        schoolLibrary.deserial();
+        Map<Integer,String> tmp = new HashMap<>();
+        tmp = schoolLibrary.deserial();
+
+
+        //System.exit(0);
 
         //Wyswietla przywitanie
         Label.printHelloLabel();
@@ -91,22 +96,20 @@ public class ConsoleApp {
 
     private static void addBook(LibraryManager nameOfLibrary) {
 
-        String title = Input.StringScanner();
-        String author = Input.StringScanner();
-        Integer publicationYear = Input.intScanner();
-        Integer language = Input.intScanner();
-        Integer numberOfPages = Input.intScanner();
-
-        Book book = new Book();
-
         Label.printEntryTitle();
-        book.setTitle(Input.StringScanner());
+        String title = Input.StringScanner();
 
         Label.printEntryAuthor();
-        book.setAuthor(Input.StringScanner());
+        String author = Input.StringScanner();
 
         Label.printEntryPublicationYear();
-        book.setYearPublished(Input.intScanner());
+        int publicationYear = Input.intScanner();
+
+        Label.printEntryPagesAmount();
+        int numberOfPages = Input.intScanner();
+
+        Book book = new Book(title, author, publicationYear, numberOfPages);
+
 
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
@@ -138,27 +141,26 @@ public class ConsoleApp {
                 System.out.println("Type of cover has not been set");
         }
 
-        System.out.println("Please enter the number of pages");
-        book.setNumberOfPages(Input.intScanner());
-
         book.setAvailability(true);
-
         System.out.println(nameOfLibrary.addArt(book));
 
     }
 
     private static void addEBook(LibraryManager nameOfLibrary) {
 
-        EBook eBook = new EBook();
-
         Label.printEntryTitle();
-        eBook.setTitle(Input.StringScanner());
+        String title = Input.StringScanner();
 
         Label.printEntryAuthor();
-        eBook.setAuthor(Input.StringScanner());
+        String author = Input.StringScanner();
 
         Label.printEntryPublicationYear();
-        eBook.setYearPublished(Input.intScanner());
+        int publicationYear = Input.intScanner();
+
+        System.out.println("Please enter the size of eBook file (MB)");
+        int fileSize = Input.intScanner();
+
+        Book eBook = new Book(title, author, publicationYear, fileSize);
 
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
@@ -175,28 +177,26 @@ public class ConsoleApp {
                 System.out.println("Language has not been set");
         }
 
-        System.out.println("Please enter the size of eBook file (MB)");
-        eBook.setFileSize(Input.intScanner());
-
-        //Setting availability to true because every first time added book is not rented yet
         eBook.setAvailability(true);
-
         System.out.println(nameOfLibrary.addArt(eBook));
 
     }
 
     private static void addAudioBook(LibraryManager nameOfLibrary) {
 
-        AudioBook audioBook = new AudioBook();
-
         Label.printEntryTitle();
-        audioBook.setTitle(Input.StringScanner());
+        String title = Input.StringScanner();
 
         Label.printEntryAuthor();
-        audioBook.setAuthor(Input.StringScanner());
+        String author = Input.StringScanner();
 
         Label.printEntryPublicationYear();
-        audioBook.setYearPublished(Input.intScanner());
+        int publicationYear = Input.intScanner();
+
+        System.out.println("Please enter the duration of audiobook (seconds)");
+        int duration = Input.intScanner();
+
+        AudioBook audioBook = new AudioBook(title, author, publicationYear, duration);
 
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
@@ -213,12 +213,7 @@ public class ConsoleApp {
                 System.out.println("Language has not been set");
         }
 
-        System.out.println("Please enter the duration of audiobook (seconds)");
-        audioBook.setDuration(Input.intScanner());
-
-        //Setting availability to true because every first time added book is not rented yet
         audioBook.setAvailability(true);
-
         System.out.println(nameOfLibrary.addArt(audioBook));
 
     }

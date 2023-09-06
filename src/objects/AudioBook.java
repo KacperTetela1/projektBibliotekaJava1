@@ -1,19 +1,18 @@
 package objects;
 
-public class AudioBook extends LiteraryArt{
+public class AudioBook extends LiteraryArt {
     private int duration;
 
-    public AudioBook(){}
+    public AudioBook() {
+    }
+
     public AudioBook(String title, String author, int yearPublished, Language language, int duration) {
         super(title, author, yearPublished, language);
         this.duration = duration;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
-    public void setDuration(int duration) {
+    public AudioBook(String title, String author, int yearPublished, int duration) {
+        super(title, author, yearPublished, Language.POLISH);
         this.duration = duration;
     }
 

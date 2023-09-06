@@ -1,29 +1,21 @@
 package objects;
 
-public class EBook extends LiteraryArt{
+public class EBook extends LiteraryArt {
     private boolean isPDF;
     private int fileSize;
 
-    public EBook() {}
+    public EBook() {
+    }
+
     public EBook(String title, String author, int yearPublished, Language language, boolean isPDF, int fileSize) {
         super(title, author, yearPublished, language);
         this.isPDF = isPDF;
         this.fileSize = fileSize;
     }
 
-    public boolean isPDF() {
-        return isPDF;
-    }
-
-    public void setPDF(boolean PDF) {
-        isPDF = PDF;
-    }
-
-    public int getFileSize() {
-        return fileSize;
-    }
-
-    public void setFileSize(int fileSize) {
+    public EBook(String title, String author, int yearPublished, int fileSize) {
+        super(title, author, yearPublished, Language.POLISH);
+        this.isPDF = isPDF;
         this.fileSize = fileSize;
     }
 

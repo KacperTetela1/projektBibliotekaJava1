@@ -6,14 +6,20 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LibraryManager implements Serializable {
-    private int integerCounter = 1;
+public class LibraryManager {
+    private int integerCounter;
 
-    private Map<Integer, LiteraryArt> LibraryMap;
+    private Map<Integer, LiteraryArt> libraryMap;
 
     protected LibraryManager() {
-        LibraryMap = new HashMap<>();
-        fillMapTMP();
+        libraryMap = new HashMap<>();
+
+        libraryMap = deserial();
+        if (libraryMap.isEmpty())
+            fillMapTMP();
+
+        integerCounter = libraryMap.size();
+
     }
 
     private void fillMapTMP() {
@@ -28,13 +34,13 @@ public class LibraryManager implements Serializable {
     }
 
     protected String addArt(LiteraryArt literaryArt) {
-        LibraryMap.put(integerCounter++, literaryArt);
+        libraryMap.put(integerCounter++, literaryArt);
         return "The art '" + literaryArt.getTitle() + "' has been added to the library";
     }
 
     protected String deleteArt(int keyValue) {
-        if (LibraryMap.containsKey(keyValue)) {
-            LibraryMap.remove(keyValue);
+        if (libraryMap.containsKey(keyValue)) {
+            libraryMap.remove(keyValue);
             return "The art has been deleted";
         } else {
             throw new RuntimeException("The art is not exist");
@@ -43,11 +49,11 @@ public class LibraryManager implements Serializable {
     }
 
     protected String[] printAllArts() {
-        String arr[] = new String[LibraryMap.size()];
+        String arr[] = new String[libraryMap.size()];
 
         int incrementValue = 0;
-        for (Integer key : LibraryMap.keySet()) {
-            LiteraryArt value = LibraryMap.get(key);
+        for (Integer key : libraryMap.keySet()) {
+            LiteraryArt value = libraryMap.get(key);
 
             arr[incrementValue] = "Key: " + key + ", Value: " + value;
             incrementValue++;
@@ -57,19 +63,19 @@ public class LibraryManager implements Serializable {
     }
 
     protected String rentAnArt(int keyValue) {
-        if (LibraryMap.get(keyValue).isAvailability()) {
-            LibraryMap.get(keyValue).setAvailability(false);
-            return "The art '" + LibraryMap.get(keyValue).getTitle() + "' has been rented";
+        if (libraryMap.get(keyValue).isAvailability()) {
+            libraryMap.get(keyValue).setAvailability(false);
+            return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been rented";
         } else
-            throw new RuntimeException("The art '" + LibraryMap.get(keyValue).getTitle() + "' has not been rented due to no availability");
+            throw new RuntimeException("The art '" + libraryMap.get(keyValue).getTitle() + "' has not been rented due to no availability");
     }
 
     protected String returnAnArt(int keyValue) {
-        if (!LibraryMap.get(keyValue).isAvailability()) {
-            LibraryMap.get(keyValue).setAvailability(true);
-            return "The art '" + LibraryMap.get(keyValue).getTitle() + "' has been returned";
+        if (!libraryMap.get(keyValue).isAvailability()) {
+            libraryMap.get(keyValue).setAvailability(true);
+            return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been returned";
         } else {
-            throw new RuntimeException("The art '" + LibraryMap.get(keyValue).getTitle() + "' has never been rented");
+            throw new RuntimeException("The art '" + libraryMap.get(keyValue).getTitle() + "' has never been rented");
         }
 
     }
@@ -82,7 +88,7 @@ public class LibraryManager implements Serializable {
 
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("hashmap.ser"));
-            outputStream.writeObject(LibraryMap);
+            outputStream.writeObject(libraryMap);
             outputStream.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,14 +98,15 @@ public class LibraryManager implements Serializable {
 
     protected HashMap deserial() {
 
-        HashMap<String, Integer> deserializedMap = null;
+        HashMap<String, Integer> deserializedMap = new HashMap<>();
 
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("hashmap.ser"));
             deserializedMap = (HashMap<String, Integer>) inputStream.readObject();
             inputStream.close();
         } catch (IOException e) {
-            e.printStackTrace();
+          //  e.printStackTrace();
+            System.out.println("Problem z plikiem zapisu");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }

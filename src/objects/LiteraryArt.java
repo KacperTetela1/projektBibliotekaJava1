@@ -1,18 +1,23 @@
 package objects;
 
-public abstract class LiteraryArt {
+import java.io.Serializable;
+
+public abstract class LiteraryArt  implements Serializable {
     private String title;
     private String author;
     private int yearPublished;
     private boolean availability;
     private Language language;
+
     public enum Language {
         POLISH,
         ENGLISH,
         GERMAN,
     }
 
-    public LiteraryArt(){}
+    public LiteraryArt() {
+    }
+
     public LiteraryArt(String title, String author, int yearPublished, Language language) {
         this.title = title;
         this.author = author;
@@ -25,36 +30,12 @@ public abstract class LiteraryArt {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public int getYearPublished() {
-        return yearPublished;
-    }
-
-    public void setYearPublished(int yearPublished) {
-        this.yearPublished = yearPublished;
-    }
-
     public boolean isAvailability() {
         return availability;
     }
 
     public void setAvailability(boolean availability) {
         this.availability = availability;
-    }
-
-    public Language getLanguage() {
-        return language;
     }
 
     public void setLanguage(Language language) {
