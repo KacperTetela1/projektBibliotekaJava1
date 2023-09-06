@@ -5,9 +5,12 @@ import objects.LiteraryArt;
 import tools.Input;
 import tools.Label;
 
+import java.io.*;
+
 public class ConsoleApp {
 
     public static void main(String[] args) {
+
         runConsoleMenu();
     }
 
@@ -15,7 +18,7 @@ public class ConsoleApp {
 
         //Tworzenie i wypelnianie jednej biblioteki(naszej bazy danych) w celu symulacji dzialania programu, pozniej mozna zastapic wczytaniem w przypadku serializacji
         LibraryManager schoolLibrary = new LibraryManager();
-        recordsFillerTMP(schoolLibrary);
+        schoolLibrary.deserial();
 
         //Wyswietla przywitanie
         Label.printHelloLabel();
@@ -28,11 +31,19 @@ public class ConsoleApp {
 
     }
 
+    private static void serialization(LibraryManager nameOfLibrary) {
+        nameOfLibrary.serial();
+    }
+
+    private static void deserialization(LibraryManager nameOfLibrary) {
+        //nameOfLibrary.deserial();
+    }
+
     private static void switchAsker(LibraryManager nameOfLibrary) {
 
         // tworzy boolean ktory jest ustawiony na true, w momencie zmiany na false aplikacja sie zamyka poniewaz petla while nie dostanie true
         boolean running = true;
-        while (running == true) {
+        while (running) {
 
             Label.printListOfChoices();
 
@@ -54,8 +65,8 @@ public class ConsoleApp {
                     deleteBook(nameOfLibrary);
                     break;
                 case 5:
-                    //print all Art from hashMap, method to rebuild by seperate frontend and backend
-                    nameOfLibrary.printAllArts();
+                    //print all Arts
+                    printAllArts(nameOfLibrary);
                     break;
                 case 6:
                     //borrow a book()
@@ -67,6 +78,8 @@ public class ConsoleApp {
                     break;
                 case 0:
                     //zamkniecie programu
+                    serialization(nameOfLibrary);
+
                     running = false;
                     break;
                 default:
@@ -76,37 +89,13 @@ public class ConsoleApp {
 
     }
 
-    private static void deleteBook(LibraryManager nameOfLibrary) {
-        System.out.println("Select the book you want to delete by Key number");
-        nameOfLibrary.printAllArts();
-
-        int deleteKeyValue = Input.intScanner();
-        nameOfLibrary.deleteArt(deleteKeyValue);
-
-        System.out.println("The book has been deleted from library");
-
-    }
-
-    private static void borrowBook(LibraryManager nameOfLibrary) {
-            System.out.println("Select the art you want to borrow by Key number");
-            nameOfLibrary.printAllArts();
-
-            int borrowKeyValue = Input.intScanner();
-            nameOfLibrary.rentAnArt(borrowKeyValue);
-
-    }
-
-    private static void returnBook(LibraryManager nameOfLibrary) {
-        System.out.println("Select the art you want to return by Key number");
-        nameOfLibrary.printAllArts();
-
-        int returnKeyValue = Input.intScanner();
-        nameOfLibrary.returnAnArt(returnKeyValue);
-
-        //System.out.println("The book has been returned from library");
-    }
-
     private static void addBook(LibraryManager nameOfLibrary) {
+
+        String title = Input.StringScanner();
+        String author = Input.StringScanner();
+        Integer publicationYear = Input.intScanner();
+        Integer language = Input.intScanner();
+        Integer numberOfPages = Input.intScanner();
 
         Book book = new Book();
 
@@ -120,7 +109,7 @@ public class ConsoleApp {
         book.setYearPublished(Input.intScanner());
 
         Label.printEntryLanguage();
-        switch (Input.intScanner()){
+        switch (Input.intScanner()) {
             case 1:
                 book.setLanguage(LiteraryArt.Language.POLISH);
                 break;
@@ -138,7 +127,7 @@ public class ConsoleApp {
                 "\n1. Yes" +
                 "\n2. No");
 
-        switch (Input.intScanner()){
+        switch (Input.intScanner()) {
             case 1:
                 book.setCoverType(Book.CoverType.HARD);
                 break;
@@ -152,10 +141,9 @@ public class ConsoleApp {
         System.out.println("Please enter the number of pages");
         book.setNumberOfPages(Input.intScanner());
 
-        //Setting availability to true because every first time added book is not rented yet
         book.setAvailability(true);
 
-        nameOfLibrary.addArt(book);
+        System.out.println(nameOfLibrary.addArt(book));
 
     }
 
@@ -173,7 +161,7 @@ public class ConsoleApp {
         eBook.setYearPublished(Input.intScanner());
 
         Label.printEntryLanguage();
-        switch (Input.intScanner()){
+        switch (Input.intScanner()) {
             case 1:
                 eBook.setLanguage(LiteraryArt.Language.POLISH);
                 break;
@@ -193,7 +181,7 @@ public class ConsoleApp {
         //Setting availability to true because every first time added book is not rented yet
         eBook.setAvailability(true);
 
-        nameOfLibrary.addArt(eBook);
+        System.out.println(nameOfLibrary.addArt(eBook));
 
     }
 
@@ -211,7 +199,7 @@ public class ConsoleApp {
         audioBook.setYearPublished(Input.intScanner());
 
         Label.printEntryLanguage();
-        switch (Input.intScanner()){
+        switch (Input.intScanner()) {
             case 1:
                 audioBook.setLanguage(LiteraryArt.Language.POLISH);
                 break;
@@ -231,22 +219,55 @@ public class ConsoleApp {
         //Setting availability to true because every first time added book is not rented yet
         audioBook.setAvailability(true);
 
-        nameOfLibrary.addArt(audioBook);
+        System.out.println(nameOfLibrary.addArt(audioBook));
 
     }
 
-    public static void recordsFillerTMP(LibraryManager nameOfLibrary) {
-        LiteraryArt ogniemIMieczem = new Book("Ogniem i Mieczem","Henryk Sienkiewicz",1884, LiteraryArt.Language.POLISH, Book.CoverType.HARD,588);
-        LiteraryArt stonesForTheRampart = new Book("Stones for the Rampart","\tAleksander Kamiński",1943, LiteraryArt.Language.ENGLISH, Book.CoverType.SOFT,256);
-        LiteraryArt javaPodstawyhorstmann = new Book("Java Podstawy Horstmann","Cay'a Horstmanna",1995, LiteraryArt.Language.POLISH, Book.CoverType.HARD,785);
-        LiteraryArt panTadeusz = new EBook("Pan Tadeusz","Adam Mickiewicz",1834, LiteraryArt.Language.POLISH,true,48);
-        nameOfLibrary.addArt(ogniemIMieczem);
-        nameOfLibrary.addArt(stonesForTheRampart);
-        nameOfLibrary.addArt(javaPodstawyhorstmann);
-        nameOfLibrary.addArt(panTadeusz);
+    private static void deleteBook(LibraryManager nameOfLibrary) {
+        System.out.println("Select the book you want to delete by Key number");
+        nameOfLibrary.printAllArts();
+
+        try {
+            int deleteKeyValue = Input.intScanner();
+            System.out.println(nameOfLibrary.deleteArt(deleteKeyValue));
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    public static void opimalizeRecords(LibraryManager nameOfLibrary) {
+    private static void printAllArts(LibraryManager nameOfLibrary) {
+        String[] newArray = nameOfLibrary.printAllArts();
+
+        for (int i = 0; i < newArray.length; i++)
+            System.out.println(newArray[i]);
+
+    }
+
+    private static void borrowBook(LibraryManager nameOfLibrary) {
+        System.out.println("Select the art you want to borrow by Key number");
+        nameOfLibrary.printAllArts();
+
+        try {
+            int borrowKeyValue = Input.intScanner();
+            System.out.println(nameOfLibrary.rentAnArt(borrowKeyValue));
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private static void returnBook(LibraryManager nameOfLibrary) {
+        System.out.println("Select the art you want to return by Key number");
+        nameOfLibrary.printAllArts();
+
+        try {
+            int returnKeyValue = Input.intScanner();
+            System.out.println(nameOfLibrary.returnAnArt(returnKeyValue));
+        } catch (RuntimeException e) {
+            e.printStackTrace();
+        }
 
     }
 

@@ -1,6 +1,8 @@
 package objects;
 
-public class Book extends LiteraryArt{
+import java.io.Serializable;
+
+public class Book extends LiteraryArt {
     private CoverType coverType;
     private int numberOfPages;
     public enum CoverType {
