@@ -1,6 +1,4 @@
-package objects;
-
-import java.io.Serializable;
+package model;
 
 public class Book extends LiteraryArt{
     private CoverType coverType;

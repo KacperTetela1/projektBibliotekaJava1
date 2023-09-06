@@ -1,17 +1,19 @@
-import objects.Book;
-import objects.EBook;
-import objects.LiteraryArt;
+package service;
+
+import model.Book;
+import model.EBook;
+import model.LiteraryArt;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LibraryManager {
+public class LibraryService {
     private int integerCounter;
 
     private Map<Integer, LiteraryArt> libraryMap;
 
-    protected LibraryManager() {
+    public LibraryService() {
         libraryMap = new HashMap<>();
 
         libraryMap = deserial();
@@ -33,12 +35,12 @@ public class LibraryManager {
         addArt(panTadeusz);
     }
 
-    protected String addArt(LiteraryArt literaryArt) {
+    public String addArt(LiteraryArt literaryArt) {
         libraryMap.put(integerCounter++, literaryArt);
         return "The art '" + literaryArt.getTitle() + "' has been added to the library";
     }
 
-    protected String deleteArt(int keyValue) {
+    public String deleteArt(int keyValue) {
         if (libraryMap.containsKey(keyValue)) {
             libraryMap.remove(keyValue);
             return "The art has been deleted";
@@ -48,7 +50,7 @@ public class LibraryManager {
 
     }
 
-    protected String[] printAllArts() {
+    public String[] printAllArts() {
         String arr[] = new String[libraryMap.size()];
 
         int incrementValue = 0;
@@ -62,7 +64,7 @@ public class LibraryManager {
 
     }
 
-    protected String rentAnArt(int keyValue) {
+    public String rentAnArt(int keyValue) {
         if (libraryMap.get(keyValue).isAvailability()) {
             libraryMap.get(keyValue).setAvailability(false);
             return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been rented";
@@ -70,7 +72,7 @@ public class LibraryManager {
             throw new RuntimeException("The art '" + libraryMap.get(keyValue).getTitle() + "' has not been rented due to no availability");
     }
 
-    protected String returnAnArt(int keyValue) {
+    public String returnAnArt(int keyValue) {
         if (!libraryMap.get(keyValue).isAvailability()) {
             libraryMap.get(keyValue).setAvailability(true);
             return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been returned";
@@ -80,11 +82,11 @@ public class LibraryManager {
 
     }
 
-    protected void defragOfMap() {
+    public void defragOfMap() {
         //TODO
     }
 
-    protected void serial() {
+    public void serial() {
 
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("hashmap.ser"));
@@ -96,7 +98,7 @@ public class LibraryManager {
 
     }
 
-    protected HashMap deserial() {
+    public HashMap deserial() {
 
         HashMap<String, Integer> deserializedMap = new HashMap<>();
 

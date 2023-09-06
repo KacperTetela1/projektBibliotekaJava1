@@ -1,4 +1,4 @@
-package tools;
+package console;
 
 public class Label {
     public static void printHelloLabel() {

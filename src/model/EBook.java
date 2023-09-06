@@ -1,4 +1,4 @@
-package objects;
+package model;
 
 public class EBook extends LiteraryArt {
     private boolean isPDF;

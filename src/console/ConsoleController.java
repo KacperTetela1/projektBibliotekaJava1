@@ -1,14 +1,15 @@
-import objects.AudioBook;
-import objects.Book;
-import objects.LiteraryArt;
-import tools.Input;
-import tools.Label;
+package console;
+
+import model.AudioBook;
+import model.Book;
+import model.LiteraryArt;
+import service.LibraryService;
 
 public class ConsoleController {
-    private LibraryManager libraryManager;
+    private LibraryService libraryService;
 
-    public ConsoleController(LibraryManager libraryManager) {
-        this.libraryManager = libraryManager;
+    public ConsoleController(LibraryService libraryService) {
+        this.libraryService = libraryService;
     }
 
     public void runConsoleMenu() {
@@ -26,7 +27,7 @@ public class ConsoleController {
     }
 
     private void serialization() {
-        libraryManager.serial();
+        libraryService.serial();
     }
 
     private void switchAsker() {
@@ -127,7 +128,7 @@ public class ConsoleController {
         }
 
         book.setAvailability(true);
-        System.out.println(libraryManager.addArt(book));
+        System.out.println(libraryService.addArt(book));
 
     }
 
@@ -163,7 +164,7 @@ public class ConsoleController {
         }
 
         eBook.setAvailability(true);
-        System.out.println(libraryManager.addArt(eBook));
+        System.out.println(libraryService.addArt(eBook));
 
     }
 
@@ -199,17 +200,17 @@ public class ConsoleController {
         }
 
         audioBook.setAvailability(true);
-        System.out.println(libraryManager.addArt(audioBook));
+        System.out.println(libraryService.addArt(audioBook));
 
     }
 
     private void deleteBook() {
         System.out.println("Select the book you want to delete by Key number");
-        libraryManager.printAllArts();
+        libraryService.printAllArts();
 
         try {
             int deleteKeyValue = Input.intScanner();
-            System.out.println(libraryManager.deleteArt(deleteKeyValue));
+            System.out.println(libraryService.deleteArt(deleteKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -217,7 +218,7 @@ public class ConsoleController {
     }
 
     private void printAllArts() {
-        String[] newArray = libraryManager.printAllArts();
+        String[] newArray = libraryService.printAllArts();
 
         for (int i = 0; i < newArray.length; i++)
             System.out.println(newArray[i]);
@@ -226,11 +227,11 @@ public class ConsoleController {
 
     private void borrowBook() {
         System.out.println("Select the art you want to borrow by Key number");
-        libraryManager.printAllArts();
+        libraryService.printAllArts();
 
         try {
             int borrowKeyValue = Input.intScanner();
-            System.out.println(libraryManager.rentAnArt(borrowKeyValue));
+            System.out.println(libraryService.rentAnArt(borrowKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -240,11 +241,11 @@ public class ConsoleController {
 
     private void returnBook() {
         System.out.println("Select the art you want to return by Key number");
-        libraryManager.printAllArts();
+        libraryService.printAllArts();
 
         try {
             int returnKeyValue = Input.intScanner();
-            System.out.println(libraryManager.returnAnArt(returnKeyValue));
+            System.out.println(libraryService.returnAnArt(returnKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
