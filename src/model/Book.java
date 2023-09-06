@@ -1,6 +1,6 @@
 package model;
 
-public class Book extends LiteraryArt{
+public class Book extends libraryItemPatern {
     private CoverType coverType;
     private int numberOfPages;
 
@@ -34,4 +34,5 @@ public class Book extends LiteraryArt{
                 ", numberOfPages=" + numberOfPages +
                 "} " + super.toString();
     }
+
 }

@@ -2,7 +2,8 @@ package console;
 
 import model.AudioBook;
 import model.Book;
-import model.LiteraryArt;
+import model.EBook;
+import model.libraryItemPatern;
 import service.LibraryService;
 
 public class ConsoleController {
@@ -13,7 +14,6 @@ public class ConsoleController {
     }
 
     public void runConsoleMenu() {
-        //Tworzenie i wypelnianie jednej biblioteki(naszej bazy danych) w celu symulacji dzialania programu, pozniej mozna zastapic wczytaniem w przypadku serializacji
 
         //Wyswietla przywitanie
         Label.printHelloLabel();
@@ -24,10 +24,6 @@ public class ConsoleController {
         //Wyswietla pozegnalny komunikat
         Label.printGoodByeLabel();
 
-    }
-
-    private void serialization() {
-        libraryService.serial();
     }
 
     private void switchAsker() {
@@ -69,7 +65,7 @@ public class ConsoleController {
                     break;
                 case 0:
                     //zamkniecie programu
-                    serialization();
+                    libraryService.serialization(); // activate serialization
 
                     running = false;
                     break;
@@ -100,13 +96,13 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                book.setLanguage(LiteraryArt.Language.POLISH);
+                book.setLanguage(libraryItemPatern.Language.POLISH);
                 break;
             case 2:
-                book.setLanguage(LiteraryArt.Language.ENGLISH);
+                book.setLanguage(libraryItemPatern.Language.ENGLISH);
                 break;
             case 3:
-                book.setLanguage(LiteraryArt.Language.GERMAN);
+                book.setLanguage(libraryItemPatern.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
@@ -128,7 +124,7 @@ public class ConsoleController {
         }
 
         book.setAvailability(true);
-        System.out.println(libraryService.addArt(book));
+        System.out.println(libraryService.addItem(book));
 
     }
 
@@ -146,25 +142,25 @@ public class ConsoleController {
         System.out.println("Please enter the size of eBook file (MB)");
         int fileSize = Input.intScanner();
 
-        Book eBook = new Book(title, author, publicationYear, fileSize);
+        EBook eBook = new EBook(title, author, publicationYear, fileSize);
 
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                eBook.setLanguage(LiteraryArt.Language.POLISH);
+                eBook.setLanguage(libraryItemPatern.Language.POLISH);
                 break;
             case 2:
-                eBook.setLanguage(LiteraryArt.Language.ENGLISH);
+                eBook.setLanguage(libraryItemPatern.Language.ENGLISH);
                 break;
             case 3:
-                eBook.setLanguage(LiteraryArt.Language.GERMAN);
+                eBook.setLanguage(libraryItemPatern.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
         }
 
         eBook.setAvailability(true);
-        System.out.println(libraryService.addArt(eBook));
+        System.out.println(libraryService.addItem(eBook));
 
     }
 
@@ -187,30 +183,30 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                audioBook.setLanguage(LiteraryArt.Language.POLISH);
+                audioBook.setLanguage(libraryItemPatern.Language.POLISH);
                 break;
             case 2:
-                audioBook.setLanguage(LiteraryArt.Language.ENGLISH);
+                audioBook.setLanguage(libraryItemPatern.Language.ENGLISH);
                 break;
             case 3:
-                audioBook.setLanguage(LiteraryArt.Language.GERMAN);
+                audioBook.setLanguage(libraryItemPatern.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
         }
 
         audioBook.setAvailability(true);
-        System.out.println(libraryService.addArt(audioBook));
+        System.out.println(libraryService.addItem(audioBook));
 
     }
 
     private void deleteBook() {
         System.out.println("Select the book you want to delete by Key number");
-        libraryService.printAllArts();
+        libraryService.printAllItems();
 
         try {
             int deleteKeyValue = Input.intScanner();
-            System.out.println(libraryService.deleteArt(deleteKeyValue));
+            System.out.println(libraryService.deleteItem(deleteKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -218,7 +214,7 @@ public class ConsoleController {
     }
 
     private void printAllArts() {
-        String[] newArray = libraryService.printAllArts();
+        String[] newArray = libraryService.printAllItems();
 
         for (int i = 0; i < newArray.length; i++)
             System.out.println(newArray[i]);
@@ -227,11 +223,11 @@ public class ConsoleController {
 
     private void borrowBook() {
         System.out.println("Select the art you want to borrow by Key number");
-        libraryService.printAllArts();
+        libraryService.printAllItems();
 
         try {
             int borrowKeyValue = Input.intScanner();
-            System.out.println(libraryService.rentAnArt(borrowKeyValue));
+            System.out.println(libraryService.rentAnItem(borrowKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -241,11 +237,11 @@ public class ConsoleController {
 
     private void returnBook() {
         System.out.println("Select the art you want to return by Key number");
-        libraryService.printAllArts();
+        libraryService.printAllItems();
 
         try {
             int returnKeyValue = Input.intScanner();
-            System.out.println(libraryService.returnAnArt(returnKeyValue));
+            System.out.println(libraryService.returnAnItem(returnKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }

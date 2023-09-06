@@ -1,6 +1,6 @@
 package model;
 
-public class EBook extends LiteraryArt {
+public class EBook extends libraryItemPatern {
     private boolean isPDF;
     private int fileSize;
 
@@ -26,4 +26,5 @@ public class EBook extends LiteraryArt {
                 ", fileSize=" + fileSize +
                 "} " + super.toString();
     }
+
 }

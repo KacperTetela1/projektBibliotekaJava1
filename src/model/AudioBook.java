@@ -1,6 +1,6 @@
 package model;
 
-public class AudioBook extends LiteraryArt {
+public class AudioBook extends libraryItemPatern {
     private int duration;
 
     public AudioBook() {
@@ -22,4 +22,5 @@ public class AudioBook extends LiteraryArt {
                 "duration=" + duration +
                 "} " + super.toString();
     }
+
 }
