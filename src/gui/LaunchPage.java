@@ -8,7 +8,8 @@ public class LaunchPage {
     private JFrame frame = new JFrame("Library Manager");
     private ImageIcon icon = new ImageIcon("book.png");
     private JPanel navigationBar = new JPanel();
-    private JButton myButton = new JButton("Add book");
+    private JButton addBookButton = new JButton("Add book");
+    private JButton addEBookButton = new JButton("Add e-book");
 
     LaunchPage() {
 
@@ -28,16 +29,28 @@ public class LaunchPage {
 
         frame.add(navigationBar);
 
-        myButton.setFocusable(false);
-        myButton.addActionListener(e -> method1());
-        navigationBar.add(myButton);
+        //AddBookButton
+
+        addBookButton.setFocusable(false);
+        addBookButton.addActionListener(e -> createBook());
+        navigationBar.add(addBookButton);
+
+        //AddEBookButton
+
+        addEBookButton.setFocusable(false);
+        addEBookButton.addActionListener(e -> createEBook());
+        navigationBar.add(addEBookButton);
+
+
 
     }
 
-    public static void method1() {
+    public static void createBook() {
+        var addBookPage = new AddBookPage();
+    }
 
-        AddingBookPage addingBookPage = new AddingBookPage();
-
+    public static void createEBook() {
+        var addBookPage = new AddEBookPage();
     }
 
 }

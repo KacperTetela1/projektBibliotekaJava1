@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class AddingBookPage {
+public class AddBookPage {
     JFrame frame = new JFrame("Book Details");
     ImageIcon icon = new ImageIcon("book.png");
     JPanel leftPanelContainer = new JPanel();
@@ -15,7 +15,7 @@ public class AddingBookPage {
     JPanel downPanelLow = new JPanel();
     JPanel footer = new JPanel();
 
-    AddingBookPage() {
+    AddBookPage() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
