@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class libraryItemPatern implements Serializable {
+public abstract class LibraryItemPatern implements Serializable {
     private String title;
     private String author;
     private int yearPublished;
@@ -15,10 +15,10 @@ public abstract class libraryItemPatern implements Serializable {
         GERMAN,
     }
 
-    public libraryItemPatern() {
+    public LibraryItemPatern() {
     }
 
-    public libraryItemPatern(String title, String author, int yearPublished, Language language) {
+    public LibraryItemPatern(String title, String author, int yearPublished, Language language) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
@@ -44,7 +44,7 @@ public abstract class libraryItemPatern implements Serializable {
 
     @Override
     public String toString() {
-        return "Objects.libraryItemPatern{" +
+        return "Objects.LibraryItemPatern{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", yearPublished=" + yearPublished +

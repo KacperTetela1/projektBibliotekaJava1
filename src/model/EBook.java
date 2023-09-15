@@ -1,6 +1,6 @@
 package model;
 
-public class EBook extends libraryItemPatern {
+public class EBook extends LibraryItemPatern {
     private boolean isPDF;
     private int fileSize;
 

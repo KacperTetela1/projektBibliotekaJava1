@@ -11,3 +11,5 @@ pisac getery i settery kiedy sa uzywane (wykonano)
 
 Dodac serializacje tak aby aplikacja pamietala gdzie sie zamknela,
 statici usunac (nie wiem jak, zeby bylo produktywnie)
+
+--dodanie karty klienta i numeru karty klienta do procesu wypozyczenia

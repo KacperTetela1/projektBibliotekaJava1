@@ -9,8 +9,11 @@ public class AddingBookPage {
     ImageIcon icon = new ImageIcon("book.png");
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
-    JPanel midlePanel = new JPanel();
-    JPanel downPanel = new JPanel();
+    JPanel midlePanelUp = new JPanel();
+    JPanel midlePanelLow = new JPanel();
+    JPanel downPanelUp = new JPanel();
+    JPanel downPanelLow = new JPanel();
+    JPanel footer = new JPanel();
 
     AddingBookPage() {
 
@@ -20,25 +23,39 @@ public class AddingBookPage {
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setResizable(false);
+        frame.setLocation(700,230);
 
         leftPanelContainer.setLayout(new GridLayout(4, 1));
         rightPanelContainer.setLayout(new GridLayout(4, 1, 0, 22));
-        midlePanel.setLayout(new FlowLayout());
-        downPanel.setLayout(new FlowLayout());
+        midlePanelUp.setLayout(new FlowLayout());
+        midlePanelLow.setLayout(new FlowLayout());
+        downPanelUp.setLayout(new FlowLayout());
+        downPanelLow.setLayout(new FlowLayout());
+        footer.setLayout(new FlowLayout());
 
         leftPanelContainer.setBounds(0, 0, 200, 200);
         rightPanelContainer.setBounds(200, 0, 200, 200);
-        midlePanel.setBounds(0, 200, 400, 40);
-        downPanel.setBounds(0, 250, 400, 50);
+        midlePanelUp.setBounds(0, 200, 400, 40);
+        midlePanelLow.setBounds(0, 250, 400, 50);
+        downPanelUp.setBounds(0,300,400,50);
+        downPanelLow.setBounds(0,350,400,50);
+        footer.setBounds(0,400,400,50);
 
         leftPanelContainer.setBorder(new EmptyBorder(0, 50, 0, 10));
         rightPanelContainer.setBorder(new EmptyBorder(10, 0, 10, 50));
-        midlePanel.setBorder(new EmptyBorder(10, 0, 0, 0));
+        midlePanelUp.setBorder(new EmptyBorder(10, 0, 0, 0));
+        midlePanelLow.setBorder(new EmptyBorder(0,0,0,0));
+        downPanelUp.setBorder(new EmptyBorder(0,0,0,0));
+        downPanelLow.setBorder(new EmptyBorder(0,0,0,0));
+        footer.setBorder(new EmptyBorder(0,0,0,0));
 
         frame.add(leftPanelContainer);
         frame.add(rightPanelContainer);
-        frame.add(midlePanel);
-        frame.add(downPanel);
+        frame.add(midlePanelUp);
+        frame.add(midlePanelLow);
+        frame.add(downPanelUp);
+        frame.add(downPanelLow);
+        frame.add(footer);
 
         //LeftPanel
 
@@ -68,13 +85,13 @@ public class AddingBookPage {
         JTextField textField4 = new JTextField();
         rightPanelContainer.add(textField4);
 
-        //MidlePanel
+        //MidlePanelUp
 
         JLabel languageLabel = new JLabel("Select book language");
         languageLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        midlePanel.add(languageLabel);
+        midlePanelUp.add(languageLabel);
 
-        //DownPanel
+        //MidlePanelLow
 
         JButton button1 = new JButton("Polish");
         JButton button2 = new JButton("English");
@@ -84,13 +101,37 @@ public class AddingBookPage {
         button2.setFocusable(false);
         button3.setFocusable(false);
 
-        downPanel.add(button1);
-        downPanel.add(button2);
-        downPanel.add(button3);
+        midlePanelLow.add(button1);
+        midlePanelLow.add(button2);
+        midlePanelLow.add(button3);
 
-        //BottomPanel
+        //DownPanelUp
 
-        //southLabel.setText("Select type of cover");
+        JLabel coverLabel = new JLabel("Select type of cover");
+        coverLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        downPanelUp.add(coverLabel);
+
+        //DownPanelLow
+
+        JButton button4 = new JButton("Hardcover");
+        JButton button5 = new JButton("Softcover");
+
+        button4.setFocusable(false);
+        button5.setFocusable(false);
+
+        downPanelLow.add(button4);
+        downPanelLow.add(button5);
+
+        //Footer
+
+        JButton button6 = new JButton("Cancel");
+        JButton button7 = new JButton("Create");
+
+        button6.setFocusable(false);
+        button7.setFocusable(false);
+
+        footer.add(button6);
+        footer.add(button7);
 
 
     }

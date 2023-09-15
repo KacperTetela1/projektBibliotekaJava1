@@ -2,7 +2,7 @@ package service;
 
 import model.Book;
 import model.EBook;
-import model.libraryItemPatern;
+import model.LibraryItemPatern;
 
 import java.io.*;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Map;
 public class LibraryService {
     private int integerCounter;
 
-    private Map<Integer, libraryItemPatern> libraryMap;
+    private Map<Integer, LibraryItemPatern> libraryMap;
 
     public LibraryService() {
         libraryMap = new HashMap<>();
@@ -25,17 +25,17 @@ public class LibraryService {
     }
 
     private void fillMapTMP() {
-        libraryItemPatern ogniemIMieczem = new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, libraryItemPatern.Language.POLISH, Book.CoverType.HARD, 588);
-        libraryItemPatern stonesForTheRampart = new Book("Stones for the Rampart", "\tAleksander Kamiński", 1943, libraryItemPatern.Language.ENGLISH, Book.CoverType.SOFT, 256);
-        libraryItemPatern javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 1995, libraryItemPatern.Language.POLISH, Book.CoverType.HARD, 785);
-        libraryItemPatern panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, libraryItemPatern.Language.POLISH, true, 48);
+        LibraryItemPatern ogniemIMieczem = new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, LibraryItemPatern.Language.POLISH, Book.CoverType.HARD, 588);
+        LibraryItemPatern stonesForTheRampart = new Book("Stones for the Rampart", "\tAleksander Kamiński", 1943, LibraryItemPatern.Language.ENGLISH, Book.CoverType.SOFT, 256);
+        LibraryItemPatern javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 1995, LibraryItemPatern.Language.POLISH, Book.CoverType.HARD, 785);
+        LibraryItemPatern panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, LibraryItemPatern.Language.POLISH, true, 48);
         addItem(ogniemIMieczem);
         addItem(stonesForTheRampart);
         addItem(javaPodstawyhorstmann);
         addItem(panTadeusz);
     }
 
-    public String addItem(libraryItemPatern libraryItemPatern) {
+    public String addItem(LibraryItemPatern libraryItemPatern) {
         libraryMap.put(integerCounter++, libraryItemPatern);
         return "The art '" + libraryItemPatern.getTitle() + "' has been added to the library";
     }
@@ -55,7 +55,7 @@ public class LibraryService {
 
         int incrementValue = 0;
         for (Integer key : libraryMap.keySet()) {
-            libraryItemPatern value = libraryMap.get(key);
+            LibraryItemPatern value = libraryMap.get(key);
 
             arr[incrementValue] = "Key: " + key + ", Value: " + value;
             incrementValue++;

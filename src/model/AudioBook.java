@@ -1,6 +1,6 @@
 package model;
 
-public class AudioBook extends libraryItemPatern {
+public class AudioBook extends LibraryItemPatern {
     private int duration;
 
     public AudioBook() {

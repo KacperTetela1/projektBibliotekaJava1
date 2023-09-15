@@ -3,7 +3,7 @@ package console;
 import model.AudioBook;
 import model.Book;
 import model.EBook;
-import model.libraryItemPatern;
+import model.LibraryItemPatern;
 import service.LibraryService;
 
 public class ConsoleController {
@@ -96,13 +96,13 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                book.setLanguage(libraryItemPatern.Language.POLISH);
+                book.setLanguage(LibraryItemPatern.Language.POLISH);
                 break;
             case 2:
-                book.setLanguage(libraryItemPatern.Language.ENGLISH);
+                book.setLanguage(LibraryItemPatern.Language.ENGLISH);
                 break;
             case 3:
-                book.setLanguage(libraryItemPatern.Language.GERMAN);
+                book.setLanguage(LibraryItemPatern.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
@@ -147,13 +147,13 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                eBook.setLanguage(libraryItemPatern.Language.POLISH);
+                eBook.setLanguage(LibraryItemPatern.Language.POLISH);
                 break;
             case 2:
-                eBook.setLanguage(libraryItemPatern.Language.ENGLISH);
+                eBook.setLanguage(LibraryItemPatern.Language.ENGLISH);
                 break;
             case 3:
-                eBook.setLanguage(libraryItemPatern.Language.GERMAN);
+                eBook.setLanguage(LibraryItemPatern.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
@@ -183,13 +183,13 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                audioBook.setLanguage(libraryItemPatern.Language.POLISH);
+                audioBook.setLanguage(LibraryItemPatern.Language.POLISH);
                 break;
             case 2:
-                audioBook.setLanguage(libraryItemPatern.Language.ENGLISH);
+                audioBook.setLanguage(LibraryItemPatern.Language.ENGLISH);
                 break;
             case 3:
-                audioBook.setLanguage(libraryItemPatern.Language.GERMAN);
+                audioBook.setLanguage(LibraryItemPatern.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");

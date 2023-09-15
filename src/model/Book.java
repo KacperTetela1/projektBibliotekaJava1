@@ -1,6 +1,6 @@
 package model;
 
-public class Book extends libraryItemPatern {
+public class Book extends LibraryItemPatern {
     private CoverType coverType;
     private int numberOfPages;
 
