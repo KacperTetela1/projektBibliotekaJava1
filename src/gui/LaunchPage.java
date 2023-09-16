@@ -10,6 +10,12 @@ public class LaunchPage {
     private JPanel navigationBar = new JPanel();
     private JButton addBookButton = new JButton("Add book");
     private JButton addEBookButton = new JButton("Add e-book");
+    private JButton addAudioBookButton = new JButton("Add audiobook");
+    private JButton deleteButton = new JButton("Delete");
+    private JButton showAvailableArticlesButton = new JButton("Available articles");
+    private JButton showNotAvailableArticlesButton = new JButton("Not available Articles");
+    private JButton borrowBookButton = new JButton("Borrow Book");
+    private JButton returnBookButton = new JButton("Return book");
 
     LaunchPage() {
 
@@ -23,9 +29,9 @@ public class LaunchPage {
 
         navigationBar.setLayout(new FlowLayout());
 
-        navigationBar.setBounds(0,0,100,500);
+        navigationBar.setBounds(0,0,140,500);
 
-        navigationBar.setBorder(new EmptyBorder(10,10,10,10));
+        navigationBar.setBorder(new EmptyBorder(10,0,10,0));
 
         frame.add(navigationBar);
 
@@ -41,16 +47,76 @@ public class LaunchPage {
         addEBookButton.addActionListener(e -> createEBook());
         navigationBar.add(addEBookButton);
 
+        //AddAudioBookButton
+
+        addAudioBookButton.setFocusable(false);
+        addAudioBookButton.addActionListener(e -> createAudioBook());
+        navigationBar.add(addAudioBookButton);
+
+        //AddDeleteButton
+
+        deleteButton.setFocusable(false);
+        deleteButton.addActionListener(e -> createDelete());
+        navigationBar.add(deleteButton);
+
+        //AddShowAvailableArticlesButton
+
+        showAvailableArticlesButton.setFocusable(false);
+        showAvailableArticlesButton.addActionListener(e -> createShowAvailableArticles());
+        navigationBar.add(showAvailableArticlesButton);
+
+        //AddShowNotAvailableArticlesButton
+
+        showNotAvailableArticlesButton.setFocusable(false);
+        showNotAvailableArticlesButton.addActionListener(e -> createShowNotAvailableArticles());
+        navigationBar.add(showNotAvailableArticlesButton);
+
+        //AddBorrowBookButton
+
+        borrowBookButton.setFocusable(false);
+        borrowBookButton.addActionListener(e -> createBorrowBook());
+        navigationBar.add(borrowBookButton);
+
+        //AddReturnBookButton
+
+        returnBookButton.setFocusable(false);
+        returnBookButton.addActionListener(e -> createReturnBook());
+        navigationBar.add(returnBookButton);
+
 
 
     }
 
-    public static void createBook() {
+    private static void createBook() {
         var addBookPage = new AddBookPage();
     }
 
-    public static void createEBook() {
-        var addBookPage = new AddEBookPage();
+    private static void createEBook() {
+        var addEBookPage = new AddEBookPage();
+    }
+
+    private static void createAudioBook() {
+        var addAudioBookPage = new AddAudioBookPage();
+    }
+
+    private static void createDelete() {
+        var addDelete = new Delete();
+    }
+
+    private static void createShowAvailableArticles() {
+        var createShowAvailableArticles = new ShowAvailableArticles();
+    }
+
+    private static void createShowNotAvailableArticles() {
+        var createShowNotAvailableArticles = new ShowNotAvailableArticles();
+    }
+
+    private static void createBorrowBook() {
+        var createBorrowBook = new BorrowBook();
+    }
+
+    private static void createReturnBook() {
+        var createReturnBook = new ReturnBook();
     }
 
 }

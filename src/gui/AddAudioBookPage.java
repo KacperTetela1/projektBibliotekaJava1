@@ -4,8 +4,8 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class AddEBookPage {
-    JFrame frame = new JFrame("EBook Details");
+public class AddAudioBookPage {
+    JFrame frame = new JFrame("Audiobook Details");
     ImageIcon icon = new ImageIcon("book.png");
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
@@ -15,7 +15,7 @@ public class AddEBookPage {
     JPanel downPanelLow = new JPanel();
     JPanel footer = new JPanel();
 
-    AddEBookPage() {
+    AddAudioBookPage() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
