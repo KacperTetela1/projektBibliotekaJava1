@@ -4,4 +4,3 @@ Przetlumaczyc WSZYSTKO na angielski
 --
 dodanie karty klienta i numeru karty klienta do procesu wypozyczenia
 posegregowac folderami gui
-zmienic buttony w addbook na radioboxy

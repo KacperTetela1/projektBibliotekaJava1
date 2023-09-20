@@ -35,11 +35,11 @@ public class AddBookPage {
 
         leftPanelContainer.setBounds(0, 0, 200, 200);
         rightPanelContainer.setBounds(200, 0, 200, 200);
-        midlePanelUp.setBounds(0, 200, 400, 40);
-        midlePanelLow.setBounds(0, 250, 400, 50);
-        downPanelUp.setBounds(0,300,400,50);
-        downPanelLow.setBounds(0,350,400,50);
-        footer.setBounds(0,400,400,50);
+        midlePanelUp.setBounds(0, 200, 400, 30);
+        midlePanelLow.setBounds(0, 230, 400, 30);
+        downPanelUp.setBounds(0,260,400,30);
+        downPanelLow.setBounds(0,290,400,30);
+        footer.setBounds(0,390,400,30);
 
         leftPanelContainer.setBorder(new EmptyBorder(0, 50, 0, 10));
         rightPanelContainer.setBorder(new EmptyBorder(10, 0, 10, 50));
@@ -47,7 +47,7 @@ public class AddBookPage {
         midlePanelLow.setBorder(new EmptyBorder(0,0,0,0));
         downPanelUp.setBorder(new EmptyBorder(0,0,0,0));
         downPanelLow.setBorder(new EmptyBorder(0,0,0,0));
-        footer.setBorder(new EmptyBorder(0,0,0,0));
+        footer.setBorder(new EmptyBorder(0,140,0,0));
 
         frame.add(leftPanelContainer);
         frame.add(rightPanelContainer);
@@ -93,13 +93,18 @@ public class AddBookPage {
 
         //MidlePanelLow
 
-        JButton button1 = new JButton("Polish");
-        JButton button2 = new JButton("English");
-        JButton button3 = new JButton("German");
+        JRadioButton button1 = new JRadioButton("Polish");
+        JRadioButton button2 = new JRadioButton("English");
+        JRadioButton button3 = new JRadioButton("German");
 
         button1.setFocusable(false);
         button2.setFocusable(false);
         button3.setFocusable(false);
+
+        ButtonGroup group1 = new ButtonGroup();
+        group1.add(button1);
+        group1.add(button2);
+        group1.add(button3);
 
         midlePanelLow.add(button1);
         midlePanelLow.add(button2);
@@ -113,11 +118,16 @@ public class AddBookPage {
 
         //DownPanelLow
 
-        JButton button4 = new JButton("Hardcover");
-        JButton button5 = new JButton("Softcover");
+        JRadioButton button4 = new JRadioButton("Hardcover");
+        JRadioButton button5 = new JRadioButton("Softcover");
 
         button4.setFocusable(false);
         button5.setFocusable(false);
+
+        ButtonGroup group2 = new ButtonGroup();
+
+        group2.add(button4);
+        group2.add(button5);
 
         downPanelLow.add(button4);
         downPanelLow.add(button5);
@@ -127,12 +137,26 @@ public class AddBookPage {
         JButton button6 = new JButton("Cancel");
         JButton button7 = new JButton("Create");
 
+        button6.addActionListener(e -> cancel(frame));
+        button7.addActionListener(e -> create(textField1,textField2,textField3,textField4));
+
         button6.setFocusable(false);
         button7.setFocusable(false);
 
         footer.add(button6);
         footer.add(button7);
 
+    }
+
+    private static void cancel(Frame frame) {
+        frame.setVisible(false);
+    }
+
+    private static void create(JTextField textField1, JTextField textField2, JTextField textField3, JTextField textField4) {
+        String title = textField1.getText();
+        String author = textField2.getText();
+        String publicationYear = textField3.getText();
+        String pagesAmount = textField4.getText();
 
     }
 

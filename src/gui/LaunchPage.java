@@ -17,7 +17,7 @@ public class LaunchPage {
     private JButton borrowBookButton = new JButton("Borrow Book");
     private JButton returnBookButton = new JButton("Return book");
 
-    LaunchPage() {
+    LaunchPage()  {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -25,13 +25,13 @@ public class LaunchPage {
         frame.setLayout(null);
         frame.setVisible(true);
         frame.setResizable(false);
-        frame.setLocation(700,230);
+        //frame.setLocation(700,230);
 
-        navigationBar.setLayout(new FlowLayout());
+        navigationBar.setLayout(new GridLayout(8,1));
 
-        navigationBar.setBounds(0,0,140,500);
+        navigationBar.setBounds(0,0,100,465);
 
-        navigationBar.setBorder(new EmptyBorder(10,0,10,0));
+        //navigationBar.setBorder(new EmptyBorder(10,0,10,0));
 
         frame.add(navigationBar);
 

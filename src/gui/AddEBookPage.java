@@ -5,7 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class AddEBookPage {
-    JFrame frame = new JFrame("EBook Details");
+    JFrame frame = new JFrame("Book Details");
     ImageIcon icon = new ImageIcon("book.png");
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
@@ -35,11 +35,11 @@ public class AddEBookPage {
 
         leftPanelContainer.setBounds(0, 0, 200, 200);
         rightPanelContainer.setBounds(200, 0, 200, 200);
-        midlePanelUp.setBounds(0, 200, 400, 40);
-        midlePanelLow.setBounds(0, 250, 400, 50);
-        downPanelUp.setBounds(0,300,400,50);
-        downPanelLow.setBounds(0,350,400,50);
-        footer.setBounds(0,400,400,50);
+        midlePanelUp.setBounds(0, 200, 400, 30);
+        midlePanelLow.setBounds(0, 230, 400, 30);
+        downPanelUp.setBounds(0,260,400,30);
+        downPanelLow.setBounds(0,290,400,30);
+        footer.setBounds(0,390,400,30);
 
         leftPanelContainer.setBorder(new EmptyBorder(0, 50, 0, 10));
         rightPanelContainer.setBorder(new EmptyBorder(10, 0, 10, 50));
@@ -47,7 +47,7 @@ public class AddEBookPage {
         midlePanelLow.setBorder(new EmptyBorder(0,0,0,0));
         downPanelUp.setBorder(new EmptyBorder(0,0,0,0));
         downPanelLow.setBorder(new EmptyBorder(0,0,0,0));
-        footer.setBorder(new EmptyBorder(0,0,0,0));
+        footer.setBorder(new EmptyBorder(0,140,0,0));
 
         frame.add(leftPanelContainer);
         frame.add(rightPanelContainer);
@@ -68,7 +68,7 @@ public class AddEBookPage {
         JLabel label3 = new JLabel("Publication Year");
         leftPanelContainer.add(label3);
 
-        JLabel label4 = new JLabel("Pages Amount");
+        JLabel label4 = new JLabel("File Size(MB)");
         leftPanelContainer.add(label4);
 
         //RightPanel
@@ -93,39 +93,30 @@ public class AddEBookPage {
 
         //MidlePanelLow
 
-        JButton button1 = new JButton("Polish");
-        JButton button2 = new JButton("English");
-        JButton button3 = new JButton("German");
+        JRadioButton button1 = new JRadioButton("Polish");
+        JRadioButton button2 = new JRadioButton("English");
+        JRadioButton button3 = new JRadioButton("German");
 
         button1.setFocusable(false);
         button2.setFocusable(false);
         button3.setFocusable(false);
 
+        ButtonGroup group1 = new ButtonGroup();
+        group1.add(button1);
+        group1.add(button2);
+        group1.add(button3);
+
         midlePanelLow.add(button1);
         midlePanelLow.add(button2);
         midlePanelLow.add(button3);
-
-        //DownPanelUp
-
-        JLabel coverLabel = new JLabel("Select type of cover");
-        coverLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        downPanelUp.add(coverLabel);
-
-        //DownPanelLow
-
-        JButton button4 = new JButton("Hardcover");
-        JButton button5 = new JButton("Softcover");
-
-        button4.setFocusable(false);
-        button5.setFocusable(false);
-
-        downPanelLow.add(button4);
-        downPanelLow.add(button5);
 
         //Footer
 
         JButton button6 = new JButton("Cancel");
         JButton button7 = new JButton("Create");
+
+        button6.addActionListener(e -> cancel(frame));
+        button7.addActionListener(e -> create(textField1,textField2,textField3,textField4));
 
         button6.setFocusable(false);
         button7.setFocusable(false);
@@ -133,6 +124,17 @@ public class AddEBookPage {
         footer.add(button6);
         footer.add(button7);
 
+    }
+
+    private static void cancel(Frame frame) {
+        frame.setVisible(false);
+    }
+
+    private static void create(JTextField textField1, JTextField textField2, JTextField textField3, JTextField textField4) {
+        String title = textField1.getText();
+        String author = textField2.getText();
+        String publicationYear = textField3.getText();
+        String fileSize = textField4.getText();
 
     }
 
