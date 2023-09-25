@@ -4,26 +4,22 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class AddBookPage {
-    JFrame frame = new JFrame("Book Details");
-    ImageIcon icon = new ImageIcon("book.png");
+public class AddBookPage extends CustomPage{
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
     JPanel midlePanelUp = new JPanel();
     JPanel midlePanelLow = new JPanel();
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
-    JPanel footer = new JPanel();
-
     AddBookPage() {
 
-        frame.setIconImage(icon.getImage());
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(400, 500);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        frame.setLocation(700,230);
+        setIconImage(icon.getImage());
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setSize(400, 500);
+        setLayout(null);
+        setVisible(true);
+        setResizable(false);
+        setLocation(700,230);
 
         leftPanelContainer.setLayout(new GridLayout(4, 1));
         rightPanelContainer.setLayout(new GridLayout(4, 1, 0, 22));
@@ -49,13 +45,13 @@ public class AddBookPage {
         downPanelLow.setBorder(new EmptyBorder(0,0,0,0));
         footer.setBorder(new EmptyBorder(0,140,0,0));
 
-        frame.add(leftPanelContainer);
-        frame.add(rightPanelContainer);
-        frame.add(midlePanelUp);
-        frame.add(midlePanelLow);
-        frame.add(downPanelUp);
-        frame.add(downPanelLow);
-        frame.add(footer);
+        add(leftPanelContainer);
+        add(rightPanelContainer);
+        add(midlePanelUp);
+        add(midlePanelLow);
+        add(downPanelUp);
+        add(downPanelLow);
+        add(footer);
 
         //LeftPanel
 
@@ -137,7 +133,7 @@ public class AddBookPage {
         JButton button6 = new JButton("Cancel");
         JButton button7 = new JButton("Create");
 
-        button6.addActionListener(e -> cancel(frame));
+        button6.addActionListener(e -> cancel(this));
         button7.addActionListener(e -> create(textField1,textField2,textField3,textField4));
 
         button6.setFocusable(false);

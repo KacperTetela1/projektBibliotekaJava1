@@ -9,6 +9,4 @@ public class App {
         ConsoleController consoleController = new ConsoleController(schoolLibrary);
         consoleController.runConsoleMenu();
     }
-
-
 }
