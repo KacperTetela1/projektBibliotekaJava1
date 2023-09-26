@@ -1,11 +1,11 @@
-package gui;
+package gui.other;
 
 import javax.swing.*;
 
-public class Delete {
-    JFrame frame = new JFrame("Delete");
+public class ReturnBook {
+    JFrame frame = new JFrame("Return book");
     ImageIcon icon = new ImageIcon("book.png");
-    public Delete() {
+    public ReturnBook() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

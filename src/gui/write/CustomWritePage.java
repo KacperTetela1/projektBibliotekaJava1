@@ -1,76 +1,69 @@
 package gui.write;
 
+import gui.basic.CustomePage;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class AddEBookPage extends CustomPage{
-    JFrame frame = new JFrame("Book Details");
-    ImageIcon icon = new ImageIcon("book.png");
+public abstract class CustomWritePage extends CustomePage {
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
+    JLabel label1 = new JLabel("Title");
+    JLabel label2 = new JLabel("Author");
+    JLabel label3 = new JLabel("Publication Year");
+    JLabel label4 = new JLabel();
+    JTextField textField1 = new JTextField();
+    JTextField textField2 = new JTextField();
+    JTextField textField3 = new JTextField();
+    JTextField textField4 = new JTextField();
     JPanel midlePanelUp = new JPanel();
     JPanel midlePanelLow = new JPanel();
-    JPanel downPanelUp = new JPanel();
-    JPanel downPanelLow = new JPanel();
+    final JPanel footer = new JPanel();
 
-    public AddEBookPage() {
-        super("EBook Details");
+    public CustomWritePage(String title, String objectCharacter) {
+        super(title);
+        label4.setText(objectCharacter);
+        setSize(400, 500);
 
         leftPanelContainer.setLayout(new GridLayout(4, 1));
         rightPanelContainer.setLayout(new GridLayout(4, 1, 0, 22));
         midlePanelUp.setLayout(new FlowLayout());
         midlePanelLow.setLayout(new FlowLayout());
-        downPanelUp.setLayout(new FlowLayout());
-        downPanelLow.setLayout(new FlowLayout());
 
         leftPanelContainer.setBounds(0, 0, 200, 200);
         rightPanelContainer.setBounds(200, 0, 200, 200);
         midlePanelUp.setBounds(0, 200, 400, 30);
         midlePanelLow.setBounds(0, 230, 400, 30);
-        downPanelUp.setBounds(0,260,400,30);
-        downPanelLow.setBounds(0,290,400,30);
 
         leftPanelContainer.setBorder(new EmptyBorder(0, 50, 0, 10));
         rightPanelContainer.setBorder(new EmptyBorder(10, 0, 10, 50));
         midlePanelUp.setBorder(new EmptyBorder(10, 0, 0, 0));
         midlePanelLow.setBorder(new EmptyBorder(0,0,0,0));
-        downPanelUp.setBorder(new EmptyBorder(0,0,0,0));
-        downPanelLow.setBorder(new EmptyBorder(0,0,0,0));
 
         add(leftPanelContainer);
         add(rightPanelContainer);
         add(midlePanelUp);
         add(midlePanelLow);
-        add(downPanelUp);
-        add(downPanelLow);
 
         //LeftPanel
 
-        JLabel label1 = new JLabel("Title");
         leftPanelContainer.add(label1);
 
-        JLabel label2 = new JLabel("Author");
         leftPanelContainer.add(label2);
 
-        JLabel label3 = new JLabel("Publication Year");
         leftPanelContainer.add(label3);
 
-        JLabel label4 = new JLabel("File Size(MB)");
         leftPanelContainer.add(label4);
 
         //RightPanel
 
-        JTextField textField1 = new JTextField();
         rightPanelContainer.add(textField1);
 
-        JTextField textField2 = new JTextField();
         rightPanelContainer.add(textField2);
 
-        JTextField textField3 = new JTextField();
         rightPanelContainer.add(textField3);
 
-        JTextField textField4 = new JTextField();
         rightPanelContainer.add(textField4);
 
         //MidlePanelUp
@@ -100,18 +93,44 @@ public class AddEBookPage extends CustomPage{
 
         //Footer
 
+        footer.setLayout(new FlowLayout());
+        footer.setBounds(0,390,400,30);
+        footer.setBorder(new EmptyBorder(0,140,0,0));
+        add(footer);
+
+        JButton button6 = new JButton("Cancel");
         JButton button7 = new JButton("Create");
-        button7.addActionListener(e -> create(textField1,textField2,textField3,textField4));
+
+        button6.setFocusable(false);
         button7.setFocusable(false);
+
+        footer.add(button6);
         footer.add(button7);
 
+        button6.addActionListener(e -> cancel(this));
+        button7.addActionListener(e -> create(textField1,textField2,textField3,textField4));
+
+    }
+
+    private static void cancel(Frame frame) {
+        frame.setVisible(false);
     }
 
     private static void create(JTextField textField1, JTextField textField2, JTextField textField3, JTextField textField4) {
         String title = textField1.getText();
         String author = textField2.getText();
-        String publicationYear = textField3.getText();
-        String fileSize = textField4.getText();
+        Integer publicationYear = 0;
+        Integer objectCharacter = 0;
+
+        try {
+            String text1 = textField3.getText();
+            String text2 = textField4.getText();
+            publicationYear = Integer.parseInt(text1);
+            objectCharacter = Integer.parseInt(text2);
+        } catch (NumberFormatException e) {
+            System.out.println("Problem z zamiana String na int\n" + e.getMessage());
+        }
+
     }
 
 }

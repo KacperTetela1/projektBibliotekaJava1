@@ -1,14 +1,11 @@
-package gui;
+package gui.other;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import java.awt.*;
 
-public class ShowNotAvailableArticles {
-    JFrame frame = new JFrame("Not Available Articles");
+public class Delete {
+    JFrame frame = new JFrame("Delete");
     ImageIcon icon = new ImageIcon("book.png");
-
-    public ShowNotAvailableArticles() {
+    public Delete() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -17,7 +14,6 @@ public class ShowNotAvailableArticles {
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setLocation(700,230);
-
 
     }
 

@@ -1,14 +1,14 @@
-package gui;
+package gui.other;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class ShowAvailableArticles {
-    JFrame frame = new JFrame("AvailableArticles");
+public class ShowNotAvailableArticles {
+    JFrame frame = new JFrame("Not Available Articles");
     ImageIcon icon = new ImageIcon("book.png");
 
-    public ShowAvailableArticles() {
+    public ShowNotAvailableArticles() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

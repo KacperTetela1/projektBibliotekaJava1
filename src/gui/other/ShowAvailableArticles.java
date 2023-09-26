@@ -1,11 +1,14 @@
-package gui;
+package gui.other;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
 
-public class ReturnBook {
-    JFrame frame = new JFrame("Return book");
+public class ShowAvailableArticles {
+    JFrame frame = new JFrame("AvailableArticles");
     ImageIcon icon = new ImageIcon("book.png");
-    public ReturnBook() {
+
+    public ShowAvailableArticles() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -14,6 +17,7 @@ public class ReturnBook {
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setLocation(700,230);
+
 
     }
 

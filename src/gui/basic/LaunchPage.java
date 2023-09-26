@@ -1,21 +1,19 @@
 package gui.basic;
 
-import gui.Delete;
-import gui.ReturnBook;
-import gui.ShowAvailableArticles;
-import gui.ShowNotAvailableArticles;
-import gui.write.AddAudioBookPage;
-import gui.write.AddBookPage;
-import gui.write.AddEBookPage;
-import gui.write.BorrowBook;
+import gui.other.Delete;
+import gui.other.ReturnBook;
+import gui.other.ShowAvailableArticles;
+import gui.other.ShowNotAvailableArticles;
+import gui.write.AddAudioBookWritePage;
+import gui.write.AddBookWritePage;
+import gui.write.AddEBookWritePage;
+import gui.other.BorrowBook;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class LaunchPage {
-    private JFrame frame = new JFrame("Library Manager");
-    private ImageIcon icon = new ImageIcon("book.png");
+public class LaunchPage extends CustomePage{
     private JPanel navigationBar = new JPanel();
     private JButton addBookButton = new JButton("Add book");
     private JButton addEBookButton = new JButton("Add e-book");
@@ -27,32 +25,23 @@ public class LaunchPage {
     private JButton returnBookButton = new JButton("Return book");
 
     public LaunchPage() {
+        super("Library Manager");
         configureFrame();
         configureComponents();
     }
 
     private void configureFrame() {
-        frame.setIconImage(icon.getImage());
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(500, 500);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        //frame.setLocation(700,230);
-
+        setSize(500, 500);
         navigationBar.setLayout(new GridLayout(8, 1));
-
         navigationBar.setBounds(0, 0, 100, 465);
-
         //navigationBar.setBorder(new EmptyBorder(10,0,10,0));
-
-        frame.add(navigationBar);
+        add(navigationBar);
     }
 
     public void configureComponents() {
-        createButton(addBookButton, e -> new AddBookPage());
-        createButton(addEBookButton, e -> new AddEBookPage());
-        createButton(addAudioBookButton, e -> new AddAudioBookPage());
+        createButton(addBookButton, e -> new AddBookWritePage());
+        createButton(addEBookButton, e -> new AddEBookWritePage());
+        createButton(addAudioBookButton, e -> new AddAudioBookWritePage());
         createButton(deleteButton, e -> new Delete());
         createButton(showAvailableArticlesButton, e -> new ShowAvailableArticles());
         createButton(showNotAvailableArticlesButton, e -> new ShowNotAvailableArticles());
