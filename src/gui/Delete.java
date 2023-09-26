@@ -5,7 +5,7 @@ import javax.swing.*;
 public class Delete {
     JFrame frame = new JFrame("Delete");
     ImageIcon icon = new ImageIcon("book.png");
-    Delete() {
+    public Delete() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

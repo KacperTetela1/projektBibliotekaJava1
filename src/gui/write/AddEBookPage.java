@@ -1,25 +1,21 @@
-package gui;
+package gui.write;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
-public class AddBookPage extends CustomPage{
+public class AddEBookPage extends CustomPage{
+    JFrame frame = new JFrame("Book Details");
+    ImageIcon icon = new ImageIcon("book.png");
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
     JPanel midlePanelUp = new JPanel();
     JPanel midlePanelLow = new JPanel();
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
-    AddBookPage() {
 
-        setIconImage(icon.getImage());
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setSize(400, 500);
-        setLayout(null);
-        setVisible(true);
-        setResizable(false);
-        setLocation(700,230);
+    public AddEBookPage() {
+        super("EBook Details");
 
         leftPanelContainer.setLayout(new GridLayout(4, 1));
         rightPanelContainer.setLayout(new GridLayout(4, 1, 0, 22));
@@ -27,7 +23,6 @@ public class AddBookPage extends CustomPage{
         midlePanelLow.setLayout(new FlowLayout());
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
-        footer.setLayout(new FlowLayout());
 
         leftPanelContainer.setBounds(0, 0, 200, 200);
         rightPanelContainer.setBounds(200, 0, 200, 200);
@@ -35,7 +30,6 @@ public class AddBookPage extends CustomPage{
         midlePanelLow.setBounds(0, 230, 400, 30);
         downPanelUp.setBounds(0,260,400,30);
         downPanelLow.setBounds(0,290,400,30);
-        footer.setBounds(0,390,400,30);
 
         leftPanelContainer.setBorder(new EmptyBorder(0, 50, 0, 10));
         rightPanelContainer.setBorder(new EmptyBorder(10, 0, 10, 50));
@@ -43,7 +37,6 @@ public class AddBookPage extends CustomPage{
         midlePanelLow.setBorder(new EmptyBorder(0,0,0,0));
         downPanelUp.setBorder(new EmptyBorder(0,0,0,0));
         downPanelLow.setBorder(new EmptyBorder(0,0,0,0));
-        footer.setBorder(new EmptyBorder(0,140,0,0));
 
         add(leftPanelContainer);
         add(rightPanelContainer);
@@ -51,7 +44,6 @@ public class AddBookPage extends CustomPage{
         add(midlePanelLow);
         add(downPanelUp);
         add(downPanelLow);
-        add(footer);
 
         //LeftPanel
 
@@ -64,7 +56,7 @@ public class AddBookPage extends CustomPage{
         JLabel label3 = new JLabel("Publication Year");
         leftPanelContainer.add(label3);
 
-        JLabel label4 = new JLabel("Pages Amount");
+        JLabel label4 = new JLabel("File Size(MB)");
         leftPanelContainer.add(label4);
 
         //RightPanel
@@ -106,54 +98,20 @@ public class AddBookPage extends CustomPage{
         midlePanelLow.add(button2);
         midlePanelLow.add(button3);
 
-        //DownPanelUp
-
-        JLabel coverLabel = new JLabel("Select type of cover");
-        coverLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        downPanelUp.add(coverLabel);
-
-        //DownPanelLow
-
-        JRadioButton button4 = new JRadioButton("Hardcover");
-        JRadioButton button5 = new JRadioButton("Softcover");
-
-        button4.setFocusable(false);
-        button5.setFocusable(false);
-
-        ButtonGroup group2 = new ButtonGroup();
-
-        group2.add(button4);
-        group2.add(button5);
-
-        downPanelLow.add(button4);
-        downPanelLow.add(button5);
-
         //Footer
 
-        JButton button6 = new JButton("Cancel");
         JButton button7 = new JButton("Create");
-
-        button6.addActionListener(e -> cancel(this));
         button7.addActionListener(e -> create(textField1,textField2,textField3,textField4));
-
-        button6.setFocusable(false);
         button7.setFocusable(false);
-
-        footer.add(button6);
         footer.add(button7);
 
-    }
-
-    private static void cancel(Frame frame) {
-        frame.setVisible(false);
     }
 
     private static void create(JTextField textField1, JTextField textField2, JTextField textField3, JTextField textField4) {
         String title = textField1.getText();
         String author = textField2.getText();
         String publicationYear = textField3.getText();
-        String pagesAmount = textField4.getText();
-
+        String fileSize = textField4.getText();
     }
 
 }

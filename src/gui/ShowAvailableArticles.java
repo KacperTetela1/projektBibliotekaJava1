@@ -8,7 +8,7 @@ public class ShowAvailableArticles {
     JFrame frame = new JFrame("AvailableArticles");
     ImageIcon icon = new ImageIcon("book.png");
 
-    ShowAvailableArticles() {
+    public ShowAvailableArticles() {
 
         frame.setIconImage(icon.getImage());
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

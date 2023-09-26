@@ -1,4 +1,13 @@
-package gui;
+package gui.basic;
+
+import gui.Delete;
+import gui.ReturnBook;
+import gui.ShowAvailableArticles;
+import gui.ShowNotAvailableArticles;
+import gui.write.AddAudioBookPage;
+import gui.write.AddBookPage;
+import gui.write.AddEBookPage;
+import gui.write.BorrowBook;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +26,7 @@ public class LaunchPage {
     private JButton borrowBookButton = new JButton("Borrow Book");
     private JButton returnBookButton = new JButton("Return book");
 
-    LaunchPage() {
+    public LaunchPage() {
         configureFrame();
         configureComponents();
     }
@@ -40,7 +49,7 @@ public class LaunchPage {
         frame.add(navigationBar);
     }
 
-    private void configureComponents() {
+    public void configureComponents() {
         createButton(addBookButton, e -> new AddBookPage());
         createButton(addEBookButton, e -> new AddEBookPage());
         createButton(addAudioBookButton, e -> new AddAudioBookPage());

@@ -1,5 +1,7 @@
 package gui;
 
+import gui.basic.LaunchPage;
+
 import javax.swing.*;
 
 public class Main {
