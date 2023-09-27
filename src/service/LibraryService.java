@@ -82,10 +82,6 @@ public class LibraryService {
 
     }
 
-    public void defragOfMap() {
-        //TODO
-    }
-
     public void serialization() {
 
         try {

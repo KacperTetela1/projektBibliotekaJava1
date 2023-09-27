@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class LibraryItemPatern implements Serializable {
+public abstract class LibraryItemPatern implements Serializable { //patern niepotrzebne slowo w nazwie klasy
     private String title;
     private String author;
     private int yearPublished;

@@ -1,12 +1,13 @@
 package gui;
 
 import gui.basic.LaunchPage;
+import service.LibraryService;
 
 import javax.swing.*;
 
 public class Main {
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new LaunchPage() );
+        SwingUtilities.invokeLater(() -> new LaunchPage(new LibraryService()) );
     }
 
 }

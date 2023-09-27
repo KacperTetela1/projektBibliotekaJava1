@@ -8,6 +8,7 @@ import gui.write.AddAudioBookWritePage;
 import gui.write.AddBookWritePage;
 import gui.write.AddEBookWritePage;
 import gui.other.BorrowBook;
+import service.LibraryService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,8 +25,9 @@ public class LaunchPage extends CustomePage{
     private JButton borrowBookButton = new JButton("Borrow Book");
     private JButton returnBookButton = new JButton("Return book");
 
-    public LaunchPage() {
-        super("Library Manager");
+
+    public LaunchPage(LibraryService libraryService) {
+        super("Library Manager",libraryService);
         configureFrame();
         configureComponents();
     }
@@ -39,13 +41,13 @@ public class LaunchPage extends CustomePage{
     }
 
     public void configureComponents() {
-        createButton(addBookButton, e -> new AddBookWritePage());
-        createButton(addEBookButton, e -> new AddEBookWritePage());
-        createButton(addAudioBookButton, e -> new AddAudioBookWritePage());
+        createButton(addBookButton, e -> new AddBookWritePage(libraryService));
+        createButton(addEBookButton, e -> new AddEBookWritePage(libraryService));
+        createButton(addAudioBookButton, e -> new AddAudioBookWritePage(libraryService));
         createButton(deleteButton, e -> new Delete());
         createButton(showAvailableArticlesButton, e -> new ShowAvailableArticles());
         createButton(showNotAvailableArticlesButton, e -> new ShowNotAvailableArticles());
-        createButton(borrowBookButton, e -> new BorrowBook());
+        createButton(borrowBookButton, e -> new BorrowBook(libraryService));
         createButton(returnBookButton, e -> new ReturnBook());
     }
 

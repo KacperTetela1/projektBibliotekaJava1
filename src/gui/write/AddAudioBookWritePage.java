@@ -1,5 +1,7 @@
 package gui.write;
 
+import service.LibraryService;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -8,8 +10,8 @@ public class AddAudioBookWritePage extends CustomWritePage {
    private final JPanel downPanelUp = new JPanel();
    private final JPanel downPanelLow = new JPanel();
 
-    public AddAudioBookWritePage() {
-        super("Audio Book Details","Duration(seconds)");
+    public AddAudioBookWritePage(LibraryService libraryService) {
+        super("Audio Book Details","Duration(seconds)", libraryService);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());

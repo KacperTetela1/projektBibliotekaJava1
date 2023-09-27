@@ -1,6 +1,9 @@
 package gui.write;
 
 import gui.basic.CustomePage;
+import model.Book;
+import model.LibraryItemPatern;
+import service.LibraryService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -21,8 +24,8 @@ public abstract class CustomWritePage extends CustomePage {
     JPanel midlePanelLow = new JPanel();
     final JPanel footer = new JPanel();
 
-    public CustomWritePage(String title, String objectCharacter) {
-        super(title);
+    public CustomWritePage(String title, String objectCharacter, LibraryService libraryService) {
+        super(title, libraryService);
         label4.setText(objectCharacter);
         setSize(400, 500);
 
@@ -108,7 +111,7 @@ public abstract class CustomWritePage extends CustomePage {
         footer.add(button7);
 
         button6.addActionListener(e -> cancel(this));
-        button7.addActionListener(e -> create(textField1,textField2,textField3,textField4));
+        button7.addActionListener(e -> create());
 
     }
 
@@ -116,7 +119,7 @@ public abstract class CustomWritePage extends CustomePage {
         frame.setVisible(false);
     }
 
-    private static void create(JTextField textField1, JTextField textField2, JTextField textField3, JTextField textField4) {
+    private  void create() {
         String title = textField1.getText();
         String author = textField2.getText();
         Integer publicationYear = 0;
@@ -130,6 +133,9 @@ public abstract class CustomWritePage extends CustomePage {
         } catch (NumberFormatException e) {
             System.out.println("Problem z zamiana String na int\n" + e.getMessage());
         }
+
+        LibraryItemPatern libraryItemPatern = new Book(title,author, publicationYear, objectCharacter);
+        libraryService.addItem(libraryItemPatern);
 
     }
 

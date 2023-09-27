@@ -1,5 +1,7 @@
 package gui.write;
 
+import service.LibraryService;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -9,8 +11,8 @@ public class AddEBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
 
-    public AddEBookWritePage() {
-        super("EBook Details","File Size(MB)");
+    public AddEBookWritePage(LibraryService libraryService) {
+        super("EBook Details","File Size(MB)", libraryService);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());

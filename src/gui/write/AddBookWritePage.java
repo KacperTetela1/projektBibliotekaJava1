@@ -1,5 +1,7 @@
 package gui.write;
 
+import service.LibraryService;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -7,8 +9,8 @@ import java.awt.*;
 public class AddBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
-    public AddBookWritePage() {
-        super("Book Details","Pages amount");
+    public AddBookWritePage(LibraryService libraryService) {
+        super("Book Details","Pages amount", libraryService);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
