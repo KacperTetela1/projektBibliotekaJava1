@@ -1,20 +1,12 @@
 package gui.other;
 
-import javax.swing.*;
+import gui.launch.CustomePage;
+import model.service.LibraryService;
 
-public class Delete {
-    JFrame frame = new JFrame("Delete");
-    ImageIcon icon = new ImageIcon("book.png");
+public class Delete extends CustomePage {
     public Delete() {
-
-        frame.setIconImage(icon.getImage());
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(400, 500);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        frame.setLocation(700,230);
-
+        super("Delete", new LibraryService());
+        setSize(400, 500);
     }
 
 }

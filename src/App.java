@@ -1,6 +1,6 @@
 import console.ConsoleController;
-import gui.basic.LaunchPage;
-import service.LibraryService;
+import gui.launch.LaunchPage;
+import model.service.LibraryService;
 
 import javax.swing.*;
 

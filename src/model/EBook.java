@@ -1,6 +1,6 @@
 package model;
 
-public class EBook extends LibraryItemPatern {
+public class EBook extends Item {
     private boolean isPDF;
     private int fileSize;
 
@@ -17,6 +17,10 @@ public class EBook extends LibraryItemPatern {
         super(title, author, yearPublished, Language.POLISH);
         this.isPDF = isPDF;
         this.fileSize = fileSize;
+    }
+
+    public int getFileSize() {
+        return fileSize;
     }
 
     @Override

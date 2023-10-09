@@ -1,6 +1,8 @@
 package gui.write;
 
-import service.LibraryService;
+import model.AudioBook;
+import model.Item;
+import model.service.LibraryService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,7 +13,7 @@ public class AddAudioBookWritePage extends CustomWritePage {
    private final JPanel downPanelLow = new JPanel();
 
     public AddAudioBookWritePage(LibraryService libraryService) {
-        super("Audio Book Details","Duration(seconds)", libraryService);
+        super("Audio Book Details","Duration(seconds)", libraryService, (byte) 3);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
@@ -25,6 +27,11 @@ public class AddAudioBookWritePage extends CustomWritePage {
         add(downPanelUp);
         add(downPanelLow);
 
+    }
+
+    protected static Item addAudioBook(String title, String author, Integer publicationYear, Integer pagesAmount) {
+        Item item = new AudioBook(title,author, publicationYear, pagesAmount);
+        return item;
     }
 
 }

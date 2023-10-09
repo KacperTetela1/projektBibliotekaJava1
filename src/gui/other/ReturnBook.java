@@ -1,20 +1,12 @@
 package gui.other;
 
-import javax.swing.*;
+import gui.launch.CustomePage;
+import model.service.LibraryService;
 
-public class ReturnBook {
-    JFrame frame = new JFrame("Return book");
-    ImageIcon icon = new ImageIcon("book.png");
+public class ReturnBook extends CustomePage {
     public ReturnBook() {
-
-        frame.setIconImage(icon.getImage());
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setSize(400, 500);
-        frame.setLayout(null);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        frame.setLocation(700,230);
-
+        super("Return book",new LibraryService());
+        setSize(400, 500);
     }
 
 }

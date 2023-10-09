@@ -3,4 +3,15 @@ Przetlumaczyc WSZYSTKO na angielski
 
 --
 dodanie karty klienta i numeru karty klienta do procesu wypozyczenia
-posegregowac folderami gui
+
+
+
+zrobic aby tabela zmieniala sie w czasie rzeczywistym
+
+dodanie kolumn:
+    book cover(book only)
+    pages/duration
+
+
+--bledy
+Czasami serializacja nie dziala i wczytuje domyslne 4 ksiazki

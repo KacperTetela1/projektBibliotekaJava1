@@ -1,6 +1,6 @@
 package model;
 
-public class AudioBook extends LibraryItemPatern {
+public class AudioBook extends Item {
     private int duration;
 
     public AudioBook() {
@@ -14,6 +14,10 @@ public class AudioBook extends LibraryItemPatern {
     public AudioBook(String title, String author, int yearPublished, int duration) {
         super(title, author, yearPublished, Language.POLISH);
         this.duration = duration;
+    }
+
+    public int getDuration() {
+        return duration;
     }
 
     @Override

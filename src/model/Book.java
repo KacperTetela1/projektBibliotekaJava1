@@ -1,6 +1,6 @@
 package model;
 
-public class Book extends LibraryItemPatern {
+public class Book extends Item {
     private CoverType coverType;
     private int numberOfPages;
 
@@ -25,6 +25,14 @@ public class Book extends LibraryItemPatern {
 
     public void setCoverType(CoverType coverType) {
         this.coverType = coverType;
+    }
+
+    public CoverType getCoverType() {
+        return coverType;
+    }
+
+    public int getNumberOfPages() {
+        return numberOfPages;
     }
 
     @Override

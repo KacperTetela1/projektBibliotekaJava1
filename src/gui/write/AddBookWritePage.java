@@ -1,6 +1,8 @@
 package gui.write;
 
-import service.LibraryService;
+import model.Book;
+import model.Item;
+import model.service.LibraryService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -10,7 +12,7 @@ public class AddBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
     public AddBookWritePage(LibraryService libraryService) {
-        super("Book Details","Pages amount", libraryService);
+        super("Book Details","Pages amount", libraryService, (byte)1);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
@@ -46,6 +48,11 @@ public class AddBookWritePage extends CustomWritePage {
         downPanelLow.add(button4);
         downPanelLow.add(button5);
 
+    }
+
+    protected static Item addBook(String title, String author, Integer publicationYear, Integer pagesAmount) {
+        Item item = new Book(title,author, publicationYear, pagesAmount);
+        return item;
     }
 
 }

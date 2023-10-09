@@ -3,8 +3,8 @@ package console;
 import model.AudioBook;
 import model.Book;
 import model.EBook;
-import model.LibraryItemPatern;
-import service.LibraryService;
+import model.Item;
+import model.service.LibraryService;
 
 public class ConsoleController {
     private LibraryService libraryService;
@@ -96,13 +96,13 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                book.setLanguage(LibraryItemPatern.Language.POLISH);
+                book.setLanguage(Item.Language.POLISH);
                 break;
             case 2:
-                book.setLanguage(LibraryItemPatern.Language.ENGLISH);
+                book.setLanguage(Item.Language.ENGLISH);
                 break;
             case 3:
-                book.setLanguage(LibraryItemPatern.Language.GERMAN);
+                book.setLanguage(Item.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
@@ -123,7 +123,6 @@ public class ConsoleController {
                 System.out.println("Type of cover has not been set");
         }
 
-        book.setAvailability(true);
         System.out.println(libraryService.addItem(book));
 
     }
@@ -147,19 +146,18 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                eBook.setLanguage(LibraryItemPatern.Language.POLISH);
+                eBook.setLanguage(Item.Language.POLISH);
                 break;
             case 2:
-                eBook.setLanguage(LibraryItemPatern.Language.ENGLISH);
+                eBook.setLanguage(Item.Language.ENGLISH);
                 break;
             case 3:
-                eBook.setLanguage(LibraryItemPatern.Language.GERMAN);
+                eBook.setLanguage(Item.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
         }
 
-        eBook.setAvailability(true);
         System.out.println(libraryService.addItem(eBook));
 
     }
@@ -183,19 +181,18 @@ public class ConsoleController {
         Label.printEntryLanguage();
         switch (Input.intScanner()) {
             case 1:
-                audioBook.setLanguage(LibraryItemPatern.Language.POLISH);
+                audioBook.setLanguage(Item.Language.POLISH);
                 break;
             case 2:
-                audioBook.setLanguage(LibraryItemPatern.Language.ENGLISH);
+                audioBook.setLanguage(Item.Language.ENGLISH);
                 break;
             case 3:
-                audioBook.setLanguage(LibraryItemPatern.Language.GERMAN);
+                audioBook.setLanguage(Item.Language.GERMAN);
                 break;
             default:
                 System.out.println("Language has not been set");
         }
 
-        audioBook.setAvailability(true);
         System.out.println(libraryService.addItem(audioBook));
 
     }

@@ -1,14 +1,12 @@
 package gui.other;
 
-import gui.basic.CustomePage;
-import gui.write.CustomWritePage;
-import service.LibraryService;
+import gui.launch.CustomePage;
+import model.service.LibraryService;
 
 public class BorrowBook extends CustomePage {
-
     public BorrowBook(LibraryService libraryService) {
         super("Borrow Book Details", libraryService);
-
+        setSize(400, 500);
     }
 
 }

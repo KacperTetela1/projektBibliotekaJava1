@@ -2,7 +2,7 @@ package model;
 
 import java.io.Serializable;
 
-public abstract class LibraryItemPatern implements Serializable { //patern niepotrzebne slowo w nazwie klasy
+public abstract class Item implements Serializable {
     private String title;
     private String author;
     private int yearPublished;
@@ -15,10 +15,10 @@ public abstract class LibraryItemPatern implements Serializable { //patern niepo
         GERMAN,
     }
 
-    public LibraryItemPatern() {
+    public Item() {
     }
 
-    public LibraryItemPatern(String title, String author, int yearPublished, Language language) {
+    public Item(String title, String author, int yearPublished, Language language) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
@@ -28,6 +28,18 @@ public abstract class LibraryItemPatern implements Serializable { //patern niepo
 
     public String getTitle() {
         return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public int getYearPublished() {
+        return yearPublished;
+    }
+
+    public Language getLanguage() {
+        return language;
     }
 
     public boolean isAvailability() {
@@ -44,7 +56,7 @@ public abstract class LibraryItemPatern implements Serializable { //patern niepo
 
     @Override
     public String toString() {
-        return "Objects.LibraryItemPatern{" +
+        return "Objects.Item{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", yearPublished=" + yearPublished +
@@ -52,5 +64,6 @@ public abstract class LibraryItemPatern implements Serializable { //patern niepo
                 ", language=" + language +
                 '}';
     }
+
 
 }

@@ -1,18 +1,19 @@
 package gui.write;
 
-import service.LibraryService;
+import model.EBook;
+import model.Item;
+import model.service.LibraryService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.math.BigInteger;
 
 public class AddEBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
 
     public AddEBookWritePage(LibraryService libraryService) {
-        super("EBook Details","File Size(MB)", libraryService);
+        super("EBook Details","File Size(MB)", libraryService, (byte) 2);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
@@ -26,6 +27,11 @@ public class AddEBookWritePage extends CustomWritePage {
         add(downPanelUp);
         add(downPanelLow);
 
+    }
+
+    protected static Item addEBook(String title, String author, Integer publicationYear, Integer pagesAmount) {
+        Item item = new EBook(title,author, publicationYear, pagesAmount);
+        return item;
     }
 
 }

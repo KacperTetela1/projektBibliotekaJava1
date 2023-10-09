@@ -1,9 +1,8 @@
 package gui.write;
 
-import gui.basic.CustomePage;
-import model.Book;
-import model.LibraryItemPatern;
-import service.LibraryService;
+import gui.launch.CustomePage;
+import model.Item;
+import model.service.LibraryService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -23,12 +22,14 @@ public abstract class CustomWritePage extends CustomePage {
     JPanel midlePanelUp = new JPanel();
     JPanel midlePanelLow = new JPanel();
     final JPanel footer = new JPanel();
+    protected byte whichType;
 
-    public CustomWritePage(String title, String objectCharacter, LibraryService libraryService) {
+    public CustomWritePage(String title, String objectCharacter, LibraryService libraryService, byte whichType) {
         super(title, libraryService);
         label4.setText(objectCharacter);
-        setSize(400, 500);
+        this.whichType = whichType;
 
+        setSize(400, 500);
         leftPanelContainer.setLayout(new GridLayout(4, 1));
         rightPanelContainer.setLayout(new GridLayout(4, 1, 0, 22));
         midlePanelUp.setLayout(new FlowLayout());
@@ -110,16 +111,16 @@ public abstract class CustomWritePage extends CustomePage {
         footer.add(button6);
         footer.add(button7);
 
-        button6.addActionListener(e -> cancel(this));
+        button6.addActionListener(e -> cancel());
         button7.addActionListener(e -> create());
 
     }
 
-    private static void cancel(Frame frame) {
-        frame.setVisible(false);
+    private void cancel() {
+        setVisible(false);
     }
 
-    private  void create() {
+    private void create() {
         String title = textField1.getText();
         String author = textField2.getText();
         Integer publicationYear = 0;
@@ -134,8 +135,21 @@ public abstract class CustomWritePage extends CustomePage {
             System.out.println("Problem z zamiana String na int\n" + e.getMessage());
         }
 
-        LibraryItemPatern libraryItemPatern = new Book(title,author, publicationYear, objectCharacter);
-        libraryService.addItem(libraryItemPatern);
+        switch (whichType) {
+            case 1:
+                Item item = AddBookWritePage.addBook(title, author, publicationYear, objectCharacter);
+                libraryService.addItem(item);
+
+            case 2:
+                Item item2 = AddEBookWritePage.addEBook(title, author, publicationYear, objectCharacter);
+                libraryService.addItem(item2);
+
+            case 3:
+                Item item3 = AddAudioBookWritePage.addAudioBook(title, author, publicationYear, objectCharacter);
+                libraryService.addItem(item3);
+        }
+
+        setVisible(false);
 
     }
 
