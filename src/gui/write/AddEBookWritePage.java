@@ -1,8 +1,8 @@
 package gui.write;
 
-import model.EBook;
-import model.Item;
-import model.service.LibraryService;
+import model.model.EBook;
+import model.model.Item;
+import model.service.LibraryModelService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,8 +12,8 @@ public class AddEBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
 
-    public AddEBookWritePage(LibraryService libraryService) {
-        super("EBook Details","File Size(MB)", libraryService, (byte) 2);
+    public AddEBookWritePage(LibraryModelService libraryModelService) {
+        super("EBook Details","File Size(MB)", libraryModelService);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
@@ -27,11 +27,30 @@ public class AddEBookWritePage extends CustomWritePage {
         add(downPanelUp);
         add(downPanelLow);
 
+        button7.addActionListener(e -> create());
+
     }
 
-    protected static Item addEBook(String title, String author, Integer publicationYear, Integer pagesAmount) {
-        Item item = new EBook(title,author, publicationYear, pagesAmount);
-        return item;
+    private void create() {
+
+        String title = textField1.getText();
+        String author = textField2.getText();
+        Integer publicationYear = 0;
+        Integer objectCharacter = 0;
+
+        try {
+            String text1 = textField3.getText();
+            String text2 = textField4.getText();
+            publicationYear = Integer.parseInt(text1);
+            objectCharacter = Integer.parseInt(text2);
+        } catch (NumberFormatException e) {
+            System.out.println("Problem z zamiana String na int\n" + e.getMessage());
+        }
+
+        libraryController.createItem(title,author,publicationYear,objectCharacter, Item.Language.POLISH,true);
+
+        setVisible(false);
+
     }
 
 }

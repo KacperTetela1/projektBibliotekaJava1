@@ -1,6 +1,5 @@
-import console.ConsoleController;
 import gui.launch.LaunchPage;
-import model.service.LibraryService;
+import model.service.LibraryModelService;
 
 import javax.swing.*;
 
@@ -8,11 +7,13 @@ import javax.swing.*;
 public class App {
 
     public static void main(String[] args) {
+        SwingUtilities.invokeLater(() ->{
+            LibraryModelService schoolLibrary = new LibraryModelService();
+            new LaunchPage(schoolLibrary);
+        });
 
-        LibraryService schoolLibrary = new LibraryService();
-        SwingUtilities.invokeLater(() -> new LaunchPage(schoolLibrary) );
+//        ConsoleController consoleController = new ConsoleController(schoolLibrary);
+//        consoleController.runConsoleMenu();
 
-        ConsoleController consoleController = new ConsoleController(schoolLibrary);
-        consoleController.runConsoleMenu();
     }
 }

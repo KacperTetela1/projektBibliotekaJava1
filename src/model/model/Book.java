@@ -1,4 +1,4 @@
-package model;
+package model.model;
 
 public class Book extends Item {
     private CoverType coverType;

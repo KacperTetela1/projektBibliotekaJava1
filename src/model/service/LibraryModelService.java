@@ -1,47 +1,53 @@
 package model.service;
 
-import model.Book;
-import model.EBook;
-import model.Item;
+import model.model.AudioBook;
+import model.model.Book;
+import model.model.EBook;
+import model.model.Item;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
-public class LibraryService {
-    private int integerCounter;
+public class LibraryModelService {
+    private static List<Item> libraryMap; // !!! PO DODANIU TUTAJ STATIC PROBLEM Z SERILIAZACJA ZOSTAL NAPRAWIONY, NIE ROZUMIEM DLACZEGO ALE BARDZO SIE CIESZE
 
-    private Map<Integer, Item> libraryMap;
+    public LibraryModelService() {
 
-    public LibraryService() {
-        libraryMap = new HashMap<>();
-
+        libraryMap = new ArrayList<>();
+        //System.out.println(libraryMap.size());
         libraryMap = deserialization();
-        if (libraryMap.isEmpty())
-            fillMapTMP();
+        //System.out.println(libraryMap.size());
 
-        integerCounter = libraryMap.size();
+        if (libraryMap.isEmpty())
+            fillMapTemp();
 
     }
 
-    private void fillMapTMP() {
+    private void fillMapTemp() {
         Item ogniemIMieczem = new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, Item.Language.POLISH, Book.CoverType.HARD, 588);
-        Item stonesForTheRampart = new Book("Stones for the Rampart", "\tAleksander Kamiński", 1943, Item.Language.ENGLISH, Book.CoverType.SOFT, 256);
-        Item javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 1995, Item.Language.POLISH, Book.CoverType.HARD, 785);
-        Item panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, Item.Language.POLISH, true, 48);
+        Item stonesForTheRampart = new Book("Stones for the Rampart", "Aleksander Kamiński", 1943, Item.Language.ENGLISH, Book.CoverType.SOFT, 244);
+        Item javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 2008, Item.Language.POLISH, Book.CoverType.HARD, 768);
+        Item panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, Item.Language.POLISH, true, 11);
+        Item pelnaMożliwości = new AudioBook("Pełna MOC możliwości","Jacek Walkiewicz",2014, Item.Language.POLISH,21600);
+
         addItem(ogniemIMieczem);
         addItem(stonesForTheRampart);
         addItem(javaPodstawyhorstmann);
         addItem(panTadeusz);
+        addItem(pelnaMożliwości);
     }
 
-    public String addItem(Item item) {
-        libraryMap.put(integerCounter++, item);
-        return "The art '" + item.getTitle() + "' has been added to the library";
+    public void addItem(Item item) {
+
+        System.out.println(item);
+        libraryMap.add(item);
+
     }
 
     public String deleteItem(int keyValue) {
-        if (libraryMap.containsKey(keyValue)) {
+
+        if (libraryMap.contains(keyValue)) {
             libraryMap.remove(keyValue);
             return "The art has been deleted";
         } else {
@@ -50,21 +56,8 @@ public class LibraryService {
 
     }
 
-    public String[] printAllItems() {
-        String arr[] = new String[libraryMap.size()];
-
-        int incrementValue = 0;
-        for (Integer key : libraryMap.keySet()) {
-            Item value = libraryMap.get(key);
-
-            arr[incrementValue] = "Key: " + key + ", Value: " + value;
-            incrementValue++;
-        }
-        return arr;
-
-    }
-
     public String rentAnItem(int keyValue) {
+
         if (libraryMap.get(keyValue).isAvailability()) {
             libraryMap.get(keyValue).setAvailability(false);
             return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been rented";
@@ -73,6 +66,7 @@ public class LibraryService {
     }
 
     public String returnAnItem(int keyValue) {
+
         if (!libraryMap.get(keyValue).isAvailability()) {
             libraryMap.get(keyValue).setAvailability(true);
             return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been returned";
@@ -94,17 +88,17 @@ public class LibraryService {
 
     }
 
-    public HashMap deserialization() {
+    public List<Item> deserialization() {
 
-        HashMap<String, Integer> deserializedMap = new HashMap<>();
+        List<Item> deserializedMap = new ArrayList<>();
 
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("hashmap.ser"));
-            deserializedMap = (HashMap<String, Integer>) inputStream.readObject();
+            deserializedMap = (List<Item>) inputStream.readObject();
             inputStream.close();
         } catch (IOException e) {
             //e.printStackTrace();
-            //System.out.println("Problem z plikiem zapisu");
+            System.out.println("Problem z odczytem pliku zapisu");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -113,8 +107,26 @@ public class LibraryService {
 
     }
 
-    public Map<Integer, Item> getLibraryMap() {
+    public List<Item> getLibraryMap() {
+
         return libraryMap;
+
+    }
+
+    public List<Item> getLibraryMap(boolean available) {
+
+        List<Item> availableList = new ArrayList<>();
+
+        for (Item item : getLibraryMap()) {
+            if (available && item.isAvailability()) {
+                availableList.add(item);
+            } else if (available && !item.isAvailability()){
+                availableList.add(item);
+            }
+        }
+
+        return availableList;
+
     }
 
 

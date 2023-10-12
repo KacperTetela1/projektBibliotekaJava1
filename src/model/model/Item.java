@@ -1,8 +1,9 @@
-package model;
+package model.model;
 
 import java.io.Serializable;
 
 public abstract class Item implements Serializable {
+    //private Integer id;
     private String title;
     private String author;
     private int yearPublished;
@@ -22,8 +23,8 @@ public abstract class Item implements Serializable {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
-        availability = true;
         this.language = language;
+        availability = true;
     }
 
     public String getTitle() {

@@ -1,8 +1,9 @@
 package gui.write;
 
-import model.Book;
-import model.Item;
-import model.service.LibraryService;
+import controller.LibraryController;
+import model.model.Book;
+import model.model.Item;
+import model.service.LibraryModelService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -11,17 +12,18 @@ import java.awt.*;
 public class AddBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
-    public AddBookWritePage(LibraryService libraryService) {
-        super("Book Details","Pages amount", libraryService, (byte)1);
+
+    public AddBookWritePage(LibraryModelService libraryModelService) {
+        super("Book Details", "Pages amount", libraryModelService);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
 
-        downPanelUp.setBounds(0,260,400,30);
-        downPanelLow.setBounds(0,290,400,30);
+        downPanelUp.setBounds(0, 260, 400, 30);
+        downPanelLow.setBounds(0, 290, 400, 30);
 
-        downPanelUp.setBorder(new EmptyBorder(0,0,0,0));
-        downPanelLow.setBorder(new EmptyBorder(0,0,0,0));
+        downPanelUp.setBorder(new EmptyBorder(0, 0, 0, 0));
+        downPanelLow.setBorder(new EmptyBorder(0, 0, 0, 0));
 
         add(downPanelUp);
         add(downPanelLow);
@@ -48,11 +50,30 @@ public class AddBookWritePage extends CustomWritePage {
         downPanelLow.add(button4);
         downPanelLow.add(button5);
 
+        button7.addActionListener(e -> create());
+
     }
 
-    protected static Item addBook(String title, String author, Integer publicationYear, Integer pagesAmount) {
-        Item item = new Book(title,author, publicationYear, pagesAmount);
-        return item;
+    private void create() {
+
+        String title = textField1.getText();
+        String author = textField2.getText();
+        Integer publicationYear = null;
+        Integer objectCharacter = null;
+
+        try {
+            String text1 = textField3.getText();
+            String text2 = textField4.getText();
+            publicationYear = Integer.parseInt(text1);
+            objectCharacter = Integer.parseInt(text2);
+        } catch (NumberFormatException e) {
+            System.out.println("Problem z zamiana String na int\n" + e.getMessage());
+        }
+
+        libraryController.createItem(title,author,publicationYear, objectCharacter, Item.Language.POLISH, Book.CoverType.HARD);
+
+        setVisible(false);
+
     }
 
 }

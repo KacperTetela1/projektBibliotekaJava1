@@ -1,8 +1,8 @@
 package gui.write;
 
-import model.AudioBook;
-import model.Item;
-import model.service.LibraryService;
+import model.model.AudioBook;
+import model.model.Item;
+import model.service.LibraryModelService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -12,8 +12,8 @@ public class AddAudioBookWritePage extends CustomWritePage {
    private final JPanel downPanelUp = new JPanel();
    private final JPanel downPanelLow = new JPanel();
 
-    public AddAudioBookWritePage(LibraryService libraryService) {
-        super("Audio Book Details","Duration(seconds)", libraryService, (byte) 3);
+    public AddAudioBookWritePage(LibraryModelService libraryModelService) {
+        super("Audio Book Details","Duration(seconds)", libraryModelService);
 
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
@@ -27,11 +27,30 @@ public class AddAudioBookWritePage extends CustomWritePage {
         add(downPanelUp);
         add(downPanelLow);
 
+        button7.addActionListener(e -> create());
+
     }
 
-    protected static Item addAudioBook(String title, String author, Integer publicationYear, Integer pagesAmount) {
-        Item item = new AudioBook(title,author, publicationYear, pagesAmount);
-        return item;
+    private void create() {
+
+        String title = textField1.getText();
+        String author = textField2.getText();
+        Integer publicationYear = 0;
+        Integer objectCharacter = 0;
+
+        try {
+            String text1 = textField3.getText();
+            String text2 = textField4.getText();
+            publicationYear = Integer.parseInt(text1);
+            objectCharacter = Integer.parseInt(text2);
+        } catch (NumberFormatException e) {
+            System.out.println("Problem z zamiana String na int\n" + e.getMessage());
+        }
+
+        libraryController.createItem(title,author,publicationYear,objectCharacter, Item.Language.POLISH);
+
+        setVisible(false);
+
     }
 
 }

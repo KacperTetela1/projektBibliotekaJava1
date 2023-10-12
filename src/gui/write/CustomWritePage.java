@@ -1,8 +1,8 @@
 package gui.write;
 
 import gui.launch.CustomePage;
-import model.Item;
-import model.service.LibraryService;
+import model.model.Item;
+import model.service.LibraryModelService;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -22,12 +22,12 @@ public abstract class CustomWritePage extends CustomePage {
     JPanel midlePanelUp = new JPanel();
     JPanel midlePanelLow = new JPanel();
     final JPanel footer = new JPanel();
-    protected byte whichType;
+    JButton button6 = new JButton("Cancel");
+    JButton button7 = new JButton("Create");
 
-    public CustomWritePage(String title, String objectCharacter, LibraryService libraryService, byte whichType) {
-        super(title, libraryService);
+    public CustomWritePage(String title, String objectCharacter, LibraryModelService libraryModelService) {
+        super(title, libraryModelService);
         label4.setText(objectCharacter);
-        this.whichType = whichType;
 
         setSize(400, 500);
         leftPanelContainer.setLayout(new GridLayout(4, 1));
@@ -102,9 +102,6 @@ public abstract class CustomWritePage extends CustomePage {
         footer.setBorder(new EmptyBorder(0,140,0,0));
         add(footer);
 
-        JButton button6 = new JButton("Cancel");
-        JButton button7 = new JButton("Create");
-
         button6.setFocusable(false);
         button7.setFocusable(false);
 
@@ -112,45 +109,11 @@ public abstract class CustomWritePage extends CustomePage {
         footer.add(button7);
 
         button6.addActionListener(e -> cancel());
-        button7.addActionListener(e -> create());
 
     }
 
     private void cancel() {
         setVisible(false);
-    }
-
-    private void create() {
-        String title = textField1.getText();
-        String author = textField2.getText();
-        Integer publicationYear = 0;
-        Integer objectCharacter = 0;
-
-        try {
-            String text1 = textField3.getText();
-            String text2 = textField4.getText();
-            publicationYear = Integer.parseInt(text1);
-            objectCharacter = Integer.parseInt(text2);
-        } catch (NumberFormatException e) {
-            System.out.println("Problem z zamiana String na int\n" + e.getMessage());
-        }
-
-        switch (whichType) {
-            case 1:
-                Item item = AddBookWritePage.addBook(title, author, publicationYear, objectCharacter);
-                libraryService.addItem(item);
-
-            case 2:
-                Item item2 = AddEBookWritePage.addEBook(title, author, publicationYear, objectCharacter);
-                libraryService.addItem(item2);
-
-            case 3:
-                Item item3 = AddAudioBookWritePage.addAudioBook(title, author, publicationYear, objectCharacter);
-                libraryService.addItem(item3);
-        }
-
-        setVisible(false);
-
     }
 
 }

@@ -1,4 +1,4 @@
-package model;
+package model.model;
 
 public class EBook extends Item {
     private boolean isPDF;
@@ -21,6 +21,10 @@ public class EBook extends Item {
 
     public int getFileSize() {
         return fileSize;
+    }
+
+    public boolean isPDF() {
+        return isPDF;
     }
 
     @Override

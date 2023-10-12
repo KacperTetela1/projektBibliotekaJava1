@@ -1,4 +1,6 @@
-package model;
+package model.model;
+
+import java.io.Serializable;
 
 public class AudioBook extends Item {
     private int duration;

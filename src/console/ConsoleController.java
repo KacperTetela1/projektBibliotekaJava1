@@ -1,16 +1,16 @@
 package console;
 
-import model.AudioBook;
-import model.Book;
-import model.EBook;
-import model.Item;
-import model.service.LibraryService;
+import model.model.AudioBook;
+import model.model.Book;
+import model.model.EBook;
+import model.model.Item;
+import model.service.LibraryModelService;
 
 public class ConsoleController {
-    private LibraryService libraryService;
+    private LibraryModelService libraryModelService;
 
-    public ConsoleController(LibraryService libraryService) {
-        this.libraryService = libraryService;
+    public ConsoleController(LibraryModelService libraryModelService) {
+        this.libraryModelService = libraryModelService;
     }
 
     public void runConsoleMenu() {
@@ -65,7 +65,7 @@ public class ConsoleController {
                     break;
                 case 0:
                     //zamkniecie programu
-                    libraryService.serialization(); // activate serialization
+                    libraryModelService.serialization(); // activate serialization
 
                     running = false;
                     break;
@@ -123,7 +123,7 @@ public class ConsoleController {
                 System.out.println("Type of cover has not been set");
         }
 
-        System.out.println(libraryService.addItem(book));
+        //System.out.println(libraryModelService.addItem(book));
 
     }
 
@@ -158,7 +158,7 @@ public class ConsoleController {
                 System.out.println("Language has not been set");
         }
 
-        System.out.println(libraryService.addItem(eBook));
+        //System.out.println(libraryModelService.addItem(eBook));
 
     }
 
@@ -193,17 +193,17 @@ public class ConsoleController {
                 System.out.println("Language has not been set");
         }
 
-        System.out.println(libraryService.addItem(audioBook));
+        //System.out.println(libraryModelService.addItem(audioBook));
 
     }
 
     private void deleteBook() {
         System.out.println("Select the book you want to delete by Key number");
-        libraryService.printAllItems();
+        //libraryModelService.printAllItems();
 
         try {
             int deleteKeyValue = Input.intScanner();
-            System.out.println(libraryService.deleteItem(deleteKeyValue));
+            System.out.println(libraryModelService.deleteItem(deleteKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -211,20 +211,20 @@ public class ConsoleController {
     }
 
     private void printAllArts() {
-        String[] newArray = libraryService.printAllItems();
+        //String[] newArray = libraryModelService.printAllItems();
 
-        for (int i = 0; i < newArray.length; i++)
-            System.out.println(newArray[i]);
+/*        for (int i = 0; i < newArray.length; i++)
+            System.out.println(newArray[i]);*/
 
     }
 
     private void borrowBook() {
         System.out.println("Select the art you want to borrow by Key number");
-        libraryService.printAllItems();
+        //libraryModelService.printAllItems();
 
         try {
             int borrowKeyValue = Input.intScanner();
-            System.out.println(libraryService.rentAnItem(borrowKeyValue));
+            System.out.println(libraryModelService.rentAnItem(borrowKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
@@ -234,11 +234,11 @@ public class ConsoleController {
 
     private void returnBook() {
         System.out.println("Select the art you want to return by Key number");
-        libraryService.printAllItems();
+        //libraryModelService.printAllItems();
 
         try {
             int returnKeyValue = Input.intScanner();
-            System.out.println(libraryService.returnAnItem(returnKeyValue));
+            System.out.println(libraryModelService.returnAnItem(returnKeyValue));
         } catch (RuntimeException e) {
             e.printStackTrace();
         }
