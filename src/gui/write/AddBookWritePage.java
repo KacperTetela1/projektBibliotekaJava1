@@ -8,6 +8,7 @@ import model.service.LibraryModelService;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class AddBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
@@ -70,7 +71,7 @@ public class AddBookWritePage extends CustomWritePage {
             System.out.println("Problem z zamiana String na int\n" + e.getMessage());
         }
 
-        libraryController.createItem(title,author,publicationYear, objectCharacter, Item.Language.POLISH, Book.CoverType.HARD);
+        libraryController.createItem(title,author,publicationYear, objectCharacter, language, Book.CoverType.HARD);
 
         setVisible(false);
 

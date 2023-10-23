@@ -7,8 +7,10 @@ import model.service.LibraryModelService;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public abstract class CustomWritePage extends CustomePage {
+public abstract class CustomWritePage extends CustomePage implements ActionListener {
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
     JLabel label1 = new JLabel("Title");
@@ -22,8 +24,12 @@ public abstract class CustomWritePage extends CustomePage {
     JPanel midlePanelUp = new JPanel();
     JPanel midlePanelLow = new JPanel();
     final JPanel footer = new JPanel();
+    JRadioButton button1;
+    JRadioButton button2;
+    JRadioButton button3;
     JButton button6 = new JButton("Cancel");
     JButton button7 = new JButton("Create");
+    Item.Language language;
 
     public CustomWritePage(String title, String objectCharacter, LibraryModelService libraryModelService) {
         super(title, libraryModelService);
@@ -78,9 +84,9 @@ public abstract class CustomWritePage extends CustomePage {
 
         //MidlePanelLow
 
-        JRadioButton button1 = new JRadioButton("Polish");
-        JRadioButton button2 = new JRadioButton("English");
-        JRadioButton button3 = new JRadioButton("German");
+        button1 = new JRadioButton("Polish");
+        button2 = new JRadioButton("English");
+        button3 = new JRadioButton("German");
 
         button1.setFocusable(false);
         button2.setFocusable(false);
@@ -90,6 +96,10 @@ public abstract class CustomWritePage extends CustomePage {
         group1.add(button1);
         group1.add(button2);
         group1.add(button3);
+
+        button1.addActionListener(this);
+        button2.addActionListener(this);
+        button3.addActionListener(this);
 
         midlePanelLow.add(button1);
         midlePanelLow.add(button2);
@@ -114,6 +124,17 @@ public abstract class CustomWritePage extends CustomePage {
 
     private void cancel() {
         setVisible(false);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button1) {
+            language = Item.Language.POLISH;
+        } else if (e.getSource() == button2) {
+            language = Item.Language.ENGLISH;
+        } else if (e.getSource() == button3) {
+            language = Item.Language.GERMAN;
+        }
     }
 
 }
