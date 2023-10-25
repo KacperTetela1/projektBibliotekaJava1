@@ -7,14 +7,14 @@ public class EBook extends Item {
     public EBook() {
     }
 
-    public EBook(String title, String author, int yearPublished, Language language, boolean isPDF, int fileSize) {
-        super(title, author, yearPublished, language);
+    public EBook(String title, String author, int yearPublished, Language language, boolean isPDF, int fileSize, boolean availability) {
+        super(title, author, yearPublished, language, availability);
         this.isPDF = isPDF;
         this.fileSize = fileSize;
     }
 
-    public EBook(String title, String author, int yearPublished, int fileSize) {
-        super(title, author, yearPublished, Language.POLISH);
+    public EBook(String title, String author, int yearPublished, int fileSize, boolean availability) {
+        super(title, author, yearPublished, Language.POLISH, availability);
         this.isPDF = isPDF;
         this.fileSize = fileSize;
     }

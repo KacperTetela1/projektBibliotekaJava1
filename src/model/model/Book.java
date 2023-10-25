@@ -12,14 +12,14 @@ public class Book extends Item {
     public Book() {
     }
 
-    public Book(String title, String author, int yearPublished, Language language, CoverType coverType, int numberOfPages) {
-        super(title, author, yearPublished, language);
+    public Book(String title, String author, int yearPublished, Language language, CoverType coverType, int numberOfPages, boolean availability) {
+        super(title, author, yearPublished, language, availability);
         this.coverType = coverType;
         this.numberOfPages = numberOfPages;
     }
 
-    public Book(String title, String author, int yearPublished, int numberOfPages) {
-        super(title, author, yearPublished, Language.POLISH);
+    public Book(String title, String author, int yearPublished, int numberOfPages, boolean availability) {
+        super(title, author, yearPublished, Language.POLISH, availability);
         this.numberOfPages = numberOfPages;
     }
 

@@ -1,9 +1,11 @@
 package model.model;
 
+import model.service.LibraryModelService;
+
 import java.io.Serializable;
 
 public abstract class Item implements Serializable {
-    //private Integer id;
+    private int  id;
     private String title;
     private String author;
     private int yearPublished;
@@ -19,12 +21,22 @@ public abstract class Item implements Serializable {
     public Item() {
     }
 
-    public Item(String title, String author, int yearPublished, Language language) {
+    public Item(String title, String author, int yearPublished, Language language, boolean availability) {
         this.title = title;
         this.author = author;
         this.yearPublished = yearPublished;
         this.language = language;
-        availability = true;
+        this.availability = availability;
+    }
+
+
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -55,16 +67,16 @@ public abstract class Item implements Serializable {
         this.language = language;
     }
 
-    @Override
+   @Override
     public String toString() {
         return "Objects.Item{" +
-                "title='" + title + '\'' +
+                "id=" + id + '\'' +
+                ", title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", yearPublished=" + yearPublished +
                 ", availability=" + availability +
                 ", language=" + language +
                 '}';
     }
-
 
 }

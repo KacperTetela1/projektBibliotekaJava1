@@ -8,13 +8,13 @@ public class AudioBook extends Item {
     public AudioBook() {
     }
 
-    public AudioBook(String title, String author, int yearPublished, Language language, int duration) {
-        super(title, author, yearPublished, language);
+    public AudioBook(String title, String author, int yearPublished, Language language, int duration, boolean availability) {
+        super(title, author, yearPublished, language, availability);
         this.duration = duration;
     }
 
-    public AudioBook(String title, String author, int yearPublished, int duration) {
-        super(title, author, yearPublished, Language.POLISH);
+    public AudioBook(String title, String author, int yearPublished, int duration, boolean availability) {
+        super(title, author, yearPublished, Language.POLISH, availability);
         this.duration = duration;
     }
 

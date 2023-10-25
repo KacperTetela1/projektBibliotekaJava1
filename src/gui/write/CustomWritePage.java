@@ -1,6 +1,6 @@
 package gui.write;
 
-import gui.launch.CustomePage;
+import gui.custome.CustomePage;
 import model.model.Item;
 import model.service.LibraryModelService;
 
@@ -59,21 +59,15 @@ public abstract class CustomWritePage extends CustomePage implements ActionListe
         //LeftPanel
 
         leftPanelContainer.add(label1);
-
         leftPanelContainer.add(label2);
-
         leftPanelContainer.add(label3);
-
         leftPanelContainer.add(label4);
 
         //RightPanel
 
         rightPanelContainer.add(textField1);
-
         rightPanelContainer.add(textField2);
-
         rightPanelContainer.add(textField3);
-
         rightPanelContainer.add(textField4);
 
         //MidlePanelUp

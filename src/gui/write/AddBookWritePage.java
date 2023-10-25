@@ -1,6 +1,7 @@
 package gui.write;
 
 import controller.LibraryController;
+import gui.launch.LibraryTableModel;
 import model.model.Book;
 import model.model.Item;
 import model.service.LibraryModelService;

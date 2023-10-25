@@ -9,15 +9,15 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
-public class LibraryTableModel extends AbstractTableModel {
+public class LibraryTableModelAvailable extends AbstractTableModel {
 
     private LibraryModelService libraryModelService = null;
-    private List<Item> items = null; // na liste zamienic
+    private List<Item> items = null;
 
-    public LibraryTableModel(LibraryModelService libraryModelService) {
+    public LibraryTableModelAvailable(LibraryModelService libraryModelService) {
         super();
-        //this.libraryModelService = libraryModelService;
-        items = libraryModelService.getLibraryMap();
+        this.libraryModelService = libraryModelService;
+        items = libraryModelService.getLibraryMap(true);
     }
 
     @Override

@@ -10,10 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LibraryModelService {
-    private static List<Item> libraryMap; // !!! PO DODANIU TUTAJ STATIC PROBLEM Z SERILIAZACJA ZOSTAL NAPRAWIONY, NIE ROZUMIEM DLACZEGO ALE BARDZO SIE CIESZE
+    private List<Item> libraryMap;
+
+
+    //w programowaniu obiektowy przez static trcimy kontrolę gdzie które narzedzia mamy dostepne
+            //- (diargamy uml, warstwy aplikacji, separacja modulow)
+    //uniemozliwia nam korzystanie z narzedzi obiektowych (interfejsy, polimorfizm, dziedziczeni,a abstrakcja, wzorce projketowe)
+            //w klasach serwisów (te ktorych potrzebujesz jeden)
+
+    //roznica miedzy polami a zmiennymi kokalnymi polega na tym że pola dostaja domyslna wartość a zmienne lokalne nie
 
     public LibraryModelService() {
-
+        System.out.println("create library model");
         libraryMap = new ArrayList<>();
         //System.out.println(libraryMap.size());
         libraryMap = deserialization();
@@ -24,21 +32,34 @@ public class LibraryModelService {
 
     }
 
+    private  int libraryIdCounter() {
+        int maxVal;
+
+        if (libraryMap.isEmpty()) {
+            maxVal = 0;
+        } else {
+            maxVal = libraryMap.stream().map(Item::getId).max(Integer::compare).get()+1;
+        }
+        return maxVal;
+    }
+
     private void fillMapTemp() {
-        Item ogniemIMieczem = new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, Item.Language.POLISH, Book.CoverType.HARD, 588);
-        Item stonesForTheRampart = new Book("Stones for the Rampart", "Aleksander Kamiński", 1943, Item.Language.ENGLISH, Book.CoverType.SOFT, 244);
-        Item javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 2008, Item.Language.POLISH, Book.CoverType.HARD, 768);
-        Item panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, Item.Language.POLISH, true, 11);
-        Item pelnaMożliwości = new AudioBook("Pełna MOC możliwości","Jacek Walkiewicz",2014, Item.Language.POLISH,21600);
+        Item ogniemIMieczem = new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, Item.Language.POLISH, Book.CoverType.HARD, 588,false);
+        Item stonesForTheRampart = new Book("Stones for the Rampart", "Aleksander Kamiński", 1943, Item.Language.ENGLISH, Book.CoverType.SOFT, 244,false);
+        Item javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 2008, Item.Language.POLISH, Book.CoverType.HARD, 768,true);
+        Item panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, Item.Language.POLISH, true, 11,false);
+        Item pelnaMozliwosci = new AudioBook("Pełna MOC możliwości","Jacek Walkiewicz",2014, Item.Language.POLISH,21600,true);
 
         addItem(ogniemIMieczem);
         addItem(stonesForTheRampart);
         addItem(javaPodstawyhorstmann);
         addItem(panTadeusz);
-        addItem(pelnaMożliwości);
+        addItem(pelnaMozliwosci);
     }
 
     public void addItem(Item item) {
+
+        item.setId(libraryIdCounter());
 
         System.out.println(item);
         libraryMap.add(item);
@@ -108,25 +129,22 @@ public class LibraryModelService {
     }
 
     public List<Item> getLibraryMap() {
-
         return libraryMap;
-
     }
 
     public List<Item> getLibraryMap(boolean available) {
-
         List<Item> availableList = new ArrayList<>();
 
         for (Item item : getLibraryMap()) {
             if (available && item.isAvailability()) {
                 availableList.add(item);
-            } else if (available && !item.isAvailability()){
+            } else if (!available && !item.isAvailability()) {
                 availableList.add(item);
             }
         }
 
+        System.out.println(availableList.size());
         return availableList;
-
     }
 
 
