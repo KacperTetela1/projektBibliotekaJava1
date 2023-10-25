@@ -27,32 +27,4 @@ public class LibraryController {
         libraryModelService.addItem(new AudioBook(title, author, publicationYear, language, duration,true));
     }
 
-    public Item findItem(int id) {
-        return libraryModelService.getLibraryMap().stream().filter(item -> item.getId() == id).findFirst().orElse(null);
-    }
-
-/*    public Book downloadDetailsBook(int id, String type) {
-        Item item = findItem(id);
-        Book itemToReturn = null;
-        if (type.equals("Book"))
-            itemToReturn = new Book(item.getTitle(), item.getAuthor(), item.getYearPublished(), item.getLanguage(), ((Book) item).getCoverType(), ((Book) item).getNumberOfPages(),true);
-        return itemToReturn;
-    }
-
-    public EBook downloadDetailsEBook(int id, String type) {
-        Item item = findItem(id);
-        EBook itemToReturn = null;
-        if (type.equals("EBook"))
-            itemToReturn = new EBook(item.getTitle(), item.getAuthor(), item.getYearPublished(), item.getLanguage(), ((EBook) item).isPDF(), ((EBook) item).getFileSize());
-        return itemToReturn;
-    }
-
-    public AudioBook downloadDetailsAudioBook(int id, String type) {
-        Item item = findItem(id);
-        AudioBook itemToReturn = null;
-        if (type.equals("AudioBook"))
-            itemToReturn = new AudioBook(item.getTitle(), item.getAuthor(), item.getYearPublished(), item.getLanguage(), ((AudioBook) item).getDuration());
-        return itemToReturn;
-    }*/
-
 }

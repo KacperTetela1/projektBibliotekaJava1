@@ -1,17 +1,14 @@
-Dodac funkcjonalnosc "Zoptymalizuj" ktora zdefragmentuje cala liste, usunie puste miejsca (w trakcie)
-Przetlumaczyc WSZYSTKO na angielski
-
---
+--POMYSLY
 dodanie karty klienta i numeru karty klienta do procesu wypozyczenia
 
-
-
-zrobic aby tabela zmieniala sie w czasie rzeczywistym
-
-dodanie kolumn:
-    book cover(book only)
-    pages/duration
-
-
---bledy
+--BLEDY
 Czasami serializacja nie dziala i wczytuje domyslne 4 ksiazki
+
+--UPDATE
+zrobic aby tabela zmieniala sie w czasie rzeczywistym
+dodac mozliwosc usuwania ksiazek
+dodac mozliwosc wyszukiwania ksiazek
+dodac mozliwosc wypożyczania ksiazek
+dodac mozliwosc oddawania ksiazek
+
+dodac podczas dodawania mozliwosc wyboru czy ksiazka jest dostepna

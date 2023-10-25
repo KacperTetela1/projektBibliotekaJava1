@@ -14,6 +14,9 @@ import java.awt.event.ActionEvent;
 public class AddBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
+    private JRadioButton button4;
+    private JRadioButton button5;
+    Book.CoverType coverType;
 
     public AddBookWritePage(LibraryModelService libraryModelService) {
         super("Book Details", "Pages amount", libraryModelService);
@@ -38,8 +41,8 @@ public class AddBookWritePage extends CustomWritePage {
 
         //DownPanelLow
 
-        JRadioButton button4 = new JRadioButton("Hardcover");
-        JRadioButton button5 = new JRadioButton("Softcover");
+        button4 = new JRadioButton("Hardcover");
+        button5 = new JRadioButton("Softcover");
 
         button4.setFocusable(false);
         button5.setFocusable(false);
@@ -49,11 +52,31 @@ public class AddBookWritePage extends CustomWritePage {
         group2.add(button4);
         group2.add(button5);
 
+        button4.addActionListener(this);
+        button5.addActionListener(this);
+
         downPanelLow.add(button4);
         downPanelLow.add(button5);
 
         button7.addActionListener(e -> create());
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == button4) {
+            coverType = Book.CoverType.HARD;
+        } else if (e.getSource() == button5) {
+            coverType = Book.CoverType.SOFT;
+        }
+
+        if (e.getSource() == button1) {
+            language = Item.Language.POLISH;
+        } else if (e.getSource() == button2) {
+            language = Item.Language.ENGLISH;
+        } else if (e.getSource() == button3) {
+            language = Item.Language.GERMAN;
+        }
     }
 
     private void create() {
@@ -72,7 +95,7 @@ public class AddBookWritePage extends CustomWritePage {
             System.out.println("Problem z zamiana String na int\n" + e.getMessage());
         }
 
-        libraryController.createItem(title,author,publicationYear, objectCharacter, language, Book.CoverType.HARD);
+        libraryController.createItem(title,author,publicationYear, objectCharacter, language, coverType);
 
         setVisible(false);
 
