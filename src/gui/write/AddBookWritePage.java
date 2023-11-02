@@ -1,7 +1,5 @@
 package gui.write;
 
-import controller.LibraryController;
-import gui.launch.LibraryTableModel;
 import model.model.Book;
 import model.model.Item;
 import model.service.LibraryModelService;
@@ -95,7 +93,7 @@ public class AddBookWritePage extends CustomWritePage {
             System.out.println("Problem z zamiana String na int\n" + e.getMessage());
         }
 
-        libraryController.createItem(title,author,publicationYear, objectCharacter, language, coverType);
+        libraryModelService.addItem(title,author,publicationYear, objectCharacter, language, coverType);
 
         setVisible(false);
 

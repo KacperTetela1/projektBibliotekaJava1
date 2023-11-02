@@ -48,7 +48,7 @@ public class AddAudioBookWritePage extends CustomWritePage {
             System.out.println("Problem z zamiana String na int\n" + e.getMessage());
         }
 
-        libraryController.createItem(title,author,publicationYear,objectCharacter, language);
+        libraryModelService.addItem(title,author,publicationYear,objectCharacter, language);
 
         setVisible(false);
 

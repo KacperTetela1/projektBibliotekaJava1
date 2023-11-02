@@ -66,6 +66,36 @@ public class LibraryModelService {
 
     }
 
+    public void addItem(String title, String author, int publicationYear, int numberOfPages, Item.Language language, Book.CoverType coverType) {
+
+        Book book = new Book(title, author, publicationYear, language, coverType, numberOfPages,true);
+        book.setId(libraryIdCounter());
+
+        System.out.println(book);
+        libraryMap.add(book);
+
+    }
+
+    public void addItem(String title, String author, int publicationYear, int fileSize, Item.Language language, boolean isPDF) {
+
+        EBook eBook = new EBook(title, author, publicationYear, language, isPDF, fileSize,true);
+        eBook.setId(libraryIdCounter());
+
+        System.out.println(eBook);
+        libraryMap.add(eBook);
+
+    }
+
+    public void addItem(String title, String author, int publicationYear, int duration, Item.Language language) {
+
+        AudioBook audioBook = new AudioBook(title, author, publicationYear, language, duration,true);
+        audioBook.setId(libraryIdCounter());
+
+        System.out.println(audioBook);
+        libraryMap.add(audioBook);
+
+    }
+
     public String deleteItem(int keyValue) {
 
         if (libraryMap.contains(keyValue)) {

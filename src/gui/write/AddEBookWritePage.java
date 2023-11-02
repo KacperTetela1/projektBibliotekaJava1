@@ -48,7 +48,7 @@ public class AddEBookWritePage extends CustomWritePage {
             System.out.println("Problem z zamiana String na int\n" + e.getMessage());
         }
 
-        libraryController.createItem(title,author,publicationYear,objectCharacter, language,true);
+        libraryModelService.addItem(title,author,publicationYear,objectCharacter, language,true);
 
         setVisible(false);
 
