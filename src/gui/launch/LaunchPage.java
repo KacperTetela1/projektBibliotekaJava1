@@ -4,6 +4,8 @@ import gui.custome.CustomePage;
 import gui.write.AddAudioBookWritePage;
 import gui.write.AddBookWritePage;
 import gui.write.AddEBookWritePage;
+import model.model.Book;
+import model.model.Item;
 import model.service.LibraryModelService;
 
 import javax.swing.*;
@@ -33,9 +35,11 @@ public class LaunchPage extends CustomePage {
     private LibraryTableModel libraryTableModel;
     private LibraryTableModelAvailable libraryTableModelAvailable;
     private LibraryTableModelNotAvailable libraryTableModelNotAvailable;
+    private DetailsPanel detailsPanel;
 
     public LaunchPage(LibraryModelService libraryModelService) {
         super("Library Manager", libraryModelService);
+        detailsPanel = new DetailsPanel(new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, Item.Language.POLISH, Book.CoverType.HARD, 588,false));
         searchField = new JTextField();
         searchBar.add(searchField);
 
@@ -113,6 +117,10 @@ public class LaunchPage extends CustomePage {
         navigationBar.setBounds(0, 0, 200, 150);
         //navigationBar.setBorder(new EmptyBorder(0,0,0,0));
         add(navigationBar);
+
+        detailsPanel.setBounds(0,150,200,450);
+        //details.setBorder(new EmptyBorder(0,0,0,0));
+        add(detailsPanel);
 
         availableList.setLayout(new GridLayout());
         availableList.setBounds(200, 0, 200, 25);
