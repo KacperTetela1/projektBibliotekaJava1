@@ -1,8 +1,10 @@
 package gui.write;
 
+import gui.launch.LaunchPage;
 import model.model.Book;
 import model.model.Item;
 import model.service.LibraryModelService;
+import gui.launch.LaunchPage;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -16,9 +18,11 @@ public class AddBookWritePage extends CustomWritePage {
     private JRadioButton button5;
     Book.CoverType coverType;
 
-    public AddBookWritePage(LibraryModelService libraryModelService) {
-        super("Book Details", "Pages amount", libraryModelService);
+    LaunchPage launchPage;
 
+    public AddBookWritePage(LibraryModelService libraryModelService, LaunchPage launchPage) {
+        super("Book Details", "Pages amount", libraryModelService);
+        launchPage = this.launchPage;
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
 
@@ -96,6 +100,13 @@ public class AddBookWritePage extends CustomWritePage {
         libraryModelService.addItem(title,author,publicationYear, objectCharacter, language, coverType);
 
         setVisible(false);
+
+        try {
+            launchPage.addRowToTable("Book",title,author,publicationYear.toString(),language.toString());
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
 
     }
 

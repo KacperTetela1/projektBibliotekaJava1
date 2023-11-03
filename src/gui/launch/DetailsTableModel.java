@@ -10,12 +10,12 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class LibraryTableModel extends AbstractTableModel {
+public class DetailsTableModel extends AbstractTableModel {
 
     private LibraryModelService libraryModelService = null;
     private List<Item> items = null; // na liste zamienic
 
-    public LibraryTableModel(LibraryModelService libraryModelService) {
+    public DetailsTableModel(LibraryModelService libraryModelService) {
         super();
         //this.libraryModelService = libraryModelService;
         items = libraryModelService.getLibraryMap();

@@ -7,6 +7,7 @@ import model.service.LibraryModelService;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import java.awt.*;
 import java.util.List;
 
 public class LibraryTableModelAvailable extends AbstractTableModel {
