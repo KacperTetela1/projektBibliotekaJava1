@@ -39,7 +39,7 @@ public class LaunchPage extends CustomePage {
 
     public LaunchPage(LibraryModelService libraryModelService) {
         super("Library Manager", libraryModelService);
-        detailsPanel = new DetailsPanel(new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, Item.Language.POLISH, Book.CoverType.HARD, 588,false));
+        detailsPanel = new DetailsPanel();
         searchField = new JTextField();
         searchBar.add(searchField);
 
@@ -75,7 +75,6 @@ public class LaunchPage extends CustomePage {
         ListSelectionModel selectionModel = tables[currentTableIndex].getSelectionModel();
         selectionModel.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 
-        // przeprojektuj to tak aby pasowalo do nowego modelu
         selectionModel.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -141,8 +140,8 @@ public class LaunchPage extends CustomePage {
 
     public void configureComponents() {
         createButton(addBookButton, e -> new AddBookWritePage(libraryModelService, this), navigationBar);
-        createButton(addEBookButton, e -> new AddEBookWritePage(libraryModelService), navigationBar);
-        createButton(addAudioBookButton, e -> new AddAudioBookWritePage(libraryModelService), navigationBar);
+        createButton(addEBookButton, e -> new AddEBookWritePage(libraryModelService, this), navigationBar);
+        createButton(addAudioBookButton, e -> new AddAudioBookWritePage(libraryModelService, this), navigationBar);
         createButton(availableButton, e -> changeTableToAvailableOrNot(), availableList);
         createButton(search, e -> setSearchBar(), searchBar);
 
@@ -204,6 +203,12 @@ public class LaunchPage extends CustomePage {
 
     private void watchDetails(int id) {
         //TODO change in table or JPanel the view to direct view of Item
+
+        //DetailsPanel detailsPanel = new DetailsPanel(libraryModelService.getLibraryMap().get(id));
+
+        //DetailsPanel detailsPanel = new DetailsPanel();
+        detailsPanel.setValues(libraryModelService.getLibraryMap().get(id));
+
     }
 
 }

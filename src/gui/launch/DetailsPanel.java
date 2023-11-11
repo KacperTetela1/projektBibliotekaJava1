@@ -16,12 +16,12 @@ public class DetailsPanel extends Panel {
     private Label[] labelsValue = new Label[labelNames.length];
     private Item item;
 
-    public DetailsPanel(Item item) {
-        this.item = item;
+    public DetailsPanel() {
+        //this.item = item;
         GridLayout gridLayout = new GridLayout(12, 2);
         setLayout(gridLayout);
         createLabel(gridLayout);
-        setValues();
+        //setValues();
     }
 
     private void createLabel(LayoutManager layout) {
@@ -39,7 +39,7 @@ public class DetailsPanel extends Panel {
 
     }
 
-    private void setValues() {
+    public void setValues(Item item) {
         String keyId = Integer.toString(item.getId());
         labelsValue[0].setText(keyId);
 
@@ -55,9 +55,9 @@ public class DetailsPanel extends Panel {
         labelsValue[5].setText(item.getLanguage().toString());
 
         if (item.isAvailability()) {
-            labelsValue[6].setText("Available");
+            labelsValue[6].setText("Yes");
         } else {
-            labelsValue[6].setText("Not available");
+            labelsValue[6].setText("No");
         }
 
 /*        labelsValue[7].setText(item.getCoverType().);

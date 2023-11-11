@@ -31,7 +31,7 @@ public class LibraryTableModelAvailable extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 6;
+        return 7;
     }
 
     @Override
@@ -55,6 +55,9 @@ public class LibraryTableModelAvailable extends AbstractTableModel {
 
             case 5:
                 return "Language";
+
+            case 6:
+                return "Availablity";
 
             default:
                 return "";
@@ -84,6 +87,9 @@ public class LibraryTableModelAvailable extends AbstractTableModel {
 
             case 5:
                 return Item.Language.class;
+
+            case 6:
+                return Boolean.class;
 
             default:
                 return null;
@@ -120,6 +126,9 @@ public class LibraryTableModelAvailable extends AbstractTableModel {
 
             case 5:
                 return items.get(rowIndex).getLanguage();
+
+            case 6:
+                return items.get(rowIndex).isAvailability();
 
             default:
                 return "";

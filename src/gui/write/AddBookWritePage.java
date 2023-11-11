@@ -10,15 +10,15 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.Date;
 
 public class AddBookWritePage extends CustomWritePage {
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
+    Book.CoverType coverType;
+    LaunchPage launchPage;
     private JRadioButton button4;
     private JRadioButton button5;
-    Book.CoverType coverType;
-
-    LaunchPage launchPage;
 
     public AddBookWritePage(LibraryModelService libraryModelService, LaunchPage launchPage) {
         super("Book Details", "Pages amount", libraryModelService);
@@ -94,17 +94,32 @@ public class AddBookWritePage extends CustomWritePage {
             publicationYear = Integer.parseInt(text1);
             objectCharacter = Integer.parseInt(text2);
         } catch (NumberFormatException e) {
-            System.out.println("Problem z zamiana String na int\n" + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Entered an invalid character");
+            System.out.println("Problem ze zamiana String na int\n");
         }
 
-        libraryModelService.addItem(title,author,publicationYear, objectCharacter, language, coverType);
+        if (title.length() > 30 || author.length() > 30 || title.length() < 1 || author.length() < 1) {
+            JOptionPane.showMessageDialog(this, "Title or author is too long, or too short");
+        } else if (publicationYear > Date.from(new Date().toInstant()).getYear() + 1900 || publicationYear < 0) {
+            JOptionPane.showMessageDialog(this, "Publication year is incorrect");
+        } else if (language == null) {
+            JOptionPane.showMessageDialog(this, "Language is not selected");
+        } else if (objectCharacter < 0 || objectCharacter > 10000) {
+            JOptionPane.showMessageDialog(this, "Pages amount is incorrect");
+        } else if (coverType == null) {
+            JOptionPane.showMessageDialog(this, "Cover type is not selected");
+        } else {
 
-        setVisible(false);
+            libraryModelService.addItem(title, author, publicationYear, objectCharacter, language, coverType);
+            setVisible(false);
 
-        try {
-            launchPage.addRowToTable("Book",title,author,publicationYear.toString(),language.toString());
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            try {
+                launchPage.addRowToTable("Book", title, author, publicationYear.toString(),
+                        language.toString());
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+
         }
 
 

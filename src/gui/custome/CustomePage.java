@@ -6,7 +6,6 @@ import javax.swing.*;
 
 public abstract class CustomePage extends JFrame {
     private final ImageIcon icon = new ImageIcon("book.png");
-    //protected LibraryController libraryController;
     protected LibraryModelService libraryModelService;
 
     public CustomePage(String title, LibraryModelService libraryModelService) {
