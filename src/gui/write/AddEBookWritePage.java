@@ -66,8 +66,9 @@ public class AddEBookWritePage extends CustomWritePage {
             setVisible(false);
 
             try {
-                launchPage.addRowToTable("EBook", title, author, publicationYear.toString(),
-                        language.toString());
+                LaunchPage launchPage = new LaunchPage(libraryModelService);
+/*                                launchPage.addRowToTable("EBook", title, author, publicationYear.toString(),
+                        language.toString());*/
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }

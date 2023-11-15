@@ -22,7 +22,7 @@ public class AddBookWritePage extends CustomWritePage {
 
     public AddBookWritePage(LibraryModelService libraryModelService, LaunchPage launchPage) {
         super("Book Details", "Pages amount", libraryModelService);
-        launchPage = this.launchPage;
+        this.launchPage = launchPage;
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
 
@@ -114,14 +114,18 @@ public class AddBookWritePage extends CustomWritePage {
             setVisible(false);
 
             try {
-                launchPage.addRowToTable("Book", title, author, publicationYear.toString(),
-                        language.toString());
+/*                launchPage.addRowToTable("Book", title, author, publicationYear.toString(),
+                        language.toString());*/
+                //TODO reload the table page
+                LaunchPage launchPage = new LaunchPage(libraryModelService);
+
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
 
         }
 
+        LaunchPage launchPage = new LaunchPage(libraryModelService);
 
     }
 

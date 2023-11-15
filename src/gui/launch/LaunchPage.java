@@ -4,14 +4,11 @@ import gui.custome.CustomePage;
 import gui.write.AddAudioBookWritePage;
 import gui.write.AddBookWritePage;
 import gui.write.AddEBookWritePage;
-import model.model.Book;
-import model.model.Item;
 import model.service.LibraryModelService;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
-import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -39,7 +36,7 @@ public class LaunchPage extends CustomePage {
 
     public LaunchPage(LibraryModelService libraryModelService) {
         super("Library Manager", libraryModelService);
-        detailsPanel = new DetailsPanel();
+        detailsPanel = new DetailsPanel(libraryModelService);
         searchField = new JTextField();
         searchBar.add(searchField);
 
@@ -144,7 +141,6 @@ public class LaunchPage extends CustomePage {
         createButton(addAudioBookButton, e -> new AddAudioBookWritePage(libraryModelService, this), navigationBar);
         createButton(availableButton, e -> changeTableToAvailableOrNot(), availableList);
         createButton(search, e -> setSearchBar(), searchBar);
-
     }
 
     private void createButton(JButton button, ActionListener actionListener, JPanel jPanel) {
@@ -153,7 +149,7 @@ public class LaunchPage extends CustomePage {
         jPanel.add(button);
     }
 
-    private void changeTableToAvailableOrNot() {
+    public void changeTableToAvailableOrNot() {
         currentTableIndex = (currentTableIndex + 1) % tables.length;
         scrollPane.setViewportView(tables[currentTableIndex]);
 
@@ -171,7 +167,8 @@ public class LaunchPage extends CustomePage {
         currentTableIndex = 0;
         scrollPane.setViewportView(tables[currentTableIndex]);
 
-        String searchText = searchField.getText().toLowerCase();
+        //String searchText = searchField.getText().toLowerCase();
+        String searchText = searchField.getText();
         RowFilter<LibraryTableModel, Object> rowFilter = RowFilter.regexFilter(searchText);
         TableRowSorter<LibraryTableModel> sorter = new TableRowSorter<>((LibraryTableModel) tables[currentTableIndex].getModel());
         sorter.setRowFilter(rowFilter);
@@ -208,7 +205,16 @@ public class LaunchPage extends CustomePage {
 
         //DetailsPanel detailsPanel = new DetailsPanel();
         detailsPanel.setValues(libraryModelService.getLibraryMap().get(id));
+        detailsPanel.setFunctionsButtons(libraryModelService.getLibraryMap().get(id));
 
+    }
+
+    public void reloadTable() {
+/*        libraryTableModel.fireTableDataChanged();
+        libraryTableModelAvailable.fireTableDataChanged();
+        libraryTableModelNotAvailable.fireTableDataChanged();*/
+
+        createTable();
     }
 
 }

@@ -66,8 +66,9 @@ public class AddAudioBookWritePage extends CustomWritePage {
             setVisible(false);
 
             try {
-                launchPage.addRowToTable("EBook", title, author, publicationYear.toString(),
-                        language.toString());
+                /*launchPage.addRowToTable("EBook", title, author, publicationYear.toString(),
+                        language.toString());*/
+                LaunchPage launchPage = new LaunchPage(libraryModelService);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }

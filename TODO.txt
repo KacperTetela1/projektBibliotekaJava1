@@ -1,14 +1,10 @@
 --POMYSLY
 dodanie karty klienta i numeru karty klienta do procesu wypozyczenia
-
---BLEDY
-Czasami serializacja nie dziala i wczytuje domyslne 4 ksiazki
+dodac podczas dodawania mozliwosc wyboru czy ksiazka jest dostepna
 
 --UPDATE
-zrobic aby tabela zmieniala sie w czasie rzeczywistym
-dodac mozliwosc usuwania ksiazek
-dodac mozliwosc wyszukiwania ksiazek
-dodac mozliwosc wypożyczania ksiazek
-dodac mozliwosc oddawania ksiazek
+zrobic aby tabela zmieniala sie w czasie rzeczywistym, bez odswiezania strony
 
-dodac podczas dodawania mozliwosc wyboru czy ksiazka jest dostepna
+mozna zrobic tak zeby zamiast reloadPage metody, byla funkcjnalosc ktora bedzie tworzyla nowa tabele i usuwala stara,
+ w ten sposob nie bedzie trzeba odswiezac strony, mozna to zrobic dodajac do tabeli kolejna i usuwajac stara,
+  badz ja nadpisujac

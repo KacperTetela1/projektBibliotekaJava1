@@ -8,15 +8,16 @@ import model.model.Item;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class LibraryModelService {
     private List<Item> libraryMap;
 
 
     //w programowaniu obiektowy przez static trcimy kontrolę gdzie które narzedzia mamy dostepne
-            //- (diargamy uml, warstwy aplikacji, separacja modulow)
+    //- (diargamy uml, warstwy aplikacji, separacja modulow)
     //uniemozliwia nam korzystanie z narzedzi obiektowych (interfejsy, polimorfizm, dziedziczeni,a abstrakcja, wzorce projketowe)
-            //w klasach serwisów (te ktorych potrzebujesz jeden)
+    //w klasach serwisów (te ktorych potrzebujesz jeden)
 
     //roznica miedzy polami a zmiennymi kokalnymi polega na tym że pola dostaja domyslna wartość a zmienne lokalne nie
 
@@ -32,23 +33,23 @@ public class LibraryModelService {
 
     }
 
-    private  int libraryIdCounter() {
+    private int libraryIdCounter() {
         int maxVal;
 
         if (libraryMap.isEmpty()) {
             maxVal = 0;
         } else {
-            maxVal = libraryMap.stream().map(Item::getId).max(Integer::compare).get()+1;
+            maxVal = libraryMap.stream().map(Item::getId).max(Integer::compare).get() + 1;
         }
         return maxVal;
     }
 
     private void fillMapTemp() {
-        Item ogniemIMieczem = new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, Item.Language.POLISH, Book.CoverType.HARD, 588,false);
-        Item stonesForTheRampart = new Book("Stones for the Rampart", "Aleksander Kamiński", 1943, Item.Language.ENGLISH, Book.CoverType.SOFT, 244,false);
-        Item javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 2008, Item.Language.POLISH, Book.CoverType.HARD, 768,true);
-        Item panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, Item.Language.POLISH, true, 11,false);
-        Item pelnaMozliwosci = new AudioBook("Pełna MOC możliwości","Jacek Walkiewicz",2014, Item.Language.POLISH,21600,true);
+        Item ogniemIMieczem = new Book("Ogniem i Mieczem", "Henryk Sienkiewicz", 1884, Item.Language.POLISH, Book.CoverType.HARD, 588, false);
+        Item stonesForTheRampart = new Book("Stones for the Rampart", "Aleksander Kamiński", 1943, Item.Language.ENGLISH, Book.CoverType.SOFT, 244, false);
+        Item javaPodstawyhorstmann = new Book("Java Podstawy Horstmann", "Cay'a Horstmanna", 2008, Item.Language.POLISH, Book.CoverType.HARD, 768, true);
+        Item panTadeusz = new EBook("Pan Tadeusz", "Adam Mickiewicz", 1834, Item.Language.POLISH, true, 11, false);
+        Item pelnaMozliwosci = new AudioBook("Pełna MOC możliwości", "Jacek Walkiewicz", 2014, Item.Language.POLISH, 21600, true);
 
         addItem(ogniemIMieczem);
         addItem(stonesForTheRampart);
@@ -68,7 +69,7 @@ public class LibraryModelService {
 
     public void addItem(String title, String author, int publicationYear, int numberOfPages, Item.Language language, Book.CoverType coverType) {
 
-        Book book = new Book(title, author, publicationYear, language, coverType, numberOfPages,true);
+        Book book = new Book(title, author, publicationYear, language, coverType, numberOfPages, true);
         book.setId(libraryIdCounter());
 
         System.out.println(book);
@@ -78,7 +79,7 @@ public class LibraryModelService {
 
     public void addItem(String title, String author, int publicationYear, int fileSize, Item.Language language, boolean isPDF) {
 
-        EBook eBook = new EBook(title, author, publicationYear, language, isPDF, fileSize,true);
+        EBook eBook = new EBook(title, author, publicationYear, language, isPDF, fileSize, true);
         eBook.setId(libraryIdCounter());
 
         System.out.println(eBook);
@@ -88,7 +89,7 @@ public class LibraryModelService {
 
     public void addItem(String title, String author, int publicationYear, int duration, Item.Language language) {
 
-        AudioBook audioBook = new AudioBook(title, author, publicationYear, language, duration,true);
+        AudioBook audioBook = new AudioBook(title, author, publicationYear, language, duration, true);
         audioBook.setId(libraryIdCounter());
 
         System.out.println(audioBook);
@@ -96,15 +97,12 @@ public class LibraryModelService {
 
     }
 
-    public String deleteItem(int keyValue) {
-
-        if (libraryMap.contains(keyValue)) {
-            libraryMap.remove(keyValue);
-            return "The art has been deleted";
-        } else {
-            throw new RuntimeException("The art is not exist");
+    public void deleteItem(int idValue) {
+        try {
+            libraryMap.remove(idValue);
+        } catch (IndexOutOfBoundsException e) {
+            throw new RuntimeException("The art with id '" + idValue + "' does not exist");
         }
-
     }
 
     public String rentAnItem(int keyValue) {
@@ -149,7 +147,7 @@ public class LibraryModelService {
             inputStream.close();
         } catch (IOException e) {
             //e.printStackTrace();
-            System.out.println("Problem z odczytem pliku zapisu");
+            System.out.println("The problem of reading a save file or serialization file did not exist before");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
@@ -177,5 +175,17 @@ public class LibraryModelService {
         return availableList;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LibraryModelService that = (LibraryModelService) o;
+        return Objects.equals(libraryMap, that.libraryMap);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(libraryMap);
+    }
 
 }

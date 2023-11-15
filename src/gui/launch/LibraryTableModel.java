@@ -157,4 +157,18 @@ public class LibraryTableModel extends AbstractTableModel {
 
     public void addRow(Object[] objects) {
     }
+
+    // New method to update the data
+/*    public void updateData(Object[] newData) {
+        // Assuming your data is a List of Object arrays
+
+        // Update the data
+        addRow(newData);
+
+        // Notify the table that the data has changed
+        fireTableDataChanged();
+        fireTableRowsInserted(data.size() - 1, data.size() - 1);
+    }*/
+
+
 }
