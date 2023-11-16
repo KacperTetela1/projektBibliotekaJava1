@@ -16,23 +16,23 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class LaunchPage extends CustomePage {
+    private final JPanel navigationBar = new JPanel();
+    private final JPanel availableList = new JPanel();
+    private final JPanel searchBar = new JPanel();
+    private final JPanel list = new JPanel();
+    private final JButton addBookButton = new JButton("Add book");
+    private final JButton addEBookButton = new JButton("Add e-book");
+    private final JButton addAudioBookButton = new JButton("Add audiobook");
+    private final JButton availableButton = new JButton("Available only");
+    private final JButton search = new JButton("Search");
+    private final JTable[] tables;
+    private final DetailsPanel detailsPanel;
     JTextField searchField;
-    private JPanel navigationBar = new JPanel();
-    private JPanel availableList = new JPanel();
-    private JPanel searchBar = new JPanel();
-    private JPanel list = new JPanel();
-    private JButton addBookButton = new JButton("Add book");
-    private JButton addEBookButton = new JButton("Add e-book");
-    private JButton addAudioBookButton = new JButton("Add audiobook");
-    private JButton availableButton = new JButton("Available only");
-    private JButton search = new JButton("Search");
     private JScrollPane scrollPane;
     private int currentTableIndex;
-    private JTable[] tables;
     private LibraryTableModel libraryTableModel;
     private LibraryTableModelAvailable libraryTableModelAvailable;
     private LibraryTableModelNotAvailable libraryTableModelNotAvailable;
-    private DetailsPanel detailsPanel;
 
     public LaunchPage(LibraryModelService libraryModelService) {
         super("Library Manager", libraryModelService);
@@ -52,7 +52,6 @@ public class LaunchPage extends CustomePage {
         configureFrame();
         configureComponents();
         createTable();
-
     }
 
     private void createTable() {
@@ -114,7 +113,7 @@ public class LaunchPage extends CustomePage {
         //navigationBar.setBorder(new EmptyBorder(0,0,0,0));
         add(navigationBar);
 
-        detailsPanel.setBounds(0,150,200,450);
+        detailsPanel.setBounds(0, 150, 200, 450);
         //details.setBorder(new EmptyBorder(0,0,0,0));
         add(detailsPanel);
 
@@ -204,8 +203,8 @@ public class LaunchPage extends CustomePage {
         //DetailsPanel detailsPanel = new DetailsPanel(libraryModelService.getLibraryMap().get(id));
 
         //DetailsPanel detailsPanel = new DetailsPanel();
-        detailsPanel.setValues(libraryModelService.getLibraryMap().get(id));
-        detailsPanel.setFunctionsButtons(libraryModelService.getLibraryMap().get(id));
+        detailsPanel.setValues(libraryModelService.findItem(id));
+        detailsPanel.setFunctionsButtons(libraryModelService.findItem(id));
 
     }
 

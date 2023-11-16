@@ -5,18 +5,12 @@ import model.service.LibraryModelService;
 import java.io.Serializable;
 
 public abstract class Item implements Serializable {
-    private int  id;
+    private int id;
     private String title;
     private String author;
     private int yearPublished;
     private boolean availability;
     private Language language;
-
-    public enum Language {
-        POLISH,
-        ENGLISH,
-        GERMAN,
-    }
 
     public Item() {
     }
@@ -28,8 +22,6 @@ public abstract class Item implements Serializable {
         this.language = language;
         this.availability = availability;
     }
-
-
 
     public int getId() {
         return id;
@@ -55,6 +47,10 @@ public abstract class Item implements Serializable {
         return language;
     }
 
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
     public boolean isAvailability() {
         return availability;
     }
@@ -63,12 +59,7 @@ public abstract class Item implements Serializable {
         this.availability = availability;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
-    }
-
-
-   @Override
+    @Override
     public String toString() {
         return "Objects.Item{" +
                 "id=" + id + '\'' +
@@ -78,6 +69,13 @@ public abstract class Item implements Serializable {
                 ", availability=" + availability +
                 ", language=" + language +
                 '}';
+    }
+
+
+    public enum Language {
+        POLISH,
+        ENGLISH,
+        GERMAN,
     }
 
 }

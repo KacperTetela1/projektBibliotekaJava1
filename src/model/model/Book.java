@@ -4,11 +4,6 @@ public class Book extends Item {
     private CoverType coverType;
     private int numberOfPages;
 
-    public enum CoverType {
-        HARD,
-        SOFT,
-    }
-
     public Book() {
     }
 
@@ -21,10 +16,6 @@ public class Book extends Item {
     public Book(String title, String author, int yearPublished, int numberOfPages, boolean availability) {
         super(title, author, yearPublished, Language.POLISH, availability);
         this.numberOfPages = numberOfPages;
-    }
-
-    public void setCoverType(CoverType coverType) {
-        this.coverType = coverType;
     }
 
     public CoverType getCoverType() {
@@ -41,6 +32,11 @@ public class Book extends Item {
                 "coverType=" + coverType +
                 ", numberOfPages=" + numberOfPages +
                 "} " + super.toString();
+    }
+
+    public enum CoverType {
+        HARD,
+        SOFT,
     }
 
 }

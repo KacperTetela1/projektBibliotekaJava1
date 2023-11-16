@@ -13,12 +13,12 @@ import java.awt.event.ActionEvent;
 import java.util.Date;
 
 public class AddBookWritePage extends CustomWritePage {
+    private final JRadioButton button4;
+    private final JRadioButton button5;
     JPanel downPanelUp = new JPanel();
     JPanel downPanelLow = new JPanel();
     Book.CoverType coverType;
     LaunchPage launchPage;
-    private JRadioButton button4;
-    private JRadioButton button5;
 
     public AddBookWritePage(LibraryModelService libraryModelService, LaunchPage launchPage) {
         super("Book Details", "Pages amount", libraryModelService);

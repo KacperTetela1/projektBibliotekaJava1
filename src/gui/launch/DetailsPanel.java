@@ -10,16 +10,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class DetailsPanel extends Panel {
+    private final String[] labelNames = new String[]{"Key", "Type", "Title", "Author", "Year", "Language",
+            "Available", "Cover type", "Pages", "Is PDF", "File size (MB)", "Duration (min)"};
+    private final Label[] labels = new Label[labelNames.length];
+    private final Label[] labelsValue = new Label[labelNames.length];
     JButton rentButton;
     JButton deleteButton;
-    private Label key;
-    private Label type;
-    private Label title;
-    private String[] labelNames = new String[]{"Key", "Type", "Title", "Author", "Year", "Language",
-            "Available", "Cover type", "Pages", "Is PDF", "File size (MB)", "Duration (min)"};
-    private Label[] labels = new Label[labelNames.length];
-    private Label[] labelsValue = new Label[labelNames.length];
-    private Item item;
     LibraryModelService libraryModelService;
 
     public DetailsPanel(LibraryModelService libraryModelService) {
@@ -87,7 +83,7 @@ public class DetailsPanel extends Panel {
             String fileSize = Integer.toString(((EBook) item).getFileSize());
             labelsValue[10].setText(fileSize);
         } else {
-            String duration = Integer.toString((((AudioBook) item).getDuration())/60);
+            String duration = Integer.toString((((AudioBook) item).getDuration()) / 60);
             labelsValue[11].setText(duration);
             labelsValue[7].setText("");
             labelsValue[8].setText("");
@@ -129,7 +125,6 @@ public class DetailsPanel extends Panel {
     }
 
     private void createFunctionsButtons() {
-
         rentButton = new JButton("Rent/Return");
         deleteButton = new JButton("Delete");
 
@@ -141,7 +136,6 @@ public class DetailsPanel extends Panel {
 
         add(rentButton);
         add(deleteButton);
-
     }
 
     private void setValuesToNull() {

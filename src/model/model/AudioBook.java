@@ -3,10 +3,7 @@ package model.model;
 import java.io.Serializable;
 
 public class AudioBook extends Item {
-    private int duration;
-
-    public AudioBook() {
-    }
+    private final int duration;
 
     public AudioBook(String title, String author, int yearPublished, Language language, int duration, boolean availability) {
         super(title, author, yearPublished, language, availability);

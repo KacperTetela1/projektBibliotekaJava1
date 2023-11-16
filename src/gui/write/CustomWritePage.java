@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public abstract class CustomWritePage extends CustomePage implements ActionListener {
+    final JPanel footer = new JPanel();
     JPanel leftPanelContainer = new JPanel();
     JPanel rightPanelContainer = new JPanel();
     JLabel label1 = new JLabel("Title");
@@ -24,7 +25,6 @@ public abstract class CustomWritePage extends CustomePage implements ActionListe
     JTextField textField4 = new JTextField();
     JPanel midlePanelUp = new JPanel();
     JPanel midlePanelLow = new JPanel();
-    final JPanel footer = new JPanel();
     JRadioButton button1;
     JRadioButton button2;
     JRadioButton button3;
@@ -50,7 +50,7 @@ public abstract class CustomWritePage extends CustomePage implements ActionListe
         leftPanelContainer.setBorder(new EmptyBorder(0, 50, 0, 10));
         rightPanelContainer.setBorder(new EmptyBorder(10, 0, 10, 50));
         midlePanelUp.setBorder(new EmptyBorder(10, 0, 0, 0));
-        midlePanelLow.setBorder(new EmptyBorder(0,0,0,0));
+        midlePanelLow.setBorder(new EmptyBorder(0, 0, 0, 0));
 
         add(leftPanelContainer);
         add(rightPanelContainer);
@@ -103,8 +103,8 @@ public abstract class CustomWritePage extends CustomePage implements ActionListe
         //Footer
 
         footer.setLayout(new FlowLayout());
-        footer.setBounds(0,390,400,30);
-        footer.setBorder(new EmptyBorder(0,140,0,0));
+        footer.setBounds(0, 390, 400, 30);
+        footer.setBorder(new EmptyBorder(0, 140, 0, 0));
         add(footer);
 
         button6.setFocusable(false);

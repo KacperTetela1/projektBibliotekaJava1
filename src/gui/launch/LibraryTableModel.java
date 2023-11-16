@@ -12,8 +12,8 @@ import java.util.List;
 
 public class LibraryTableModel extends AbstractTableModel {
 
-    private LibraryModelService libraryModelService = null;
-    private List<Item> items = null; // na liste zamienic
+    private final LibraryModelService libraryModelService = null;
+    private List<Item> items = null;
 
     public LibraryTableModel(LibraryModelService libraryModelService) {
         super();
