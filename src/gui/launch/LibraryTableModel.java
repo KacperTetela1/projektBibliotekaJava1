@@ -7,17 +7,16 @@ import model.service.LibraryModelService;
 
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.List;
 
-public class LibraryTableModel extends AbstractTableModel {
-
+public class LibraryTableModel extends DefaultTableModel {
     private final LibraryModelService libraryModelService = null;
     private List<Item> items = null;
 
     public LibraryTableModel(LibraryModelService libraryModelService) {
         super();
-        //this.libraryModelService = libraryModelService;
         items = libraryModelService.getLibraryMap();
     }
 
@@ -36,7 +35,6 @@ public class LibraryTableModel extends AbstractTableModel {
 
     @Override
     public String getColumnName(int columnIndex) {
-
         switch (columnIndex) {
             case 0:
                 return "Key: ";
@@ -61,14 +59,11 @@ public class LibraryTableModel extends AbstractTableModel {
 
             default:
                 return "";
-
         }
-
     }
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-
         switch (columnIndex) {
             case 0:
                 return Integer.class;
@@ -94,7 +89,6 @@ public class LibraryTableModel extends AbstractTableModel {
             default:
                 return null;
         }
-
     }
 
     @Override
@@ -105,7 +99,6 @@ public class LibraryTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Item item = items.get(rowIndex);
-
         switch (columnIndex) {
             case 0:
                 return item.getId();
@@ -132,43 +125,11 @@ public class LibraryTableModel extends AbstractTableModel {
 
             default:
                 return "";
-
         }
-
     }
 
     public void setItems(boolean available) {
         items = libraryModelService.getLibraryMap(available);
     }
-
-    @Override
-    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
-    }
-
-    @Override
-    public void addTableModelListener(TableModelListener l) {
-
-    }
-
-    @Override
-    public void removeTableModelListener(TableModelListener l) {
-
-    }
-
-    public void addRow(Object[] objects) {
-    }
-
-    // New method to update the data
-/*    public void updateData(Object[] newData) {
-        // Assuming your data is a List of Object arrays
-
-        // Update the data
-        addRow(newData);
-
-        // Notify the table that the data has changed
-        fireTableDataChanged();
-        fireTableRowsInserted(data.size() - 1, data.size() - 1);
-    }*/
-
 
 }

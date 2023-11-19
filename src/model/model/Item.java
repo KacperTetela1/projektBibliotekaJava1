@@ -1,7 +1,5 @@
 package model.model;
 
-import model.service.LibraryModelService;
-
 import java.io.Serializable;
 
 public abstract class Item implements Serializable {

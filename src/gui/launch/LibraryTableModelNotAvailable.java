@@ -10,7 +10,6 @@ import javax.swing.table.AbstractTableModel;
 import java.util.List;
 
 public class LibraryTableModelNotAvailable extends AbstractTableModel {
-
     private LibraryModelService libraryModelService = null;
     private List<Item> items = null;
 
@@ -35,7 +34,6 @@ public class LibraryTableModelNotAvailable extends AbstractTableModel {
 
     @Override
     public String getColumnName(int columnIndex) {
-
         switch (columnIndex) {
             case 0:
                 return "Key: ";
@@ -60,14 +58,11 @@ public class LibraryTableModelNotAvailable extends AbstractTableModel {
 
             default:
                 return "";
-
         }
-
     }
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-
         switch (columnIndex) {
             case 0:
                 return Integer.class;
@@ -93,7 +88,6 @@ public class LibraryTableModelNotAvailable extends AbstractTableModel {
             default:
                 return null;
         }
-
     }
 
     @Override
@@ -104,7 +98,6 @@ public class LibraryTableModelNotAvailable extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Item item = items.get(rowIndex);
-
         switch (columnIndex) {
             case 0:
                 return item.getId();
@@ -131,9 +124,7 @@ public class LibraryTableModelNotAvailable extends AbstractTableModel {
 
             default:
                 return "";
-
         }
-
     }
 
     public void setItems(boolean available) {
@@ -146,11 +137,9 @@ public class LibraryTableModelNotAvailable extends AbstractTableModel {
 
     @Override
     public void addTableModelListener(TableModelListener l) {
-
     }
 
     @Override
     public void removeTableModelListener(TableModelListener l) {
-
     }
 }

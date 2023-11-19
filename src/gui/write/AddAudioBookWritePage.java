@@ -18,7 +18,7 @@ public class AddAudioBookWritePage extends CustomWritePage {
 
     public AddAudioBookWritePage(LibraryModelService libraryModelService, LaunchPage launchPage) {
         super("Audio Book Details", "Duration(seconds)", libraryModelService);
-        launchPage = this.launchPage;
+        this.launchPage = launchPage;
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
 
@@ -32,11 +32,9 @@ public class AddAudioBookWritePage extends CustomWritePage {
         add(downPanelLow);
 
         button7.addActionListener(e -> create());
-
     }
 
     private void create() {
-
         String title = textField1.getText();
         String author = textField2.getText();
         Integer publicationYear = null;
@@ -61,20 +59,10 @@ public class AddAudioBookWritePage extends CustomWritePage {
         } else if (objectCharacter < 0 || objectCharacter > 10000) {
             JOptionPane.showMessageDialog(this, "Pages amount is incorrect");
         } else {
-
             libraryModelService.addItem(title, author, publicationYear, objectCharacter, language);
             setVisible(false);
-
-            try {
-                /*launchPage.addRowToTable("EBook", title, author, publicationYear.toString(),
-                        language.toString());*/
-                LaunchPage launchPage = new LaunchPage(libraryModelService);
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-
+            launchPage.updateTable();
         }
-
     }
 
 }

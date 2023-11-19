@@ -18,7 +18,7 @@ public class AddEBookWritePage extends CustomWritePage {
 
     public AddEBookWritePage(LibraryModelService libraryModelService, LaunchPage launchPage) {
         super("EBook Details", "File Size(MB)", libraryModelService);
-        launchPage = this.launchPage;
+        this.launchPage = launchPage;
         downPanelUp.setLayout(new FlowLayout());
         downPanelLow.setLayout(new FlowLayout());
 
@@ -61,18 +61,9 @@ public class AddEBookWritePage extends CustomWritePage {
         } else if (objectCharacter < 0 || objectCharacter > 10000) {
             JOptionPane.showMessageDialog(this, "File Size amount is incorrect");
         } else {
-
             libraryModelService.addItem(title, author, publicationYear, objectCharacter, language, true);
             setVisible(false);
-
-            try {
-                LaunchPage launchPage = new LaunchPage(libraryModelService);
-/*                                launchPage.addRowToTable("EBook", title, author, publicationYear.toString(),
-                        language.toString());*/
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-
+            launchPage.updateTable();
         }
     }
 

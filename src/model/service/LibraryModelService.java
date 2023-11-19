@@ -13,7 +13,6 @@ import java.util.Objects;
 public class LibraryModelService {
     private List<Item> libraryMap;
 
-
     //w programowaniu obiektowy przez static trcimy kontrolę gdzie które narzedzia mamy dostepne
     //- (diargamy uml, warstwy aplikacji, separacja modulow)
     //uniemozliwia nam korzystanie z narzedzi obiektowych (interfejsy, polimorfizm, dziedziczeni,a abstrakcja, wzorce projketowe)
@@ -30,12 +29,10 @@ public class LibraryModelService {
 
         if (libraryMap.isEmpty())
             fillMapTemp();
-
     }
 
     private int libraryIdCounter() {
         int maxVal;
-
         if (libraryMap.isEmpty()) {
             maxVal = 0;
         } else {
@@ -98,7 +95,6 @@ public class LibraryModelService {
     }
 
     public String rentAnItem(int keyValue) {
-
         if (libraryMap.get(keyValue).isAvailability()) {
             libraryMap.get(keyValue).setAvailability(false);
             return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been rented";
@@ -107,18 +103,15 @@ public class LibraryModelService {
     }
 
     public String returnAnItem(int keyValue) {
-
         if (!libraryMap.get(keyValue).isAvailability()) {
             libraryMap.get(keyValue).setAvailability(true);
             return "The art '" + libraryMap.get(keyValue).getTitle() + "' has been returned";
         } else {
             throw new RuntimeException("The art '" + libraryMap.get(keyValue).getTitle() + "' has never been rented");
         }
-
     }
 
     public void serialization() {
-
         try {
             ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("hashmap.ser"));
             outputStream.writeObject(libraryMap);
@@ -126,13 +119,10 @@ public class LibraryModelService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public List<Item> deserialization() {
-
         List<Item> deserializedMap = new ArrayList<>();
-
         try {
             ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("hashmap.ser"));
             deserializedMap = (List<Item>) inputStream.readObject();
@@ -143,9 +133,7 @@ public class LibraryModelService {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
         return deserializedMap;
-
     }
 
     public List<Item> getLibraryMap() {
@@ -161,7 +149,6 @@ public class LibraryModelService {
 
     public List<Item> getLibraryMap(boolean available) {
         List<Item> availableList = new ArrayList<>();
-
         for (Item item : getLibraryMap()) {
             if (available && item.isAvailability()) {
                 availableList.add(item);
@@ -169,7 +156,6 @@ public class LibraryModelService {
                 availableList.add(item);
             }
         }
-
         System.out.println(availableList.size());
         return availableList;
     }

@@ -20,11 +20,9 @@ public class DetailsPanel extends Panel {
 
     public DetailsPanel(LibraryModelService libraryModelService) {
         this.libraryModelService = libraryModelService;
-        //this.item = item;
         GridLayout gridLayout = new GridLayout(labelNames.length + 2, 2);
         setLayout(gridLayout);
         createLabel(gridLayout);
-        //setValues();
         createFunctionsButtons();
     }
 
@@ -38,9 +36,7 @@ public class DetailsPanel extends Panel {
             Label labelValue = new Label();
             labelsValue[i] = labelValue;
             add(labelValue);
-
         }
-
     }
 
     public void setValues(Item item) {
@@ -53,7 +49,6 @@ public class DetailsPanel extends Panel {
 
         labelsValue[2].setText(item.getTitle());
         labelsValue[3].setText(item.getAuthor());
-
         String year = Integer.toString(item.getYearPublished());
         labelsValue[4].setText(year);
         labelsValue[5].setText(item.getLanguage().toString());
@@ -93,10 +88,8 @@ public class DetailsPanel extends Panel {
     }
 
     public void setFunctionsButtons(Item item) {
-
         rentButton.setVisible(true);
         deleteButton.setVisible(true);
-
         if (item.isAvailability()) {
             rentButton.setText("Rent");
         } else {
@@ -107,21 +100,18 @@ public class DetailsPanel extends Panel {
             if (item.isAvailability()) {
                 item.setAvailability(false);
                 rentButton.setText("Return");
-                LaunchPage launchPage = new LaunchPage(libraryModelService);
             } else {
                 item.setAvailability(true);
                 rentButton.setText("Rent");
-                LaunchPage launchPage = new LaunchPage(libraryModelService);
             }
         });
 
         deleteButton.addActionListener(e -> {
-            libraryModelService.deleteItem(item.getId());
-            //setVisible(false);
+            //libraryModelService.deleteItem(item.getId());
+            libraryModelService.deleteItem(libraryModelService.findItem(item.getId()));
+            //TODO: zdebugowac to co jest powyżej, problem polega na tym, że w momencie kiedy w jednej turze programu dodamy ksiazke i usuniemy to wyskoczy blad.
             setValuesToNull();
-            LaunchPage launchPage = new LaunchPage(libraryModelService);
         });
-
     }
 
     private void createFunctionsButtons() {
@@ -139,9 +129,8 @@ public class DetailsPanel extends Panel {
     }
 
     private void setValuesToNull() {
-        for (int i = 0; i < labelsValue.length; i++) {
+        for (int i = 0; i < labelsValue.length; i++)
             labelsValue[i].setText("");
-        }
         rentButton.setVisible(false);
         deleteButton.setVisible(false);
     }

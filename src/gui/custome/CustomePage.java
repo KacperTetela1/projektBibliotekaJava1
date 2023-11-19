@@ -10,11 +10,9 @@ public abstract class CustomePage extends JFrame {
 
     public CustomePage(String title, LibraryModelService libraryModelService) {
         this.libraryModelService = libraryModelService;
-        //this.libraryController = new LibraryController(libraryModelService);
         setTitle(title);
         setIconImage(icon.getImage());
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        //setLayout(new BorderLayout()); //todo
         setLayout(null);
         setVisible(true);
         setResizable(false);

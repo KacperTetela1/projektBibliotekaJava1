@@ -109,24 +109,10 @@ public class AddBookWritePage extends CustomWritePage {
         } else if (coverType == null) {
             JOptionPane.showMessageDialog(this, "Cover type is not selected");
         } else {
-
             libraryModelService.addItem(title, author, publicationYear, objectCharacter, language, coverType);
             setVisible(false);
-
-            try {
-/*                launchPage.addRowToTable("Book", title, author, publicationYear.toString(),
-                        language.toString());*/
-                //TODO reload the table page
-                LaunchPage launchPage = new LaunchPage(libraryModelService);
-
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-
+            launchPage.updateTable();
         }
-
-        LaunchPage launchPage = new LaunchPage(libraryModelService);
-
     }
 
 }

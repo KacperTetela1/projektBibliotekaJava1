@@ -35,8 +35,8 @@ public abstract class CustomWritePage extends CustomePage implements ActionListe
     public CustomWritePage(String title, String objectCharacter, LibraryModelService libraryModelService) {
         super(title, libraryModelService);
         label4.setText(objectCharacter);
-
         setSize(400, 500);
+
         leftPanelContainer.setLayout(new GridLayout(4, 1));
         rightPanelContainer.setLayout(new GridLayout(4, 1, 0, 22));
         midlePanelUp.setLayout(new FlowLayout());
@@ -114,7 +114,6 @@ public abstract class CustomWritePage extends CustomePage implements ActionListe
         footer.add(button7);
 
         button6.addActionListener(e -> cancel());
-
     }
 
     private void cancel() {
